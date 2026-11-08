@@ -1,0 +1,13 @@
+{
+  "name": "quan-ly-chi-tieu-ai-backend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Backend AI Smart Expense cho ứng dụng Quản Lý Chi Tiêu (không phụ thuộc thư viện ngoài)",
+  "main": "server.js",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node --test test/api.test.js"
+  }
+}
