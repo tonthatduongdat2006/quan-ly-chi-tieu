@@ -1,6 +1,7 @@
 # BẢN TỰ ĐÁNH GIÁ BẢN THÂN — TÔN THẤT DƯƠNG ĐẠT
 
 * **Họ và tên:** Tôn Thất Dương Đạt
+* **MSSV:** 24090061
 * **Nhóm:** Nhóm 6
 * **Dự án:** Quản Lý Chi Tiêu Cá Nhân — AI Smart Expense
 * **Vai trò thực tế:** Phụ trách gần như toàn bộ dự án (phối hợp cùng **claude**)
