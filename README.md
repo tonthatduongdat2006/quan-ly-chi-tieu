@@ -100,3 +100,18 @@ Backend phục vụ luôn giao diện trong `public/`, cùng domain nên không 
 | Hóa đơn "không nhận diện được" | Ảnh mờ, bị che hoặc không thấy tổng tiền. Chụp rõ hơn hoặc nhập thủ công. |
 
 Log của backend (stdout) ghi mỗi request một dòng cùng mã lỗi; chi tiết lỗi từ dịch vụ AI chỉ ghi ở log, không trả cho người dùng.
+## Thành viên & Đánh giá (Nhóm 6)
+
+Khối lượng công việc thực tế của dự án **AI Smart Expense** tập trung vào sự phối hợp giữa **Tôn Thất Dương Đạt** và **claude**, kết hợp góp ý/đề xuất cách xây dựng web từ **Văn Lê Tiến Hùng**; phần của **Nguyễn Hải Đăng** và **Phạm Minh Phúc** để trống để cập nhật khi cần.
+
+| Thành viên | Phụ trách / Vai trò | Đánh giá chung (1 file chung) | Tự đánh giá bản thân |
+| :--- | :--- | :--- | :--- |
+| **Tôn Thất Dương Đạt** | Phụ trách gần như toàn bộ cùng **claude** (tính năng, API/CSDL, cấu hình triển khai, kiểm tra log, tài liệu) | [Hồ sơ bổ sung & đánh giá chung](doc/HO-SO-BO-SUNG-VA-TU-DANH-GIA.md) | [Bảng tự đánh giá bản thân](doc/BANG-TU-DANH-GIA-4-THANH-VIEN.md) |
+| **Văn Lê Tiến Hùng** | Góp ý và đề xuất cách xây dựng web | *(Dùng chung file bên cạnh)* | *(Để trống)* |
+| **Nguyễn Hải Đăng** | *(Để trống)* | *(Dùng chung file bên cạnh)* | *(Để trống)* |
+| **Phạm Minh Phúc** | *(Để trống)* | *(Dùng chung file bên cạnh)* | *(Để trống)* |
+
+### Tài liệu bổ sung trong thư mục `doc/`
+
+* [doc/HO-SO-BO-SUNG-VA-TU-DANH-GIA.md](doc/HO-SO-BO-SUNG-VA-TU-DANH-GIA.md) — Hồ sơ bổ sung, phân bổ vai trò thực tế, tiến độ chức năng, nhật ký sự cố và checklist bàn giao.
+* [doc/BANG-TU-DANH-GIA-4-THANH-VIEN.md](doc/BANG-TU-DANH-GIA-4-THANH-VIEN.md) — Bảng tự đánh giá bản thân cho 4 thành viên.
