@@ -106,7 +106,7 @@ Khối lượng công việc thực tế của dự án **AI Smart Expense** t�
 
 | Thành viên | Phụ trách / Vai trò | Đánh giá chung (1 file chung) | Tự đánh giá bản thân |
 | :--- | :--- | :--- | :--- |
-| **Tôn Thất Dương Đạt** | Phụ trách gần như toàn bộ cùng **claude** (tính năng, API/CSDL, cấu hình triển khai, kiểm tra log, tài liệu) | [Hồ sơ bổ sung & đánh giá chung](doc/HO-SO-BO-SUNG-VA-TU-DANH-GIA.md) | [Bảng tự đánh giá bản thân](doc/BANG-TU-DANH-GIA-4-THANH-VIEN.md) |
+| **Tôn Thất Dương Đạt** | Phụ trách gần như toàn bộ cùng **claude** (tính năng, API/CSDL, cấu hình triển khai, kiểm tra log, tài liệu) | [Hồ sơ bổ sung & đánh giá chung](doc/HO-SO-BO-SUNG-VA-TU-DANH-GIA.md) | [Tự đánh giá - Tôn Thất Dương Đạt](doc/TU-DANH-GIA-TON-THAT-DUONG-DAT.md) |
 | **Văn Lê Tiến Hùng** | Góp ý và đề xuất cách xây dựng web | *(Dùng chung file bên cạnh)* | *(Để trống)* |
 | **Nguyễn Hải Đăng** | *(Để trống)* | *(Dùng chung file bên cạnh)* | *(Để trống)* |
 | **Phạm Minh Phúc** | *(Để trống)* | *(Dùng chung file bên cạnh)* | *(Để trống)* |
@@ -114,4 +114,5 @@ Khối lượng công việc thực tế của dự án **AI Smart Expense** t�
 ### Tài liệu bổ sung trong thư mục `doc/`
 
 * [doc/HO-SO-BO-SUNG-VA-TU-DANH-GIA.md](doc/HO-SO-BO-SUNG-VA-TU-DANH-GIA.md) — Hồ sơ bổ sung, phân bổ vai trò thực tế, tiến độ chức năng, nhật ký sự cố và checklist bàn giao.
+* [doc/TU-DANH-GIA-TON-THAT-DUONG-DAT.md](doc/TU-DANH-GIA-TON-THAT-DUONG-DAT.md) — Bản tự đánh giá bản thân của Tôn Thất Dương Đạt.
 * [doc/BANG-TU-DANH-GIA-4-THANH-VIEN.md](doc/BANG-TU-DANH-GIA-4-THANH-VIEN.md) — Bảng tự đánh giá bản thân cho 4 thành viên.
