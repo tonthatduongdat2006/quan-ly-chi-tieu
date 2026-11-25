@@ -2,7 +2,7 @@
 
 Ứng dụng chạy độc lập, **không cần Claude Artifact, không cần đăng nhập Claude**. Frontend chỉ gọi backend của bạn; backend giữ API key và gọi AI.
 
-```
+```text
 Trình duyệt (public/index.html)                Backend (server.js)                 Dịch vụ AI
   Chat: gửi tin nhắn ───────► POST /api/ai/parse-text ──────┐
   Quét: gửi ảnh (base64) ───► POST /api/ai/parse-receipt ───┼─► gọi AI (API key ở biến môi trường)
@@ -100,6 +100,7 @@ Backend phục vụ luôn giao diện trong `public/`, cùng domain nên không 
 | Hóa đơn "không nhận diện được" | Ảnh mờ, bị che hoặc không thấy tổng tiền. Chụp rõ hơn hoặc nhập thủ công. |
 
 Log của backend (stdout) ghi mỗi request một dòng cùng mã lỗi; chi tiết lỗi từ dịch vụ AI chỉ ghi ở log, không trả cho người dùng.
+
 ## Sơ đồ Cơ sở dữ liệu (ERD) & Schema
 
 * **Tệp khởi tạo bảng & dữ liệu mẫu (PostgreSQL):** [`db/schema.sql`](db/schema.sql)
@@ -111,19 +112,31 @@ users (id, email, password_hash, display_name, opening_balance)
   ├── 1:N ──► budgets (id, user_id, category_id, month_year, limit_amount)
   └── 1:N ──► ai_drafts (id, user_id, input_type, raw_input)
                  └── 1:N ──► ai_draft_items (id, draft_id, category_id, amount, note, tx_date, status)
+```
+
+## Demo & Ảnh chụp màn hình (Screenshots)
+
+* **Link triển khai (Live Demo):** `https://group6-quanlychitieu-api.vercel.app`
+* **Video Demo (YouTube, 720p, ≤ 10 phút):** *(Dán link YouTube Unlisted/Public tại đây)*
+* **Ảnh chụp giao diện:** *(Bổ sung ảnh chụp màn hình Tổng quan, AI Nhập nhanh tin nhắn/hóa đơn và Thống kê tại đây)*
+
 ## Thành viên & Đánh giá (Nhóm 6)
 
 Khối lượng công việc thực tế của dự án **AI Smart Expense** tập trung vào sự phối hợp giữa **Tôn Thất Dương Đạt** và **claude**, kết hợp góp ý/đề xuất cách xây dựng web từ **Văn Lê Tiến Hùng**; phần của **Nguyễn Hải Đăng** và **Phạm Minh Phúc** để trống để cập nhật khi cần.
 
 | Thành viên | Phụ trách / Vai trò | Đánh giá chung (1 file chung) | Tự đánh giá bản thân |
 | :--- | :--- | :--- | :--- |
-| **Tôn Thất Dương Đạt** | Phụ trách gần như toàn bộ cùng **claude** (tính năng, API/CSDL, cấu hình triển khai, kiểm tra log, tài liệu) | [Hồ sơ bổ sung & đánh giá chung](doc/HO-SO-BO-SUNG-VA-TU-DANH-GIA.md) | [Tự đánh giá - Tôn Thất Dương Đạt](doc/TU-DANH-GIA-TON-THAT-DUONG-DAT.md) |
+| **Tôn Thất Dương Đạt** | Phụ trách gần như toàn bộ cùng **claude** (tính năng, API/CSDL, cấu hình triển khai, kiểm tra log, tài liệu) | [Đánh giá chung nhóm (1 file)](doc/BANG-TU-DANH-GIA-4-THANH-VIEN.md) | [Tự đánh giá - Tôn Thất Dương Đạt](doc/TU-DANH-GIA-TON-THAT-DUONG-DAT.md) |
 | **Văn Lê Tiến Hùng** | Góp ý và đề xuất cách xây dựng web | *(Dùng chung file bên cạnh)* | *(Để trống)* |
 | **Nguyễn Hải Đăng** | *(Để trống)* | *(Dùng chung file bên cạnh)* | *(Để trống)* |
 | **Phạm Minh Phúc** | *(Để trống)* | *(Dùng chung file bên cạnh)* | *(Để trống)* |
 
 ### Tài liệu bổ sung trong thư mục `doc/`
 
-* [doc/HO-SO-BO-SUNG-VA-TU-DANH-GIA.md](doc/HO-SO-BO-SUNG-VA-TU-DANH-GIA.md) — Hồ sơ bổ sung, phân bổ vai trò thực tế, tiến độ chức năng, nhật ký sự cố và checklist bàn giao.
+* [doc/PRD-CHUC-NANG-HE-THONG.md](doc/PRD-CHUC-NANG-HE-THONG.md) — Đặc tả yêu cầu chức năng (PRD) theo mẫu chuẩn.
+* [doc/KE-HOACH-VA-PHAN-CONG.md](doc/KE-HOACH-VA-PHAN-CONG.md) — Kế hoạch triển khai theo mốc thời gian, phân công vai trò và quy trình Git.
+* [doc/WIREFRAME-KIEN-TRUC-ERD.md](doc/WIREFRAME-KIEN-TRUC-ERD.md) — Thiết kế Wireframe, luồng giao diện, kiến trúc hệ thống và lược đồ CSDL (ERD).
+* [doc/TOI-UU-VA-PEER-REVIEW.md](doc/TOI-UU-VA-PEER-REVIEW.md) — Kết quả tối ưu Google Lighthouse, thiết lập logging/tracking và báo cáo UI/UX Peer Review.
+* [doc/TU-DANH-GIA-5-SPRINT.md](doc/TU-DANH-GIA-5-SPRINT.md) — Báo cáo tự đánh giá qua 5 sprint (S1–S5).
 * [doc/TU-DANH-GIA-TON-THAT-DUONG-DAT.md](doc/TU-DANH-GIA-TON-THAT-DUONG-DAT.md) — Bản tự đánh giá bản thân của Tôn Thất Dương Đạt.
 * [doc/BANG-TU-DANH-GIA-4-THANH-VIEN.md](doc/BANG-TU-DANH-GIA-4-THANH-VIEN.md) — Bảng tự đánh giá bản thân cho 4 thành viên.
