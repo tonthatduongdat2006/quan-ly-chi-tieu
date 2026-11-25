@@ -100,6 +100,17 @@ Backend phục vụ luôn giao diện trong `public/`, cùng domain nên không 
 | Hóa đơn "không nhận diện được" | Ảnh mờ, bị che hoặc không thấy tổng tiền. Chụp rõ hơn hoặc nhập thủ công. |
 
 Log của backend (stdout) ghi mỗi request một dòng cùng mã lỗi; chi tiết lỗi từ dịch vụ AI chỉ ghi ở log, không trả cho người dùng.
+## Sơ đồ Cơ sở dữ liệu (ERD) & Schema
+
+* **Tệp khởi tạo bảng & dữ liệu mẫu (PostgreSQL):** [`db/schema.sql`](db/schema.sql)
+
+```text
+users (id, email, password_hash, display_name, opening_balance)
+  ├── 1:N ──► categories (id, user_id, name, type, icon, color)
+  ├── 1:N ──► transactions (id, user_id, category_id, type, amount, note, tx_date, source)
+  ├── 1:N ──► budgets (id, user_id, category_id, month_year, limit_amount)
+  └── 1:N ──► ai_drafts (id, user_id, input_type, raw_input)
+                 └── 1:N ──► ai_draft_items (id, draft_id, category_id, amount, note, tx_date, status)
 ## Thành viên & Đánh giá (Nhóm 6)
 
 Khối lượng công việc thực tế của dự án **AI Smart Expense** tập trung vào sự phối hợp giữa **Tôn Thất Dương Đạt** và **claude**, kết hợp góp ý/đề xuất cách xây dựng web từ **Văn Lê Tiến Hùng**; phần của **Nguyễn Hải Đăng** và **Phạm Minh Phúc** để trống để cập nhật khi cần.
