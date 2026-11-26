@@ -13,3 +13,14 @@ Trình duyệt / Expo Web                        Backend / API                  
   ◄── JSON có cấu trúc ◄────── kiểm tra + chuẩn hóa ◄───────┘
   Bản nháp → người dùng sửa → "Xác nhận lưu" → lưu vào PostgreSQL (Supabase): số dư, giao dịch, danh mục, ngân sách, hũ tiết kiệm
 ```
+## Chạy thử trên máy (3 bước)
+
+Cần Node.js **18 trở lên** và Git.
+
+```bash
+git clone [https://github.com/tonthatduongdat2006/quan-ly-chi-tieu.git](https://github.com/tonthatduongdat2006/quan-ly-chi-tieu.git)
+cd quan-ly-chi-tieu
+git checkout main
+npm install
+# Copy .env.example (nếu có) và điền biến môi trường AI / Supabase / API trước khi chạy
+```
