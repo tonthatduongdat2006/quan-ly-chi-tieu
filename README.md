@@ -165,14 +165,29 @@ erDiagram
     PROFILES ||--o{ SAVINGS_JARS : manages
     CATEGORIES ||--o{ TRANSACTIONS : classifies
     CATEGORIES ||--o{ BUDGETS : limits
-```
 ## Demo & Ảnh chụp màn hình (Screenshots)
 
 - **Link triển khai (Live Web):** [AI Smart Expense](https://group6-quanlychitieu.vercel.app/)
 - **Link API / Backend:** https://group6-quanlychitieu-api.vercel.app
 - **Video Demo (YouTube, 720p, ≤ 10 phút):** *(Cập nhật link YouTube Unlisted/Public sau khi quay hoàn chỉnh)*
-- **Ảnh chụp màn hình:** *(Tải ảnh giao diện lên thư mục trong repo, ví dụ `doc/screenshots/`, rồi chèn bằng `![Mô tả](doc/screenshots/ten-anh.png)`)*
 
+### Ảnh chụp màn hình giao diện
+
+| 1. Đăng nhập | 2. Tạo tài khoản |
+| :---: | :---: |
+| ![Đăng nhập](doc/01-dang-nhap.png) | ![Tạo tài khoản](doc/02-dang-ky-tai-khoan.png) |
+
+| 3. Thiết lập số dư ban đầu | 4. Thêm khoản chi thủ công |
+| :---: | :---: |
+| ![Thiết lập số dư](doc/03-thiet-lap-so-du.png) | ![Thêm khoản chi](doc/04-them-khoan-chi.png) |
+
+| 5. Quét hóa đơn AI (1) | 6. Quét hóa đơn AI (2) |
+| :---: | :---: |
+| ![Quét hóa đơn AI 1](doc/05-quet-hoa-don-ai1.png) | ![Quét hóa đơn AI 2](doc/05-quet-hoa-don-ai2.png) |
+
+| 7. Quét hóa đơn AI (3) | 8. Cá nhân & Tài khoản |
+| :---: | :---: |
+| ![Quét hóa đơn AI 3](doc/05-quet-hoa-don-ai3.png) | ![Cá nhân](doc/06-Ca-nhan.png) |
 ## Thành viên & Đánh giá (Nhóm 6)
 
 | Thành viên | Mã sinh viên | Phụ trách / Vai trò | Đánh giá chung (1 file chung) | Tự đánh giá bản thân |
