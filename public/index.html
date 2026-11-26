@@ -1,66 +1,59 @@
 <!DOCTYPE html><html lang="vi"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="api-base" content="">
-<title>Quản Lý Chi Tiêu</title>
+<title>AI Smart Expense</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#F4F7FB;--card:#FCFDFE;--p:#0F766E;--pd:#115E59;--pl:#E6F4F1;--t:#19243B;--ts:#5A6882;--tf:#8B98B2;--b:#E2E8F0;--g:#15803D;--gl:#DCFCE7;--r:#C2410C;--rl:#FFEDD5;--o:#B45309;--ol:#FEF3C7;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0E1525;--card:#162036;--pl:#12332F;--t:#E6EDF8;--ts:#9AA8C4;--tf:#6B7A99;--b:#24314D;--gl:#0F2E22;--rl:#381A10;--ol:#36260C}}
-:root[data-theme=dark]{--bg:#0E1525;--card:#162036;--pl:#12332F;--t:#E6EDF8;--ts:#9AA8C4;--tf:#6B7A99;--b:#24314D;--gl:#0F2E22;--rl:#381A10;--ol:#36260C}
+:root{--bg:#F4F7FB;--card:#FCFDFE;--p:#15803D;--pd:#166534;--pl:#DCFCE7;--t:#19243B;--ts:#5A6882;--tf:#8B98B2;--b:#E2E8F0;--g:#15803D;--gl:#DCFCE7;--r:#C2410C;--rl:#FFEDD5;--o:#B45309;--ol:#FEF3C7;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0E1525;--card:#162036;--pl:#0F2E22;--t:#E6EDF8;--ts:#9AA8C4;--tf:#6B7A99;--b:#24314D;--gl:#0F2E22;--rl:#381A10;--ol:#36260C}}
+:root[data-theme=dark]{--bg:#0E1525;--card:#162036;--pl:#0F2E22;--t:#E6EDF8;--ts:#9AA8C4;--tf:#6B7A99;--b:#24314D;--gl:#0F2E22;--rl:#381A10;--ol:#36260C}
 *{box-sizing:border-box;margin:0}html,body{height:100%}
 body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--t);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;font-size:14px;line-height:1.45}
 #root{max-width:768px;width:100%;height:100%;margin:0 auto;position:relative;overflow:hidden;background:var(--bg);box-shadow:0 8px 32px rgba(15,23,42,.06)}
 @keyframes in{from{opacity:0;transform:translateY(6px)}}@keyframes up{from{transform:translateY(100%)}}@keyframes fd{from{opacity:0}}@keyframes gr{from{width:0}}
-@keyframes pop{0%{transform:scale(.94);opacity:0}100%{transform:scale(1);opacity:1}}@keyframes sh{20%,60%{transform:translateX(-4px)}40%,80%{transform:translateX(4px)}}
+@keyframes pop{0%{transform:scale(.96);opacity:0}100%{transform:scale(1);opacity:1}}@keyframes sh{20%,60%{transform:translateX(-4px)}40%,80%{transform:translateX(4px)}}
 @keyframes sp{to{transform:rotate(1turn)}}@keyframes tz{from{opacity:0;transform:translateY(-8px)}}
-.scr{position:absolute;inset:0;overflow-y:auto;padding:0 20px 104px;animation:in .2s ease-out}.scr::-webkit-scrollbar{display:none}
+.scr{position:absolute;inset:0;overflow-y:auto;padding:0 20px 104px;animation:in .18s ease-out}.scr::-webkit-scrollbar{display:none}
 h1{font-size:21px;font-weight:800;letter-spacing:-.02em}h3{font-size:16.5px;font-weight:700;margin-bottom:6px;letter-spacing:-.01em}button{font-family:inherit}
 .big,.pos,.neg,.tx b,.card b{font-variant-numeric:tabular-nums lining-nums}
 .row{display:flex;align-items:center;gap:12px}.sb{justify-content:space-between}.g8{gap:8px}.mt{margin-top:16px}.mut{color:var(--ts);font-size:12.5px}.f1{flex:1;min-width:0}
 .pos{color:var(--g)}.neg{color:var(--r)}.tap{cursor:pointer;transition:transform .15s ease-out,border-color .15s ease-out,background-color .15s ease-out}.tap:hover{transform:translateY(-1px);border-color:#CBD5E1}.tap:active{transform:translateY(0)}
 .card{background:var(--card);border-radius:16px;padding:16px;margin-top:14px;border:1px solid var(--b);box-shadow:0 1px 2px rgba(15,23,42,.03)}
-.btn{width:100%;height:48px;border:0;border-radius:12px;background:var(--p);color:#F8FAFC;font-weight:700;font-size:14.5px;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;transition:transform .15s ease-out,background-color .15s ease-out,border-color .15s ease-out;box-shadow:0 4px 12px -6px rgba(15,118,110,.45)}
+.btn{width:100%;height:46px;border:0;border-radius:12px;background:var(--p);color:#F8FAFC;font-weight:700;font-size:14.5px;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;transition:transform .15s ease-out,background-color .15s ease-out,border-color .15s ease-out;box-shadow:0 4px 12px -6px rgba(21,128,61,.4)}
 .btn:hover{background:var(--pd);transform:translateY(-1px)}.btn:active{transform:translateY(0)}.btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
-.btn.ghost{background:var(--card);color:var(--t);border:1px solid var(--b);box-shadow:none}.btn.ghost:hover{background:var(--pl);border-color:#CBD5E1}.btn.red{background:var(--r);box-shadow:none}.btn.gr{background:var(--g);box-shadow:none}
+.btn.ghost{background:var(--card);color:var(--t);border:1px solid var(--b);box-shadow:none}.btn.ghost:hover{background:#F1F5F9;border-color:#CBD5E1}.btn.red{background:var(--r);box-shadow:none}
 .sp{width:18px;height:18px;border:2.5px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;animation:sp .7s linear infinite}
 .in{display:flex;align-items:center;gap:8px;height:48px;border:1px solid var(--b);border-radius:12px;background:var(--card);padding:0 14px;transition:border-color .15s ease-out,box-shadow .15s ease-out}
 .in:focus-within{border-color:var(--p);box-shadow:0 0 0 3px var(--pl)}.in.bad{border-color:var(--r)}
-.in input{flex:1;min-width:0;border:0;outline:0;background:none;font:inherit;font-size:15px;color:var(--t)}.amt input{font-size:25px;font-weight:800;font-variant-numeric:tabular-nums lining-nums}.amt b{color:var(--ts)}
+.in input,.in select{flex:1;min-width:0;border:0;outline:0;background:none;font:inherit;font-size:15px;color:var(--t)}
+.amt input{font-size:24px;font-weight:800;font-variant-numeric:tabular-nums lining-nums}.amt b{color:var(--ts)}
 .eye{background:none;border:0;color:var(--ts);cursor:pointer;display:flex}
 .fld{margin-top:14px}.fld>label{display:block;font-size:13px;font-weight:600;color:var(--ts);margin-bottom:6px}.err{color:var(--r);font-size:12.5px;margin-top:5px;animation:fd .15s ease-out}
-.seg{display:flex;background:var(--pl);border:1px solid var(--b);border-radius:12px;padding:3px;gap:4px}.seg button{flex:1;height:36px;border:0;border-radius:9px;background:none;font-weight:600;color:var(--ts);cursor:pointer;transition:background-color .15s ease-out,color .15s ease-out}.seg button.on{background:var(--card);color:var(--p);font-weight:700;box-shadow:0 1px 2px rgba(15,23,42,.06)}
+.seg{display:flex;background:#EEF2F6;border:1px solid var(--b);border-radius:12px;padding:3px;gap:4px}.seg button{flex:1;height:36px;border:0;border-radius:9px;background:none;font-weight:600;color:var(--ts);cursor:pointer;transition:background-color .15s ease-out,color .15s ease-out}.seg button.on{background:var(--card);color:var(--p);font-weight:700;box-shadow:0 1px 2px rgba(15,23,42,.06)}
 .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
 .cb{display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 4px;border:1px solid var(--b);border-radius:12px;background:var(--card);font-size:11.5px;font-weight:600;color:var(--t);cursor:pointer;transition:transform .15s ease-out,border-color .15s ease-out,background-color .15s ease-out}.cb:hover{transform:translateY(-1px);border-color:#CBD5E1}.cb.on{border-color:var(--p);background:var(--pl);color:var(--pd)}.cb span{font-size:20px}
 .ico{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0}
-.bar{height:8px;border-radius:999px;background:var(--b);overflow:hidden;margin-top:10px}.bar i{display:block;height:100%;border-radius:999px;transition:width .5s ease-out,background-color .2s ease-out;animation:gr .6s ease-out}
-.nav{position:absolute;bottom:0;left:0;right:0;height:70px;background:var(--card);border-top:1px solid var(--b);display:flex;justify-content:space-around;align-items:center;z-index:5;padding-bottom:6px}
-.ni{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10.5px;font-weight:600;color:var(--tf);background:none;border:0;width:64px;cursor:pointer;transition:color .15s ease-out}.ni.on,.ni:hover{color:var(--p)}
-.fab{width:48px;height:48px;border-radius:16px;background:var(--p);color:#F8FAFC;border:0;margin-top:-24px;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 14px -4px rgba(15,118,110,.5);cursor:pointer;transition:transform .15s ease-out,background-color .15s ease-out}.fab:hover{background:var(--pd);transform:translateY(-1px)}
+.bar{height:8px;border-radius:999px;background:var(--b);overflow:hidden;margin-top:10px}.bar i{display:block;height:100%;border-radius:999px;transition:width .4s ease-out;animation:gr .5s ease-out}
+.nav{position:absolute;bottom:0;left:0;right:0;height:68px;background:var(--card);border-top:1px solid var(--b);display:flex;justify-content:space-around;align-items:center;z-index:5;padding-bottom:4px}
+.ni{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11px;font-weight:600;color:var(--ts);background:none;border:0;min-width:68px;cursor:pointer;transition:color .15s ease-out}.ni.on,.ni:hover{color:var(--p)}
+.fab{width:44px;height:44px;border-radius:14px;background:var(--p);color:#F8FAFC;border:0;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 14px -4px rgba(21,128,61,.45);cursor:pointer;transition:transform .15s ease-out,background-color .15s ease-out}.fab:hover{background:var(--pd);transform:translateY(-1px)}
 .ov{position:absolute;inset:0;background:rgba(15,23,42,.42);z-index:20;display:flex;align-items:flex-end;animation:fd .15s ease-out}.ov.out{opacity:0;transition:opacity .18s ease-out}.ov:has(.dlg){align-items:center}
-.sheet{width:100%;background:var(--bg);border-radius:20px 20px 0 0;padding:20px;max-height:92%;overflow-y:auto;animation:up .22s ease-out}.sheet.out{transform:translateY(100%);transition:transform .18s ease-out}
+.sheet{width:100%;background:var(--bg);border-radius:20px 20px 0 0;padding:20px;max-height:92%;overflow-y:auto;animation:up .2s ease-out}.sheet.out{transform:translateY(100%);transition:transform .18s ease-out}
 .dlg{margin:0 24px;width:100%;max-width:440px;background:var(--card);border-radius:18px;padding:20px;border:1px solid var(--b);animation:pop .18s ease-out}.dlg.out{transform:scale(.96);transition:transform .15s ease-out}
 .toasts{position:absolute;top:12px;left:14px;right:14px;z-index:50;display:flex;flex-direction:column;gap:8px;pointer-events:none}
-.toast{padding:11px 14px;border-radius:12px;color:#fff;font-weight:600;font-size:13px;box-shadow:0 6px 16px -6px rgba(15,23,42,.25);animation:tz .2s ease-out}.toast.ok{background:var(--g)}.toast.err{background:var(--r)}.toast.warn{background:var(--o)}
-.hero{background:linear-gradient(135deg,#0F766E,#164E63);border-radius:18px;padding:20px;color:#F8FAFC;border:1px solid rgba(255,255,255,.08);box-shadow:0 10px 24px -14px rgba(15,118,110,.5)}
+.toast{padding:11px 14px;border-radius:12px;color:#fff;font-weight:600;font-size:13px;box-shadow:0 6px 16px -6px rgba(15,23,42,.25);animation:tz .18s ease-out}.toast.ok{background:var(--g)}.toast.err{background:var(--r)}.toast.warn{background:var(--o)}
+.hero{background:linear-gradient(135deg,#16A34A,#15803D);border-radius:16px;padding:18px 20px;color:#F8FAFC;border:1px solid rgba(255,255,255,.1);box-shadow:0 8px 20px -12px rgba(21,128,61,.45)}
 .chip{padding:7px 12px;border-radius:999px;border:1px solid var(--b);background:var(--card);font-size:12.5px;font-weight:600;cursor:pointer;color:var(--t);transition:border-color .15s ease-out,color .15s ease-out,background-color .15s ease-out}.chip:hover,.chip.on{border-color:var(--p);color:var(--pd);background:var(--pl)}
 .lk{background:none;border:0;color:var(--p);font-weight:700;font-size:inherit;cursor:pointer}.lk:hover{color:var(--pd)}
-.bk{width:38px;height:38px;border-radius:10px;border:1px solid var(--b);background:var(--card);color:var(--t);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color .15s ease-out,background-color .15s ease-out}.bk:hover{background:var(--pl);border-color:#CBD5E1}
-.big{font-size:28px;font-weight:800;margin-top:6px;letter-spacing:-.02em;animation:pop .22s ease-out}.sh{animation:sh .3s ease-out}.tx{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--b)}.tx:last-child{border:0}
-.alert{display:flex;gap:8px;align-items:center;padding:12px 14px;border-radius:12px;margin-top:14px;font-weight:600;font-size:13px;cursor:pointer;animation:in .2s ease-out}
-.col{display:flex;align-items:flex-end;gap:8px;height:110px;margin-top:12px}.col div{flex:1;text-align:center;font-size:10.5px;color:var(--ts);height:100%;display:flex;flex-direction:column;justify-content:flex-end;gap:4px}.col i{display:block;border-radius:6px 6px 2px 2px;background:var(--p);transition:height .4s ease-out;min-height:3px}
+.bk{width:38px;height:38px;border-radius:10px;border:1px solid var(--b);background:var(--card);color:var(--t);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color .15s ease-out,background-color .15s ease-out}.bk:hover{background:#F1F5F9;border-color:#CBD5E1}
+.big{font-size:26px;font-weight:800;margin-top:4px;letter-spacing:-.02em;animation:pop .2s ease-out}.sh{animation:sh .28s ease-out}.tx{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--b)}.tx:last-child{border:0}
+.alert{display:flex;gap:8px;align-items:center;padding:12px 14px;border-radius:12px;margin-top:12px;font-weight:600;font-size:13px}
+.col{display:flex;align-items:flex-end;gap:8px;height:110px;margin-top:12px}.col div{flex:1;text-align:center;font-size:10.5px;color:var(--ts);height:100%;display:flex;flex-direction:column;justify-content:flex-end;gap:4px}.col i{display:block;border-radius:6px 6px 2px 2px;background:var(--p);transition:height .35s ease-out;min-height:3px}
 .dots i{width:6px;height:6px;border-radius:50%;background:var(--ts);display:inline-block;margin:0 2px;animation:bn 1s infinite}.dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}@keyframes bn{50%{transform:translateY(-4px);opacity:.45}}
-.bub{max-width:88%;padding:10px 14px;border-radius:14px;animation:in .2s ease-out;line-height:1.45}.bub.u{align-self:flex-end;background:var(--p);color:#F8FAFC;border-bottom-right-radius:4px}.bub.a{align-self:flex-start;background:var(--card);border:1px solid var(--b);border-bottom-left-radius:4px}
+.bub{max-width:88%;padding:10px 14px;border-radius:14px;animation:in .18s ease-out;line-height:1.45}.bub.u{align-self:flex-end;background:var(--p);color:#F8FAFC;border-bottom-right-radius:4px}.bub.a{align-self:flex-start;background:var(--card);border:1px solid var(--b);border-bottom-left-radius:4px}
 .scanbox{position:relative;height:210px;border:1.5px dashed #CBD5E1;border-radius:16px;background:var(--card);overflow:hidden;display:flex;align-items:center;justify-content:center;color:var(--ts);margin-top:14px}.scanbox img{width:100%;height:100%;object-fit:contain}
 .scanbox.on::after{content:'';position:absolute;left:0;right:0;height:2px;background:var(--p);box-shadow:0 0 8px var(--p);animation:scan 1.5s ease-in-out infinite}@keyframes scan{0%,100%{top:0}50%{top:calc(100% - 2px)}}
-.in select{flex:1;min-width:0;border:0;outline:0;background:none;font:inherit;font-size:15px;color:var(--t)}
-.aibtn{position:relative;width:100%;margin-top:16px;display:flex;align-items:center;gap:14px;padding:15px 16px;border:1px solid #115E59;border-radius:16px;color:#F8FAFC;text-align:left;cursor:pointer;background:linear-gradient(120deg,#0F766E,#155E75);box-shadow:0 8px 18px -12px rgba(15,118,110,.55);transition:transform .15s ease-out,box-shadow .15s ease-out;font:inherit}
-.aibtn:hover{transform:translateY(-1px);box-shadow:0 10px 20px -12px rgba(15,118,110,.65)}.aibtn:active{transform:translateY(0)}
-.aiic{width:46px;height:46px;border-radius:12px;background:rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff}
-.aitag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.7px;background:rgba(255,255,255,.18);padding:2px 8px;border-radius:999px;margin-bottom:5px}.aimain{display:block;font-size:15px;font-weight:700}.aisub{display:block;font-size:12px;opacity:.9;margin-top:2px;line-height:1.35}.aiar{font-size:22px;opacity:.85;transition:transform .15s ease-out}.aibtn:hover .aiar{transform:translateX(2px)}
-.opt{width:100%;display:flex;align-items:center;gap:14px;padding:14px 16px;margin-bottom:10px;border:1px solid var(--b);border-radius:14px;background:var(--card);color:var(--t);font:inherit;text-align:left;cursor:pointer;transition:transform .15s ease-out,border-color .15s ease-out,background-color .15s ease-out}
-.opt:hover{transform:translateY(-1px);border-color:var(--p)}.opt:active{transform:translateY(0)}.opt:disabled{opacity:.5;cursor:default}.opt.on{border-color:var(--p);background:var(--pl)}
-.opt b{display:block;font-size:14px;margin-bottom:2px}.opt .mut{display:block}.optic{width:46px;height:46px;border-radius:12px;background:var(--pl);color:var(--pd);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-@media(min-width:768px){.grid{grid-template-columns:repeat(6,1fr)}.scr{padding:0 28px 108px}}
+@media(min-width:768px){.grid{grid-template-columns:repeat(6,1fr)}.scr{padding:0 28px 104px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 </style></head><body><div id="root"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
@@ -75,78 +68,69 @@ const uid=()=>Math.random().toString(36).slice(2,9),num=s=>parseInt(String(s).re
 const fmtIn=s=>{const n=String(s).replace(/\D/g,'');return n?Number(n).toLocaleString('de-DE'):''};
 const amtErr=v=>/[^\d.,\s]/.test(v)?(v.includes('-')?'Số tiền phải lớn hơn 0':'Số tiền chỉ được nhập chữ số'):'';
 const dlabel=s=>{const t=new Date();if(s===dk(t))return'Hôm nay';t.setDate(t.getDate()-1);return s===dk(t)?'Hôm qua':s.slice(8)+'/'+s.slice(5,7)};
-const DEF={expense:[['Ăn uống','🍜','#E5484D'],['Di chuyển','🚌','#2F6FED'],['Mua sắm','🛍️','#8B5CF6'],['Hóa đơn','🧾','#F59E0B'],['Giải trí','🎮','#EC4899'],['Học tập','📚','#6366F1'],['Sức khỏe','💊','#14B8A6'],['Khác','📦','#6B7A99']],income:[['Lương','💼','#1BAA63'],['Làm thêm','⏱️','#2F6FED'],['Thưởng','🎁','#F59E0B'],['Đầu tư','📈','#8B5CF6'],['Khác','📦','#6B7A99']]};
-const catsOf=(d,t)=>DEF[t].concat((d.cats[t]||[]).map(n=>[n,'🏷️','#6B7A99'])),catMeta=(d,t,n)=>catsOf(d,t).find(c=>c[0]===n)||[n,'📦','#6B7A99'];
+const DEF={expense:[['Ăn uống','🍜','#E5484D'],['Di chuyển','🚌','#2F6FED'],['Mua sắm','🛍️','#8B5CF6'],['Hóa đơn','🧾','#F59E0B'],['Giải trí','🎮','#EC4899'],['Học tập','📚','#6366F1'],['Sức khỏe','💊','#14B8A6'],['Khác','📦','#6B7A99']],income:[['Lương','💼','#1BAA63'],['Làm thêm','⏱️','#2F6FED'],['Thưởng','🎁','#F59E0B'],['Khác','📦','#6B7A99']]};
+const catsOf=(d,t)=>DEF[t],catMeta=(d,t,n)=>catsOf(d,t).find(c=>c[0]===n)||[n,'📦','#6B7A99'];
 const sum=(tx,type,m)=>tx.filter(t=>t.type===type&&(!m||mk(t.date)===m)).reduce((s,t)=>s+t.amount,0);
-const spent=(tx,cat,m)=>tx.filter(t=>t.type==='expense'&&t.cat===cat&&mk(t.date)===m).reduce((s,t)=>s+t.amount,0);
-const bst=(sp,l)=>sp>l?{c:'var(--r)',l:'⚠ Vượt '+vnd(sp-l)}:sp/l>=.8?{c:'var(--o)',l:'Còn '+vnd(l-sp)}:{c:'var(--p)',l:'Còn '+vnd(l-sp)};
-const empty=()=>({txs:[],budgets:[],jars:[],cats:{expense:[],income:[]}});
-const seed=()=>{let k=0;const T=(o,type,cat,amount,note)=>{const ts=Date.now()-o*864e5-(k++)*1000;return{id:uid(),type,cat,amount,note,date:dk(new Date(ts)),ts}};
-return{txs:[T(0,'expense','Ăn uống',80000,'Ăn trưa'),T(1,'expense','Di chuyển',45000,'Grab đi học'),T(1,'expense','Ăn uống',120000,'Cà phê & bánh'),T(2,'expense','Mua sắm',250000,'Áo thun'),T(2,'expense','Học tập',200000,'Sách giáo trình'),T(3,'income','Lương',12000000,'Lương tháng'),T(3,'income','Làm thêm',2500000,'Dạy kèm'),T(3,'expense','Ăn uống',120000,'Đi chợ')],
-budgets:[{cat:'Ăn uống',limit:1000000},{cat:'Mua sắm',limit:500000},{cat:'Học tập',limit:400000}],
-jars:[{id:uid(),name:'Quỹ khẩn cấp',ico:'🛟',target:10000000,saved:6500000,log:[{id:uid(),t:'in',a:6500000,date:today()}]},{id:uid(),name:'Mua laptop',ico:'💻',target:20000000,saved:4000000,log:[]}],cats:{expense:[],income:[]}}};
-const KEY='qlct_v1';
-const load=()=>{try{const s=JSON.parse(localStorage.getItem(KEY));if(s&&s.users)return s}catch(e){}return{users:[{name:'Dương Đạt',email:'demo@demo.vn',pass:'Demo@123'}],data:{'demo@demo.vn':seed()},session:null}};
-const IC={home:'M3 11l9-8 9 8v9a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z',stats:'M5 20V11M12 20V4M19 20v-6',bud:'M3 7h18v12H3zM3 7l3-3h12l3 3M16 13h2',me:'M12 12a4 4 0 100-8 4 4 0 000 8zM4 21a8 8 0 0116 0',plus:'M12 5v14M5 12h14',back:'M15 5l-7 7 7 7',eye:'M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12zM12 15a3 3 0 100-6 3 3 0 000 6z'};
-const Ic=({d,s=22})=>html`<svg width=${s} height=${s} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d=${d}/></svg>`;
+const empty=()=>({initialBalance:null,txs:[]});
+const KEY='qlct_group6_v1';
+const load=()=>{try{const s=JSON.parse(localStorage.getItem(KEY));if(s&&s.users)return s}catch(e){}return{users:[{name:'Nhóm 6',email:'demo@demo.vn',pass:'Demo@123'}],data:{'demo@demo.vn':empty()},session:'demo@demo.vn'}};
+const IC={home:'M3 11l9-8 9 8v9a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z',plus:'M12 5v14M5 12h14',scan:'M4 8h3l2-3h6l2 3h3v12H4zM12 17a4 4 0 100-8 4 4 0 000 8z',me:'M12 12a4 4 0 100-8 4 4 0 000 8zM4 21a8 8 0 0116 0',back:'M15 5l-7 7 7 7',eye:'M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12zM12 15a3 3 0 100-6 3 3 0 000 6z'};
+const Ic=({d,s=20})=>html`<svg width=${s} height=${s} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d=${d}/></svg>`;
 
 let pushToast=()=>{};const toast=(m,k='ok')=>pushToast(m,k);
-function Toasts(){const[l,setL]=useState([]);useEffect(()=>{pushToast=(m,k)=>{const id=uid();setL(a=>[...a,{id,m,k}]);setTimeout(()=>setL(a=>a.filter(x=>x.id!==id)),3400)}},[]);
+function Toasts(){const[l,setL]=useState([]);useEffect(()=>{pushToast=(m,k)=>{const id=uid();setL(a=>[...a,{id,m,k}]);setTimeout(()=>setL(a=>a.filter(x=>x.id!==id)),3200)}},[]);
 return html`<div className="toasts">${l.map(t=>html`<div key=${t.id} className=${'toast '+t.k}>${{ok:'✓',err:'✕',warn:'⚠'}[t.k]} ${t.m}</div>`)}</div>`}
-function Modal({onClose,center,children}){const[o,setO]=useState(false);const close=()=>{setO(true);setTimeout(onClose,220)};
+function Modal({onClose,center,children}){const[o,setO]=useState(false);const close=()=>{setO(true);setTimeout(onClose,200)};
 return ReactDOM.createPortal(html`<div className=${'ov'+(o?' out':'')} onClick=${close}><div className=${(center?'dlg':'sheet')+(o?' out':'')} onClick=${e=>e.stopPropagation()}>${children(close)}</div></div>`,document.getElementById('root'))}
 function Confirm({title,text,ok,danger,onYes,onClose}){return html`<${Modal} center onClose=${onClose}>${close=>html`<div><h3>${title}</h3><p className="mut">${text}</p><div className="row g8 mt"><button className="btn ghost" onClick=${close}>Huỷ</button><button className=${'btn'+(danger?' red':'')} onClick=${()=>{onYes();close()}}>${ok}</button></div></div>`}<//>`}
 const Field=({label,err,children})=>html`<div className="fld"><label>${label}</label>${children}${err&&html`<div className="err">${err}</div>`}</div>`;
 const Amt=({v,set,err})=>html`<div className=${'in amt'+(err?' bad':'')}><input inputMode="numeric" placeholder="0" value=${v} onChange=${ev=>set(ev.target.value)}/><b>đ</b></div>`;
 const Btn=({busy,cls='',children,...p})=>html`<button ...${p} className=${'btn '+cls} disabled=${busy}>${busy?html`<i className="sp"></i>`:children}</button>`;
-function Head({t}){const{r,go}=useC();return html`<div className="row" style=${{padding:'22px 0 6px'}}><button className="bk" onClick=${()=>go(r.from&&r.from!==r.n?r.from:'home')}><${Ic} d=${IC.back} s=${18}/></button><h1>${t}</h1></div>`}
+function Head({t}){const{r,go}=useC();return html`<div className="row" style=${{padding:'20px 0 6px'}}><button className="bk" onClick=${()=>go(r.from&&r.from!==r.n?r.from:'home')}><${Ic} d=${IC.back} s=${18}/></button><h1>${t}</h1></div>`}
 function Tx({t,d}){const c=catMeta(d,t.type,t.cat),inc=t.type==='income';return html`<div className="tx"><div className="ico" style=${{background:c[2]+'22'}}>${c[1]}</div><div className="f1"><b>${t.cat}</b><div className="mut">${t.note||'—'} · ${dlabel(t.date)}</div></div><b className=${inc?'pos':'neg'}>${inc?'+':'-'}${vnd(t.amount)}</b></div>`}
 
-/* ===== LUỒNG 1: ĐĂNG KÝ / ĐĂNG NHẬP ===== */
-function Auth(){const{db,setDb,enter}=useC();const[reg,setReg]=useState(false),[f,setF]=useState({name:'',email:'',phone:'',pass:'',terms:false,rem:true}),[e,setE]=useState({}),[busy,setBusy]=useState(false),[show,setShow]=useState(false),[shake,setShake]=useState(0),lock=useRef(false);
+function InitBalModal({cur,close}){const{upd}=useC();const[v,setV]=useState(cur!==null?fmtIn(cur):''),[e,setE]=useState('');
+const save=()=>{const a=num(v);if(!v||a<=0){setE('Vui lòng nhập số dư ban đầu lớn hơn 0');return}upd(x=>({...x,initialBalance:a}));toast('Đã thiết lập số dư ban đầu');close()};
+return html`<div><h3>Thiết lập số dư ban đầu</h3><p className="mut">Nhập số tiền hiện có để tính số dư khả dụng chính xác.</p>
+<${Field} label="Số dư ban đầu" err=${e}><${Amt} v=${v} err=${e} set=${x=>{setV(fmtIn(x));setE(amtErr(x))}}/><//>
+<div className="row g8 mt" style=${{marginTop:20}}><button className="btn ghost" onClick=${close}>Huỷ</button><button className="btn" onClick=${save}>Lưu số dư</button></div></div>`}
+
+function Auth(){const{db,setDb,enter}=useC();const[reg,setReg]=useState(false),[f,setF]=useState({name:'',email:'',pass:'',rem:true}),[e,setE]=useState({}),[busy,setBusy]=useState(false),[show,setShow]=useState(false),[shake,setShake]=useState(0),lock=useRef(false);
 const set=k=>ev=>{setF({...f,[k]:ev.target.type==='checkbox'?ev.target.checked:ev.target.value});setE({...e,[k]:'',form:''})};
 const fail=x=>{setE(x);setShake(s=>s+1);setBusy(false);lock.current=false};
 const submit=ev=>{ev.preventDefault();if(lock.current)return;const x={},em=f.email.trim().toLowerCase();
 if(reg&&!f.name.trim())x.name='Vui lòng nhập họ tên';
 if(!em)x.email='Vui lòng nhập email';else if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em))x.email='Email không đúng định dạng';
-if(!f.pass)x.pass='Vui lòng nhập mật khẩu';else if(reg&&f.pass.length<8)x.pass='Mật khẩu tối thiểu 8 ký tự';
-if(reg&&!f.terms)x.terms='Bạn cần đồng ý Điều khoản dịch vụ và Chính sách bảo mật';
+if(!f.pass)x.pass='Vui lòng nhập mật khẩu';else if(reg&&f.pass.length<6)x.pass='Mật khẩu tối thiểu 6 ký tự';
 if(Object.keys(x).length){fail(x);toast('Vui lòng kiểm tra lại thông tin','err');return}
 lock.current=true;setBusy(true);
 setTimeout(()=>{const ex=db.users.find(u=>u.email===em);
-if(reg){if(ex){fail({email:'Email đã được đăng ký. Hãy đăng nhập hoặc dùng email khác.'});toast('Email đã tồn tại','err');return}
-const u={name:f.name.trim(),email:em,phone:f.phone.trim(),pass:f.pass};setDb(d=>({...d,users:[...d.users,u],data:{...d.data,[em]:empty()}}));toast('Tạo tài khoản thành công! Chào '+u.name);enter(u,true)}
-else{if(!ex||ex.pass!==f.pass){fail({form:'Email hoặc mật khẩu không đúng'});toast('Đăng nhập thất bại','err');return}toast('Đăng nhập thành công! Xin chào '+ex.name);enter(ex,f.rem)}},900)};
-const sw=()=>{setReg(!reg);setE({})};
+if(reg){if(ex){fail({email:'Email đã tồn tại.'});toast('Email đã tồn tại','err');return}
+const u={name:f.name.trim(),email:em,pass:f.pass};setDb(d=>({...d,users:[...d.users,u],data:{...d.data,[em]:empty()}}));toast('Tạo tài khoản thành công');enter(u,true)}
+else{if(!ex||ex.pass!==f.pass){fail({form:'Email hoặc mật khẩu không đúng'});toast('Đăng nhập thất bại','err');return}toast('Đăng nhập thành công');enter(ex,f.rem)}},500)};
 return html`<div className="scr" style=${{paddingTop:36}}>
-<div style=${{textAlign:'center'}}><div className="hero" style=${{width:64,height:64,borderRadius:20,margin:'0 auto',display:'flex',alignItems:'center',justifyContent:'center',fontSize:30,padding:0}}>💰</div><h1 style=${{marginTop:14}}>Quản Lý Chi Tiêu</h1><p className="mut" style=${{marginTop:4}}>${reg?'Tạo tài khoản để bắt đầu quản lý tài chính':'Đăng nhập để tiếp tục quản lý tài chính của bạn'}</p></div>
+<div style=${{textAlign:'center'}}><div className="hero" style=${{width:60,height:60,borderRadius:18,margin:'0 auto',display:'flex',alignItems:'center',justifyContent:'center',fontSize:28,padding:0}}>💰</div><h1 style=${{marginTop:14}}>AI Smart Expense</h1><p className="mut" style=${{marginTop:4}}>${reg?'Tạo tài khoản mới':'Đăng nhập để tiếp tục'}</p></div>
 <form key=${reg+'-'+shake} className=${shake?'sh':''} onSubmit=${submit} noValidate>
 ${reg&&html`<${Field} label="Họ và tên" err=${e.name}><div className=${'in'+(e.name?' bad':'')}><input placeholder="Nguyễn Văn A" value=${f.name} onChange=${set('name')}/></div><//>`}
 <${Field} label="Email" err=${e.email}><div className=${'in'+(e.email?' bad':'')}><input type="email" placeholder="ban@email.com" value=${f.email} onChange=${set('email')}/></div><//>
-${reg&&html`<${Field} label="Số điện thoại (tuỳ chọn)"><div className="in"><input inputMode="tel" placeholder="09xx xxx xxx" value=${f.phone} onChange=${set('phone')}/></div><//>`}
-<${Field} label="Mật khẩu" err=${e.pass}><div className=${'in'+(e.pass?' bad':'')}><input type=${show?'text':'password'} placeholder=${reg?'Tối thiểu 8 ký tự':'Nhập mật khẩu'} value=${f.pass} onChange=${set('pass')}/><button type="button" className="eye" onClick=${()=>setShow(!show)}><${Ic} d=${IC.eye} s=${18}/></button></div><//>
-${reg?html`<div className="fld"><label className="row g8" style=${{fontWeight:500,cursor:'pointer'}}><input type="checkbox" checked=${f.terms} onChange=${set('terms')}/> Tôi đồng ý Điều khoản dịch vụ và Chính sách bảo mật</label>${e.terms&&html`<div className="err">${e.terms}</div>`}</div>`
-:html`<div className="fld"><label className="row g8" style=${{fontWeight:500,cursor:'pointer'}}><input type="checkbox" checked=${f.rem} onChange=${set('rem')}/> Ghi nhớ đăng nhập</label></div>`}
+<${Field} label="Mật khẩu" err=${e.pass}><div className=${'in'+(e.pass?' bad':'')}><input type=${show?'text':'password'} placeholder="Nhập mật khẩu" value=${f.pass} onChange=${set('pass')}/><button type="button" className="eye" onClick=${()=>setShow(!show)}><${Ic} d=${IC.eye} s=${18}/></button></div><//>
 ${e.form&&html`<div className="alert" style=${{background:'var(--rl)',color:'var(--r)'}}>${e.form}</div>`}
 <div className="mt"><${Btn} type="submit" busy=${busy}>${reg?'Tạo tài khoản':'Đăng nhập'}<//></div></form>
-<p className="mut" style=${{textAlign:'center',marginTop:18}}>${reg?'Đã có tài khoản? ':'Chưa có tài khoản? '}<button type="button" className="lk" onClick=${sw}>${reg?'Đăng nhập':'Đăng ký ngay'}</button></p>
-${!reg&&html`<div style=${{textAlign:'center',marginTop:14}}><button type="button" className="chip" onClick=${()=>{setF({...f,email:'demo@demo.vn',pass:'Demo@123'});setE({})}}>Điền tài khoản demo</button></div>`}</div>`}
+<p className="mut" style=${{textAlign:'center',marginTop:16}}>${reg?'Đã có tài khoản? ':'Chưa có tài khoản? '}<button type="button" className="lk" onClick=${()=>{setReg(!reg);setE({})}}>${reg?'Đăng nhập':'Đăng ký'}</button></p></div>`}
 
-/* ===== TRANG CHỦ ===== */
-function Home(){const{d,user,go}=useC();const[aiOpen,setAiOpen]=useState(false);const m=mk(today()),inc=sum(d.txs,'income',m),exp=sum(d.txs,'expense',m),bal=sum(d.txs,'income')-sum(d.txs,'expense');
-const al=d.budgets.map(b=>({b,sp:spent(d.txs,b.cat,m)})).filter(x=>x.sp/x.b.limit>=.8);
-const qa=[['Thêm chi tiêu','➖','var(--rl)',()=>go('add',{type:'expense'})],['Thêm thu nhập','➕','var(--gl)',()=>go('add',{type:'income'})],['Hũ tiết kiệm','🐷','var(--ol)',()=>go('jars')],['Danh mục','🏷️','var(--pl)',()=>go('cats')]];
-return html`<div className="scr"><div className="row sb" style=${{padding:'22px 0 16px'}}><div className="row"><div className="ico" style=${{background:'var(--pl)',color:'var(--p)',fontWeight:800,borderRadius:14,width:46,height:46}}>${user.name.charAt(0).toUpperCase()}</div><div><div className="mut">Xin chào</div><b style=${{fontSize:16}}>${user.name}</b></div></div></div>
-<div className="hero"><div style=${{fontSize:13,opacity:.85}}>Số dư hiện tại</div><div className="big" key=${bal}>${vnd(bal)}</div><div style=${{height:1,background:'rgba(255,255,255,.22)',margin:'16px 0 12px'}}></div>
-<div className="row sb"><div><div style=${{fontSize:11,opacity:.8}}>Thu nhập tháng này</div><b>${vnd(inc)}</b></div><div style=${{textAlign:'right'}}><div style=${{fontSize:11,opacity:.8}}>Chi tiêu tháng này</div><b>${vnd(exp)}</b></div></div></div>
-<div className="row sb mt">${qa.map(q=>html`<button key=${q[0]} className="tap" onClick=${q[3]} style=${{flex:1,background:'none',border:0,display:'flex',flexDirection:'column',alignItems:'center',gap:8,color:'var(--ts)',fontWeight:600,fontSize:11.5}}><div className="ico" style=${{background:q[2],width:48,height:48}}>${q[1]}</div>${q[0]}</button>`)}</div>
-<button className="aibtn" aria-haspopup="dialog" onClick=${()=>setAiOpen(true)}><span className="aiic"><${Ic} d=${SPK} s=${26}/></span><span className="f1"><b className="aitag">AI SMART EXPENSE</b><span className="aimain">Nhập chi tiêu nhanh bằng AI</span><span className="aisub">Chat với AI hoặc chụp hóa đơn để tự động ghi nhận giao dịch</span></span><span className="aiar">›</span></button>
-${aiOpen&&html`<${Modal} onClose=${()=>setAiOpen(false)}>${close=>html`<${AiChoice} close=${close} go=${go}/>`}<//>`}
-${al.map(({b,sp})=>html`<div key=${b.cat} className="alert" onClick=${()=>go('budget')} style=${sp>b.limit?{background:'var(--rl)',color:'var(--r)'}:{background:'var(--ol)',color:'var(--o)'}}>${sp>b.limit?'⚠ Đã vượt ngân sách':'⚠ Sắp hết ngân sách'} “${b.cat}” (${Math.round(sp/b.limit*100)}%)</div>`)}
-<div className="row sb mt"><h3 style=${{margin:0}}>Giao dịch gần đây</h3><button className="lk" onClick=${()=>go('hist')}>Xem tất cả</button></div>
-<div className="card" style=${{padding:'4px 16px'}}>${d.txs.length?[...d.txs].sort((a,b)=>b.ts-a.ts).slice(0,5).map(t=>html`<${Tx} key=${t.id} t=${t} d=${d}/>`):html`<p className="mut" style=${{padding:16,textAlign:'center'}}>Chưa có giao dịch nào</p>`}</div></div>`}
+function Home(){const{d,go}=useC();const[balOpen,setBalOpen]=useState(false);const now=new Date(),m=dk(now).slice(0,7);
+const hasInit=typeof d.initialBalance==='number'&&d.initialBalance>=0;
+const bal=(hasInit?d.initialBalance:0)+sum(d.txs,'income')-sum(d.txs,'expense');
+const expM=sum(d.txs,'expense',m);
+const handleAddExp=()=>{if(!hasInit){toast('Vui lòng thiết lập số dư ban đầu trước khi thêm khoản chi','warn');setBalOpen(true);return}go('add',{type:'expense'})};
+return html`<div className="scr"><div style=${{padding:'20px 0 8px'}}><h1>Trang chủ</h1></div>
+<div className="hero"><div style=${{fontSize:13,opacity:.9}}>Số dư khả dụng</div><div className="big" key=${bal}>${vnd(bal)}</div><div style=${{fontSize:12,opacity:.88,marginTop:4}}>${hasInit?'Đã thiết lập số dư ban đầu':'Chưa thiết lập số dư ban đầu'}</div></div>
+${!hasInit&&html`<div className="card" style=${{padding:14}}><div className="alert" style=${{marginTop:0,background:'var(--ol)',color:'var(--o)'}}>⚠ Vui lòng thiết lập số dư ban đầu trước khi thêm khoản chi.</div><button className="btn mt" onClick=${()=>setBalOpen(true)}>Thiết lập số dư ban đầu</button></div>`}
+<div className="card" style=${{padding:10}}><div className="row g8"><button className="btn f1" onClick=${handleAddExp}>Thêm khoản chi</button><button className="btn ghost f1" onClick=${()=>go('scan')}>Quét hóa đơn</button></div></div>
+<div className="card"><div className="mut">Chi tiêu tháng ${now.getMonth()+1}/${now.getFullYear()}</div><div className="neg" style=${{fontSize:20,fontWeight:800,marginTop:4}}>${vnd(expM)}</div></div>
+<div className="card"><div className="row sb"><b style=${{fontSize:15}}>Khoản chi gần đây</b><button className="lk" onClick=${()=>go('hist')}>Xem tất cả</button></div>${d.txs.filter(t=>t.type==='expense').length?[...d.txs].filter(t=>t.type==='expense').sort((a,b)=>b.ts-a.ts).slice(0,5).map(t=>html`<${Tx} key=${t.id} t=${t} d=${d}/>`):html`<p className="mut" style=${{marginTop:8}}>Chưa có khoản chi nào.</p>`}</div>
+${balOpen&&html`<${Modal} center onClose=${()=>setBalOpen(false)}>${close=>html`<${InitBalModal} cur=${d.initialBalance} close=${close}/>`}<//>`}</div>`}
 
-/* ===== LUỒNG 2: THÊM CHI TIÊU / THU NHẬP ===== */
 function Add({type}){const{d,upd,go}=useC();const[t,setT]=useState(type||'expense'),[f,setF]=useState({amt:'',cat:'',note:'',date:today()}),[e,setE]=useState({}),[busy,setBusy]=useState(false),[ok,setOk]=useState(null),lock=useRef(false),op=useRef(uid());
 const isE=t==='expense',cats=catsOf(d,t);
 const save=()=>{if(lock.current)return;const x={},a=num(f.amt);
@@ -155,52 +139,21 @@ if(!f.cat)x.cat='Vui lòng chọn danh mục';
 if(Object.keys(x).length){setE(x);toast(x.amt||x.cat,'err');return}
 lock.current=true;setBusy(true);
 setTimeout(()=>{const id=op.current,date=f.date||today(),ts=date===today()?Date.now():new Date(date+'T12:00:00').getTime(),tx={id:uid(),op:id,type:t,cat:f.cat,amount:a,note:f.note.trim(),date,ts};
-const b=isE&&mk(date)===mk(today())?d.budgets.find(b=>b.cat===f.cat):null,al=b?{cat:f.cat,sp:spent(d.txs,f.cat,mk(date))+a,lim:b.limit}:null;
-upd(x=>x.txs.some(y=>y.op===id)?x:{...x,txs:[tx,...x.txs]});setBusy(false);setOk({tx,al});
-toast('Đã thêm '+(isE?'chi tiêu ':'thu nhập ')+vnd(a));
-if(al&&al.sp>al.lim)setTimeout(()=>toast('Vượt ngân sách “'+al.cat+'” '+vnd(al.sp-al.lim)+'!','err'),500);
-else if(al&&al.sp/al.lim>=.8)setTimeout(()=>toast('Ngân sách “'+al.cat+'” đã dùng '+Math.round(al.sp/al.lim*100)+'%, sắp hết hạn mức','warn'),500)},700)};
+upd(x=>x.txs.some(y=>y.op===id)?x:{...x,txs:[tx,...x.txs]});setBusy(false);setOk(tx);toast('Đã lưu '+(isE?'khoản chi ':'khoản thu ')+vnd(a))},350)};
 const again=()=>{op.current=uid();lock.current=false;setOk(null);setF({amt:'',cat:'',note:'',date:today()});setE({})};
-if(ok){const{tx,al}=ok,c=catMeta(d,tx.type,tx.cat);return html`<div className="scr" style=${{textAlign:'center',paddingTop:60}}>
-<div className="ico" style=${{width:84,height:84,borderRadius:'50%',background:'var(--gl)',color:'var(--g)',fontSize:40,margin:'0 auto',animation:'pop .5s'}}>✓</div>
-<h1 style=${{marginTop:18}}>Đã thêm ${tx.type==='expense'?'chi tiêu':'thu nhập'}</h1><div className=${'big '+(tx.type==='income'?'pos':'neg')}>${tx.type==='income'?'+':'-'}${vnd(tx.amount)}</div>
-<div className="card" style=${{textAlign:'left'}}><div className="row sb"><span className="mut">Danh mục</span><b>${c[1]} ${tx.cat}</b></div><div className="row sb" style=${{marginTop:10}}><span className="mut">Ghi chú</span><b>${tx.note||'—'}</b></div><div className="row sb" style=${{marginTop:10}}><span className="mut">Ngày</span><b>${dlabel(tx.date)}</b></div></div>
-${al&&html`<div className="alert" style=${al.sp>al.lim?{background:'var(--rl)',color:'var(--r)'}:{background:'var(--ol)',color:'var(--o)'}}>${al.sp>al.lim?'⚠ Vượt ngân sách “'+al.cat+'” '+vnd(al.sp-al.lim):'⚠ Ngân sách “'+al.cat+'” đã dùng '+Math.round(al.sp/al.lim*100)+'% ('+vnd(al.sp)+' / '+vnd(al.lim)+')'}</div>`}
+if(ok){const c=catMeta(d,ok.type,ok.cat);return html`<div className="scr" style=${{textAlign:'center',paddingTop:56}}>
+<div className="ico" style=${{width:76,height:76,borderRadius:'50%',background:'var(--gl)',color:'var(--g)',fontSize:36,margin:'0 auto'}}>✓</div>
+<h1 style=${{marginTop:16}}>Đã lưu ${ok.type==='expense'?'khoản chi':'khoản thu'}</h1><div className=${'big '+(ok.type==='income'?'pos':'neg')}>${ok.type==='income'?'+':'-'}${vnd(ok.amount)}</div>
+<div className="card" style=${{textAlign:'left'}}><div className="row sb"><span className="mut">Danh mục</span><b>${c[1]} ${ok.cat}</b></div><div className="row sb" style=${{marginTop:10}}><span className="mut">Ghi chú</span><b>${ok.note||'—'}</b></div><div className="row sb" style=${{marginTop:10}}><span className="mut">Ngày</span><b>${dlabel(ok.date)}</b></div></div>
 <div className="mt"><button className="btn" onClick=${()=>go('home')}>Quay về trang chủ</button></div><div className="mt" style=${{marginTop:10}}><button className="btn ghost" onClick=${again}>Thêm giao dịch khác</button></div></div>`}
-return html`<div className="scr" style=${{paddingBottom:30}}><${Head} t="Thêm giao dịch"/>
+return html`<div className="scr" style=${{paddingBottom:30}}><${Head} t=${isE?'Thêm khoản chi':'Thêm khoản thu'}/>
 <div className="seg mt">${[['expense','Chi tiêu'],['income','Thu nhập']].map(([k,l])=>html`<button key=${k} className=${t===k?'on':''} onClick=${()=>{setT(k);setF({...f,cat:''});setE({})}}>${l}</button>`)}</div>
-<div key=${t} style=${{animation:'in .3s'}}><${Field} label="Số tiền" err=${e.amt}><${Amt} v=${f.amt} err=${e.amt} set=${v=>{setF({...f,amt:fmtIn(v)});setE({...e,amt:amtErr(v)})}}/><//>
+<${Field} label="Số tiền" err=${e.amt}><${Amt} v=${f.amt} err=${e.amt} set=${v=>{setF({...f,amt:fmtIn(v)});setE({...e,amt:amtErr(v)})}}/><//>
 <${Field} label="Danh mục" err=${e.cat}><div className="grid">${cats.map(c=>html`<button key=${c[0]} type="button" className=${'cb'+(f.cat===c[0]?' on':'')} onClick=${()=>{setF({...f,cat:c[0]});setE({...e,cat:''})}}><span>${c[1]}</span>${c[0]}</button>`)}</div><//>
 <${Field} label="Ghi chú"><div className="in"><input placeholder="Ví dụ: Ăn trưa" maxLength="80" value=${f.note} onChange=${ev=>setF({...f,note:ev.target.value})}/></div><//>
-<${Field} label="Ngày"><div className="in"><input type="date" max=${today()} value=${f.date} onChange=${ev=>setF({...f,date:ev.target.value})}/></div><//></div>
-<div className="mt" style=${{marginTop:22}}><${Btn} cls=${isE?'':'gr'} busy=${busy} onClick=${save}>${isE?'Lưu chi tiêu':'Lưu thu nhập'}<//></div></div>`}
+<${Field} label="Ngày"><div className="in"><input type="date" max=${today()} value=${f.date} onChange=${ev=>setF({...f,date:ev.target.value})}/></div><//>
+<div className="mt" style=${{marginTop:20}}><${Btn} busy=${busy} onClick=${save}>${isE?'Lưu khoản chi':'Lưu khoản thu'}<//></div></div>`}
 
-/* ===== LUỒNG 3: NGÂN SÁCH ===== */
-function BForm({init,close}){const{d,upd}=useC();const[cat,setCat]=useState(init||''),[lim,setLim]=useState(()=>{const b=d.budgets.find(b=>b.cat===init);return b?fmtIn(b.limit):''}),[e,setE]=useState({}),[busy,setBusy]=useState(false),[cf,setCf]=useState(false),lock=useRef(false);
-const L=num(lim),exists=d.budgets.some(b=>b.cat===cat);
-const doSave=()=>{if(lock.current)return;lock.current=true;setBusy(true);setTimeout(()=>{upd(x=>({...x,budgets:x.budgets.some(b=>b.cat===cat)?x.budgets.map(b=>b.cat===cat?{...b,limit:L}:b):[...x.budgets,{cat,limit:L}]}));
-const sp=spent(d.txs,cat,mk(today()));toast('Đã lưu ngân sách “'+cat+'”');if(sp>L)setTimeout(()=>toast('Chi tiêu hiện tại đã vượt hạn mức mới '+vnd(sp-L),'err'),400);else if(sp/L>=.8)setTimeout(()=>toast('Chi tiêu đã đạt '+Math.round(sp/L*100)+'% hạn mức','warn'),400);close()},700)};
-const submit=()=>{const x={};if(!cat)x.cat='Vui lòng chọn danh mục';if(!lim)x.lim='Vui lòng nhập hạn mức';else if(L<=0)x.lim='Hạn mức phải lớn hơn 0';else if(e.lim)x.lim=e.lim;
-if(Object.keys(x).length){setE(x);toast(x.cat||x.lim,'err');return}if(exists&&!init)setCf(true);else doSave()};
-return html`<div><h3>${init?'Sửa ngân sách':'Đặt ngân sách'}</h3>
-<${Field} label="Chọn danh mục" err=${e.cat}><div className="grid">${DEF.expense.slice(0,7).concat(d.cats.expense.map(n=>[n,'🏷️'])).map(c=>html`<button key=${c[0]} type="button" disabled=${!!init&&c[0]!==cat} className=${'cb'+(cat===c[0]?' on':'')} style=${init&&c[0]!==cat?{opacity:.4}:{}} onClick=${()=>{setCat(c[0]);setE({...e,cat:''})}}><span>${c[1]}</span>${c[0]}</button>`)}</div><//>
-<${Field} label="Ngân sách hàng tháng" err=${e.lim}><${Amt} v=${lim} err=${e.lim} set=${v=>{setLim(fmtIn(v));setE({...e,lim:amtErr(v)})}}/><div className="row g8" style=${{marginTop:8}}>${[500000,1000000,2000000].map(n=>html`<button key=${n} type="button" className="chip" onClick=${()=>{setLim(fmtIn(n));setE({...e,lim:''})}}>${vnd(n)}</button>`)}</div><//>
-<div className="row g8 mt" style=${{marginTop:20}}><button className="btn ghost" onClick=${close}>Huỷ</button><${Btn} busy=${busy} onClick=${submit}>Lưu ngân sách<//></div>
-${cf&&html`<${Confirm} title="Thay thế ngân sách?" text=${'Danh mục “'+cat+'” đã có ngân sách. Hạn mức mới sẽ thay thế hạn mức cũ.'} ok="Thay thế" onYes=${doSave} onClose=${()=>setCf(false)}/>`}</div>`}
-function Budget(){const{d,upd}=useC();const m=mk(today()),[ed,setEd]=useState(null),[del,setDel]=useState(null);
-const rows=d.budgets.map(b=>({...b,sp:spent(d.txs,b.cat,m)})),TL=rows.reduce((s,r)=>s+r.limit,0),TS=rows.reduce((s,r)=>s+r.sp,0);
-return html`<div className="scr"><div style=${{padding:'22px 0 4px'}}><h1>Ngân sách</h1><p className="mut">Tháng ${m.slice(5)}/${m.slice(0,4)}</p></div>
-${rows.length>0&&html`<div className="hero" style=${{marginTop:12}}><div className="row sb"><div><div style=${{fontSize:12,opacity:.85}}>Đã chi / Tổng ngân sách</div><div style=${{fontSize:20,fontWeight:800,marginTop:4}}>${vnd(TS)} / ${vnd(TL)}</div></div><b>${Math.round(TS/TL*100)}%</b></div><div className="bar" style=${{background:'rgba(255,255,255,.25)'}}><i style=${{width:Math.min(100,TS/TL*100)+'%',background:'#fff'}}></i></div></div>`}
-${rows.map(r=>{const c=catMeta(d,'expense',r.cat),s=bst(r.sp,r.limit),p=r.sp/r.limit*100;return html`<div key=${r.cat} className="card tap" onClick=${()=>setEd({cat:r.cat})} style=${r.sp>r.limit?{borderColor:'var(--r)'}:{}}>
-<div className="row"><div className="ico" style=${{background:c[2]+'22'}}>${c[1]}</div><div className="f1"><b>${r.cat}</b><div className="mut">${vnd(r.sp)} / ${vnd(r.limit)}</div></div><b style=${{color:s.c}}>${Math.round(p)}%</b></div>
-<div className="bar"><i style=${{width:Math.min(100,p)+'%',background:s.c}}></i></div>
-<div className="row sb" style=${{marginTop:8}}><span style=${{color:s.c,fontWeight:700,fontSize:12.5}}>${s.l}</span><button className="lk" style=${{fontSize:12,color:'var(--ts)'}} onClick=${ev=>{ev.stopPropagation();setDel(r.cat)}}>Xoá</button></div></div>`})}
-${!rows.length&&html`<div className="card" style=${{textAlign:'center'}}><p className="mut">Chưa có ngân sách nào. Hãy đặt hạn mức cho danh mục chi tiêu.</p></div>`}
-<button className="btn mt" onClick=${()=>setEd({})}>+ Thêm ngân sách danh mục khác</button>
-${ed&&html`<${Modal} onClose=${()=>setEd(null)}>${close=>html`<${BForm} init=${ed.cat} close=${close}/>`}<//>`}
-${del&&html`<${Confirm} danger title="Xoá ngân sách?" text=${'Ngân sách “'+del+'” sẽ bị xoá. Các giao dịch không bị ảnh hưởng.'} ok="Xoá" onYes=${()=>{upd(x=>({...x,budgets:x.budgets.filter(b=>b.cat!==del)}));toast('Đã xoá ngân sách')}} onClose=${()=>setDel(null)}/>`}</div>`}
-
-/* ===== LUỒNG PHỤ ===== */
 function Hist(){const{d}=useC();const[m,setM]=useState(mk(today())),[fl,setFl]=useState('all');
 const shift=n=>{const[y,mo]=m.split('-').map(Number),x=new Date(y,mo-1+n,1);setM(x.getFullYear()+'-'+pad(x.getMonth()+1))};
 const list=d.txs.filter(t=>mk(t.date)===m&&(fl==='all'||t.type===fl)).sort((a,b)=>b.ts-a.ts),days=[...new Set(list.map(t=>t.date))];
@@ -210,60 +163,19 @@ return html`<div className="scr"><${Head} t="Lịch sử giao dịch"/>
 <div className="row sb mt"><span className="pos"><b>Thu ${vnd(sum(list,'income'))}</b></span><span className="neg"><b>Chi ${vnd(sum(list,'expense'))}</b></span></div>
 ${days.map(day=>{const g=list.filter(t=>t.date===day);return html`<div key=${day} className="card" style=${{padding:'12px 16px'}}><div className="row sb mut"><b>${dlabel(day)}</b><span>${vnd(sum(g,'income')-sum(g,'expense'))}</span></div>${g.map(t=>html`<${Tx} key=${t.id} t=${t} d=${d}/>`)}</div>`})}
 ${!list.length&&html`<div className="card" style=${{textAlign:'center'}}><p className="mut">Không có giao dịch nào trong tháng này</p></div>`}</div>`}
-function Stats(){const{d}=useC();const[tab,setTab]=useState('all'),m=mk(today()),ty=tab==='income'?'income':'expense';
-const inc=sum(d.txs,'income',m),exp=sum(d.txs,'expense',m),tot=ty==='income'?inc:exp;
-const days=[...Array(7)].map((_,i)=>{const x=new Date();x.setDate(x.getDate()-6+i);return[dk(x),x.getDate()]}),vals=days.map(([k])=>d.txs.filter(t=>t.type===ty&&t.date===k).reduce((s,t)=>s+t.amount,0)),mx=Math.max(...vals,1);
-const rows=catsOf(d,ty).map(c=>({c,v:spent2(d.txs,ty,c[0],m)})).filter(r=>r.v>0).sort((a,b)=>b.v-a.v);
-return html`<div className="scr"><div style=${{padding:'22px 0 4px'}}><h1>Thống kê</h1><p className="mut">Tháng ${m.slice(5)}/${m.slice(0,4)}</p></div>
-<div className="seg mt">${[['all','Tổng quan'],['expense','Chi tiêu'],['income','Thu nhập']].map(([k,l])=>html`<button key=${k} className=${tab===k?'on':''} onClick=${()=>setTab(k)}>${l}</button>`)}</div>
-<div className="row g8 mt"><div className="card f1" style=${{margin:0}}><div className="mut">Thu nhập</div><b className="pos">${vnd(inc)}</b></div><div className="card f1" style=${{margin:0}}><div className="mut">Chi tiêu</div><b className="neg">${vnd(exp)}</b></div></div>
-${tab==='all'&&html`<div className="card"><div className="mut">Số dư thay đổi</div><b style=${{fontSize:20}}>${inc-exp>=0?'+':''}${vnd(inc-exp)}</b></div>`}
-<div className="card"><b>${ty==='income'?'Thu nhập':'Chi tiêu'} 7 ngày gần nhất</b><div className="col" key=${tab}>${days.map(([k,dd],i)=>html`<div key=${k}><i style=${{height:vals[i]/mx*80+'%'}}></i>${dd}</div>`)}</div></div>
-<div className="card"><b>Theo danh mục</b>${rows.map(({c,v})=>html`<div key=${c[0]} style=${{marginTop:12}}><div className="row sb"><span>${c[1]} ${c[0]}</span><b>${Math.round(v/tot*100)}% · ${vnd(v)}</b></div><div className="bar" style=${{marginTop:6}}><i style=${{width:v/tot*100+'%',background:c[2]}}></i></div></div>`)}${!rows.length&&html`<p className="mut" style=${{marginTop:8}}>0 đ — chưa có dữ liệu trong kỳ</p>`}</div></div>`}
-const spent2=(tx,ty,cat,m)=>tx.filter(t=>t.type===ty&&t.cat===cat&&mk(t.date)===m).reduce((s,t)=>s+t.amount,0);
-function JarNew({close}){const{upd}=useC();const[f,setF]=useState({n:'',t:'',i:'',ico:'🎯'}),[e,setE]=useState({}),[b,setB]=useState(false),lk=useRef(false);
-const go=()=>{if(lk.current)return;const x={},T=num(f.t),I=num(f.i);if(!f.n.trim())x.n='Vui lòng nhập tên hũ';if(!T)x.t='Số tiền mục tiêu phải lớn hơn 0';else if(I>T)x.i='Số tiền nạp ban đầu không được lớn hơn mục tiêu';
-if(Object.keys(x).length){setE(x);toast('Vui lòng kiểm tra lại thông tin','err');return}
-lk.current=true;setB(true);setTimeout(()=>{upd(d=>({...d,jars:[...d.jars,{id:uid(),name:f.n.trim(),ico:f.ico,target:T,saved:I,log:I?[{id:uid(),t:'in',a:I,date:today()}]:[]}]}));toast('Đã tạo hũ tiết kiệm');close()},600)};
-return html`<div><h3>Tạo hũ tiết kiệm</h3><div className="row g8 mt">${['🎯','🛟','💻','✈️','🏠'].map(i=>html`<button key=${i} className=${'chip'+(f.ico===i?' on':'')} onClick=${()=>setF({...f,ico:i})}>${i}</button>`)}</div>
-<${Field} label="Tên hũ" err=${e.n}><div className=${'in'+(e.n?' bad':'')}><input placeholder="Ví dụ: Du lịch Đà Lạt" value=${f.n} onChange=${ev=>setF({...f,n:ev.target.value})}/></div><//>
-<${Field} label="Số tiền mục tiêu" err=${e.t}><${Amt} v=${f.t} err=${e.t} set=${v=>setF({...f,t:fmtIn(v)})}/><//><${Field} label="Nạp ban đầu (tuỳ chọn)" err=${e.i}><${Amt} v=${f.i} err=${e.i} set=${v=>setF({...f,i:fmtIn(v)})}/><//>
-<div className="row g8 mt" style=${{marginTop:20}}><button className="btn ghost" onClick=${close}>Huỷ</button><${Btn} busy=${b} onClick=${go}>Tạo hũ<//></div></div>`}
-function JarDetail({j,close}){const{upd}=useC();const[a,setA]=useState(''),[e,setE]=useState(''),[b,setB]=useState(false),lk=useRef(false),p=Math.min(100,j.saved/j.target*100);
-const op=t=>{if(lk.current)return;const v=num(a);if(v<=0){setE('Số tiền phải lớn hơn 0');return}if(t==='out'&&v>j.saved){setE('Số dư không đủ');toast('Số dư không đủ','err');return}
-lk.current=true;setB(true);setTimeout(()=>{upd(d=>({...d,jars:d.jars.map(x=>x.id===j.id?{...x,saved:x.saved+(t==='in'?v:-v),log:[{id:uid(),t,a:v,date:today()},...x.log]}:x)}));
-toast((t==='in'?'Đã nạp ':'Đã rút ')+vnd(v)+(t==='in'?' vào hũ':' từ hũ'));if(t==='in'&&j.saved+v>=j.target)setTimeout(()=>toast('Chúc mừng! Hũ đã hoàn thành 🎉'),400);setA('');setE('');setB(false);lk.current=false},500)};
-return html`<div><div className="row"><div className="ico" style=${{background:'var(--ol)'}}>${j.ico}</div><div className="f1"><h3 style=${{margin:0}}>${j.name}</h3><span className="mut">${p>=100?'✓ Đã hoàn thành':'Mục tiêu '+vnd(j.target)}</span></div><b style=${{fontSize:20}}>${Math.round(p)}%</b></div>
-<div className="bar"><i style=${{width:p+'%',background:p>=100?'var(--g)':'var(--p)'}}></i></div><div className="big" key=${j.saved} style=${{fontSize:24}}>${vnd(j.saved)}</div>
-<${Field} label="Số tiền" err=${e}><${Amt} v=${a} err=${e} set=${v=>{setA(fmtIn(v));setE(amtErr(v))}}/><//>
-<div className="row g8 mt"><${Btn} cls="ghost" busy=${b} onClick=${()=>op('out')}>Rút tiền<//><${Btn} cls="gr" busy=${b} onClick=${()=>op('in')}>Nạp tiền<//></div>
-<div className="card" style=${{padding:'4px 16px'}}>${j.log.slice(0,5).map(l=>html`<div key=${l.id} className="tx"><span className="f1">${l.t==='in'?'Nạp tiền':'Rút tiền'} · ${dlabel(l.date)}</span><b className=${l.t==='in'?'pos':'neg'}>${l.t==='in'?'+':'-'}${vnd(l.a)}</b></div>`)}${!j.log.length&&html`<p className="mut" style=${{padding:12}}>Chưa có giao dịch</p>`}</div><button className="btn ghost mt" onClick=${close}>Đóng</button></div>`}
-function Jars(){const{d}=useC();const[sel,setSel]=useState(null),[nw,setNw]=useState(false),J=sel&&d.jars.find(j=>j.id===sel);
-return html`<div className="scr"><${Head} t="Hũ tiết kiệm"/>${d.jars.map(j=>{const p=Math.min(100,j.saved/j.target*100);return html`<div key=${j.id} className="card tap" onClick=${()=>setSel(j.id)}><div className="row"><div className="ico" style=${{background:'var(--ol)'}}>${j.ico}</div><div className="f1"><b>${j.name}</b><div className="mut">${vnd(j.saved)} / ${vnd(j.target)}</div></div><b>${Math.round(p)}%</b></div><div className="bar"><i style=${{width:p+'%',background:p>=100?'var(--g)':'var(--p)'}}></i></div></div>`})}
-<button className="btn mt" onClick=${()=>setNw(true)}>+ Tạo hũ tiết kiệm mới</button>
-${nw&&html`<${Modal} onClose=${()=>setNw(false)}>${close=>html`<${JarNew} close=${close}/>`}<//>`}${J&&html`<${Modal} onClose=${()=>setSel(null)}>${close=>html`<${JarDetail} j=${J} close=${close}/>`}<//>`}</div>`}
-function CatNew({t,close}){const{d,upd}=useC();const[n,setN]=useState(''),[e,setE]=useState(''),[b,setB]=useState(false),lk=useRef(false);
-const go=()=>{if(lk.current)return;const v=n.trim();if(!v){setE('Vui lòng nhập tên danh mục');return}if(catsOf(d,t).some(c=>c[0].toLowerCase()===v.toLowerCase())){setE('Danh mục này đã tồn tại');toast('Tên danh mục bị trùng','err');return}
-lk.current=true;setB(true);setTimeout(()=>{upd(x=>({...x,cats:{...x.cats,[t]:[...x.cats[t],v]}}));toast('Đã thêm danh mục “'+v+'”');close()},500)};
-return html`<div><h3>Thêm danh mục ${t==='expense'?'chi tiêu':'thu nhập'}</h3><${Field} label="Tên danh mục" err=${e}><div className=${'in'+(e?' bad':'')}><input autoFocus maxLength="24" value=${n} onChange=${ev=>{setN(ev.target.value);setE('')}}/></div><//><div className="row g8 mt" style=${{marginTop:20}}><button className="btn ghost" onClick=${close}>Huỷ</button><${Btn} busy=${b} onClick=${go}>Lưu danh mục<//></div></div>`}
-function Cats(){const{d}=useC();const[t,setT]=useState('expense'),[nw,setNw]=useState(false),m=mk(today());
-return html`<div className="scr"><${Head} t="Danh mục"/><div className="seg mt">${[['expense','Chi tiêu'],['income','Thu nhập']].map(([k,l])=>html`<button key=${k} className=${t===k?'on':''} onClick=${()=>setT(k)}>${l}</button>`)}</div>
-<div key=${t} style=${{animation:'in .3s'}}>${catsOf(d,t).map(c=>{const l=d.txs.filter(x=>x.type===t&&x.cat===c[0]&&mk(x.date)===m);return html`<div key=${c[0]} className="card row"><div className="ico" style=${{background:c[2]+'22'}}>${c[1]}</div><div className="f1"><b>${c[0]}</b><div className="mut">${l.length} giao dịch</div></div><b>${vnd(l.reduce((s,x)=>s+x.amount,0))}</b></div>`})}</div>
-<button className="btn mt" onClick=${()=>setNw(true)}>+ Thêm danh mục</button>${nw&&html`<${Modal} onClose=${()=>setNw(false)}>${close=>html`<${CatNew} t=${t} close=${close}/>`}<//>`}</div>`}
-function Me(){const{user,go,logout,upd}=useC();const[c,setC]=useState(null);
-return html`<div className="scr"><div style=${{textAlign:'center',padding:'30px 0 6px'}}><div className="ico" style=${{width:72,height:72,borderRadius:22,background:'var(--pl)',color:'var(--p)',fontSize:30,fontWeight:800,margin:'0 auto'}}>${user.name.charAt(0).toUpperCase()}</div><h1 style=${{marginTop:12}}>${user.name}</h1><p className="mut">${user.email}</p></div>
-<div className="card" style=${{padding:'4px 16px'}}>${[['Danh mục','🏷️','cats'],['Lịch sử giao dịch','🕘','hist'],['Ngân sách','🎯','budget'],['Hũ tiết kiệm','🐷','jars']].map(([l,i,r])=>html`<button key=${r} className="tx tap" onClick=${()=>go(r)} style=${{width:'100%',background:'none',border:0,borderBottom:'1px solid var(--b)',color:'var(--t)',fontSize:14,fontWeight:600,textAlign:'left'}}><span style=${{fontSize:20}}>${i}</span><span className="f1">${l}</span>›</button>`)}</div>
-<button className="btn ghost mt" onClick=${()=>setC('reset')}>Đặt lại dữ liệu demo</button><div className="mt" style=${{marginTop:10}}><button className="btn red" onClick=${()=>setC('out')}>Đăng xuất</button></div>
-${c==='out'&&html`<${Confirm} danger title="Đăng xuất?" text="Bạn sẽ quay về màn hình đăng nhập." ok="Đăng xuất" onYes=${logout} onClose=${()=>setC(null)}/>`}
-${c==='reset'&&html`<${Confirm} title="Đặt lại dữ liệu?" text="Dữ liệu của tài khoản này sẽ được thay bằng dữ liệu mẫu." ok="Đặt lại" onYes=${()=>{upd(()=>seed());toast('Đã đặt lại dữ liệu mẫu')}} onClose=${()=>setC(null)}/>`}</div>`}
 
-/* ===== AI SMART EXPENSE (FR-AI-01): lớp AIS gọi Backend API độc lập =====
-   Frontend KHÔNG chứa API key và KHÔNG chứa prompt: mọi lời gọi AI do backend thực hiện.
-   Địa chỉ backend: <meta name="api-base" content="https://api.example.com"> (để trống = cùng domain với trang).
-   GET  /api/health                                  -> {ok,ai:{configured}}
-   POST /api/ai/parse-text    {text,ctx}             -> {items:[{type,amount,cat,note,date}],reply}
-   POST /api/ai/parse-receipt {image(base64),mimeType,ctx} -> {readable,merchant,type,amount,cat,note,date}
-   Lỗi: HTTP 4xx/5xx + {error:{code,message}}. Không có AI thì báo rõ, KHÔNG giả lập kết quả. */
+function Me(){const{user,d,logout,upd,go}=useC();const[c,setC]=useState(null),[balOpen,setBalOpen]=useState(false);
+return html`<div className="scr"><div style=${{textAlign:'center',padding:'28px 0 8px'}}><div className="ico" style=${{width:68,height:68,borderRadius:20,background:'var(--pl)',color:'var(--p)',fontSize:28,fontWeight:800,margin:'0 auto'}}>${user.name.charAt(0).toUpperCase()}</div><h1 style=${{marginTop:12}}>${user.name}</h1><p className="mut">${user.email}</p></div>
+<div className="card" style=${{padding:'4px 16px'}}>
+<button className="tx tap" onClick=${()=>setBalOpen(true)} style=${{width:'100%',background:'none',border:0,borderBottom:'1px solid var(--b)',color:'var(--t)',fontSize:14,fontWeight:600,textAlign:'left'}}><span style=${{fontSize:20}}>💰</span><span className="f1">Số dư ban đầu (${d.initialBalance!==null?vnd(d.initialBalance):'Chưa đặt'})</span>›</button>
+<button className="tx tap" onClick=${()=>go('hist')} style=${{width:'100%',background:'none',border:0,color:'var(--t)',fontSize:14,fontWeight:600,textAlign:'left'}}><span style=${{fontSize:20}}>🕘</span><span className="f1">Lịch sử giao dịch</span>›</button>
+</div>
+<button className="btn ghost mt" onClick=${()=>setC('clear')}>Xoá dữ liệu hiện tại</button>
+<div className="mt" style=${{marginTop:10}}><button className="btn red" onClick=${()=>setC('out')}>Đăng xuất</button></div>
+${balOpen&&html`<${Modal} center onClose=${()=>setBalOpen(false)}>${close=>html`<${InitBalModal} cur=${d.initialBalance} close=${close}/>`}<//>`}
+${c==='out'&&html`<${Confirm} danger title="Đăng xuất?" text="Bạn sẽ quay về màn hình đăng nhập." ok="Đăng xuất" onYes=${logout} onClose=${()=>setC(null)}/>`}
+${c==='clear'&&html`<${Confirm} danger title="Xoá dữ liệu?" text="Toàn bộ số dư ban đầu và giao dịch sẽ được xoá." ok="Xoá" onYes=${()=>{upd(()=>empty());toast('Đã xoá dữ liệu')}} onClose=${()=>setC(null)}/>`}</div>`}
+
 const clean=(i,x)=>{const t=i.type==='income'?'income':'expense',a=Math.round(Number(i.amount)),ok=/^\d{4}-\d\d-\d\d$/.test(i.date||'')&&i.date<=today();return{op:uid(),type:t,amount:a>0?a:0,cat:x.cats[t].includes(i.cat)?i.cat:'Khác',note:String(i.note||'').slice(0,80),date:ok?i.date:today(),noDate:!ok}};
 const shrink=async f=>{let b;try{b=await createImageBitmap(f)}catch(e){throw{code:'bad_image'}}const k=Math.min(1,1400/Math.max(b.width,b.height)),c=document.createElement('canvas');c.width=b.width*k;c.height=b.height*k;c.getContext('2d').drawImage(b,0,0,c.width,c.height);return new Promise(r=>c.toBlob(r,'image/jpeg',.85)).then(x=>{if(!x)throw{code:'bad_image'};return x})};
 const b64=blob=>new Promise((ok,no)=>{const r=new FileReader();r.onload=()=>ok(String(r.result).split(',')[1]);r.onerror=()=>no({code:'bad_image'});r.readAsDataURL(blob)});
@@ -274,60 +186,48 @@ async post(path,body){const ctl=new AbortController(),tm=setTimeout(()=>ctl.abor
 try{r=await fetch(API_BASE+path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body),signal:ctl.signal});try{j=await r.json()}catch(e){}}
 catch(e){throw{code:e&&e.name==='AbortError'?'ai_timeout':'unavailable'}}finally{clearTimeout(tm)}
 if(!r.ok)throw{code:(j&&j.error&&j.error.code)||(r.status>=500?'unavailable':'http_'+r.status)};return j||{}},
-async parseText(t,x){const o=await this.post('/api/ai/parse-text',{text:t,ctx:x});if(!Array.isArray(o.items))throw{code:'ai_invalid_output'};return{reply:String(o.reply||''),items:o.items.slice(0,10).map(i=>clean(i,x))}},
 async parseReceipt(f,x){const o=await this.post('/api/ai/parse-receipt',{image:await b64(await shrink(f)),mimeType:'image/jpeg',ctx:x}),a=Number(o.amount);if(!o.readable||!(a>0))throw{code:'receipt_unreadable'};return clean({type:o.type,amount:a,cat:o.cat,note:o.note||o.merchant,date:o.date},x)}};
 const aiCtx=d=>({today:today(),cats:{expense:catsOf(d,'expense').map(c=>c[0]),income:catsOf(d,'income').map(c=>c[0])}});
-const aiErr=e=>({unavailable:'Không kết nối được máy chủ AI. Vui lòng kiểm tra mạng và thử lại sau.',not_configured:'Tính năng AI chưa được cấu hình trên máy chủ. Vui lòng liên hệ quản trị viên.',ai_not_configured:'Tính năng AI chưa được cấu hình trên máy chủ. Vui lòng liên hệ quản trị viên.',ai_auth:'Máy chủ AI đang gặp lỗi cấu hình. Vui lòng liên hệ quản trị viên.',ai_quota:'AI đã hết hạn mức sử dụng. Vui lòng thử lại sau hoặc nhập thủ công.',ai_rate_limited:'AI đang quá tải, vui lòng thử lại sau ít phút.',rate_limited:'Bạn gửi yêu cầu quá nhanh, vui lòng đợi một chút rồi thử lại.',daily_limit:'Hệ thống đã đạt giới hạn AI trong ngày. Vui lòng thử lại vào ngày mai.',ai_timeout:'AI phản hồi quá lâu, vui lòng thử lại.',ai_unavailable:'Dịch vụ AI đang gián đoạn, vui lòng thử lại sau.',ai_invalid_output:'AI trả về dữ liệu không đọc được, vui lòng thử lại.',receipt_unreadable:'Không nhận diện được tổng tiền trên ảnh. Hãy tải ảnh rõ hơn hoặc nhập thủ công.',bad_image:'Không đọc được ảnh này. Hãy dùng ảnh JPG, PNG hoặc WebP.',payload_too_large:'Ảnh quá lớn, vui lòng chọn ảnh nhỏ hơn.',origin_not_allowed:'Trang web này chưa được phép dùng máy chủ AI.'}[e&&e.code]||'Không thể xử lý yêu cầu lúc này. Vui lòng thử lại.');
-function commit(d,upd,t){const ts=t.date===today()?Date.now():new Date(t.date+'T12:00:00').getTime();
-upd(x=>x.txs.some(y=>y.op===t.op)?x:{...x,txs:[{id:uid(),op:t.op,type:t.type,cat:t.cat,amount:t.amount,note:t.note,date:t.date,ts},...x.txs]});
-toast('Đã lưu '+(t.type==='expense'?'chi tiêu ':'thu nhập ')+vnd(t.amount));
-const b=t.type==='expense'&&mk(t.date)===mk(today())?d.budgets.find(b=>b.cat===t.cat):null;
-if(b){const sp=spent(d.txs,t.cat,mk(t.date))+t.amount;if(sp>b.limit)setTimeout(()=>toast('Vượt ngân sách “'+t.cat+'” '+vnd(sp-b.limit)+'!','err'),500);else if(sp/b.limit>=.8)setTimeout(()=>toast('Ngân sách “'+t.cat+'” đã dùng '+Math.round(sp/b.limit*100)+'%, sắp hết hạn mức','warn'),500)}}
-function DraftCard({dr}){const{d,upd}=useC();const[f,setF]=useState({type:dr.type,amt:dr.amount?fmtIn(dr.amount):'',cat:dr.cat,note:dr.note,date:dr.date}),[e,setE]=useState(dr.amount?{}:{amt:'AI không xác định được số tiền, vui lòng nhập'}),[st,setSt]=useState('new'),[busy,setBusy]=useState(false),lock=useRef(false),cats=catsOf(d,f.type);
+const aiErr=e=>({unavailable:'Không kết nối được máy chủ AI. Vui lòng kiểm tra mạng và thử lại sau.',not_configured:'Tính năng AI chưa được cấu hình trên máy chủ.',ai_not_configured:'Tính năng AI chưa được cấu hình trên máy chủ.',ai_timeout:'AI phản hồi quá lâu, vui lòng thử lại.',receipt_unreadable:'Không nhận diện được tổng tiền trên ảnh. Hãy tải ảnh rõ hơn hoặc nhập thủ công.',bad_image:'Không đọc được ảnh này. Hãy dùng ảnh JPG, PNG hoặc WebP.'}[e&&e.code]||'Không thể xử lý yêu cầu lúc này.');
+
+function DraftCard({dr,onDone}){const{d,upd,go}=useC();const[f,setF]=useState({type:dr.type,amt:dr.amount?fmtIn(dr.amount):'',cat:dr.cat,note:dr.note,date:dr.date}),[e,setE]=useState(dr.amount?{}:{amt:'AI không xác định được số tiền, vui lòng nhập'}),[busy,setBusy]=useState(false),lock=useRef(false),cats=catsOf(d,f.type);
 const ok=()=>{if(lock.current)return;const a=num(f.amt),x={};if(a<=0)x.amt='Số tiền phải lớn hơn 0';if(!cats.some(c=>c[0]===f.cat))x.cat='Vui lòng chọn danh mục';if(!f.date||f.date>today())x.date='Ngày không hợp lệ';
 if(Object.keys(x).length){setE(x);toast(x.amt||x.cat||x.date,'err');return}
-lock.current=true;setBusy(true);setTimeout(()=>{commit(d,upd,{op:dr.op,type:f.type,cat:f.cat,amount:a,note:f.note.trim(),date:f.date});setBusy(false);setSt('saved')},600)};
-if(st==='saved')return html`<div className="card pos" style=${{fontWeight:700,animation:'pop .3s'}}>✓ Đã lưu ${f.type==='income'?'thu nhập':'chi tiêu'} ${vnd(num(f.amt))} · ${f.cat}</div>`;
-if(st==='cancel')return html`<div className="card mut">Đã huỷ bản nháp, không lưu giao dịch.</div>`;
-return html`<div className="card" style=${{animation:'in .3s'}}><div className="mut" style=${{fontWeight:700}}>BẢN NHÁP · chỉnh sửa trước khi lưu</div>
-<div className="seg" style=${{marginTop:8}}>${[['expense','Chi tiêu'],['income','Thu nhập']].map(([k,l])=>html`<button key=${k} className=${f.type===k?'on':''} onClick=${()=>setF({...f,type:k,cat:cats.some(c=>c[0]===f.cat)&&k===f.type?f.cat:'Khác'})}>${l}</button>`)}</div>
+lock.current=true;setBusy(true);
+setTimeout(()=>{const ts=f.date===today()?Date.now():new Date(f.date+'T12:00:00').getTime();
+upd(x=>x.txs.some(y=>y.op===dr.op)?x:{...x,txs:[{id:uid(),op:dr.op,type:f.type,cat:f.cat,amount:a,note:f.note.trim(),date:f.date,ts},...x.txs]});
+setBusy(false);toast('Đã lưu giao dịch');if(onDone)onDone();go('home')},350)};
+return html`<div className="card"><div className="mut" style=${{fontWeight:700}}>BẢN NHÁP TỪ HÓA ĐƠN</div>
 <${Field} label="Số tiền" err=${e.amt}><${Amt} v=${f.amt} err=${e.amt} set=${v=>{setF({...f,amt:fmtIn(v)});setE({...e,amt:amtErr(v)})}}/><//>
 <${Field} label="Danh mục" err=${e.cat}><div className="in"><select value=${f.cat} onChange=${ev=>setF({...f,cat:ev.target.value})}>${cats.map(c=>html`<option key=${c[0]} value=${c[0]}>${c[1]} ${c[0]}</option>`)}</select></div><//>
 <${Field} label="Ghi chú"><div className="in"><input maxLength="80" value=${f.note} onChange=${ev=>setF({...f,note:ev.target.value})}/></div><//>
-<${Field} label="Ngày" err=${e.date}><div className=${'in'+(e.date?' bad':'')}><input type="date" max=${today()} value=${f.date} onChange=${ev=>setF({...f,date:ev.target.value})}/></div>${dr.noDate&&html`<div className="mut" style=${{marginTop:4}}>Không đọc được ngày, đang đặt hôm nay. Hãy kiểm tra.</div>`}<//>
-<div className="row g8 mt"><button className="btn ghost" disabled=${busy} onClick=${()=>{lock.current=true;setSt('cancel')}}>Hủy</button><${Btn} busy=${busy} onClick=${ok}>Xác nhận lưu<//></div></div>`}
-function Chat({mode,hide}){const{d}=useC();const[ms,setMs]=useState([{r:'a',t:'Xin chào! Hãy kể chi tiêu hoặc thu nhập của bạn, ví dụ: “Hôm nay mình ăn phở 45 nghìn, mua cà phê 25 nghìn.”'}]),[v,setV]=useState(''),[busy,setBusy]=useState(false),end=useRef();
-useEffect(()=>{end.current&&end.current.scrollIntoView({behavior:'smooth'})},[ms,busy]);
-const send=async()=>{const t=v.trim();if(!t||busy||!mode)return;setV('');setBusy(true);setMs(m=>[...m,{r:'u',t}]);
-try{const o=await AIS.parseText(t,aiCtx(d));setMs(m=>[...m,{r:'a',t:o.items.length?(o.reply||'Mình đã tạo bản nháp, hãy kiểm tra trước khi lưu:'):(o.reply||'Mình chưa thấy giao dịch nào trong tin nhắn.'),dr:o.items}])}
-catch(e){setMs(m=>[...m,{r:'a',t:aiErr(e)}]);toast('AI chưa xử lý được tin nhắn','err')}setBusy(false)};
-return html`<div style=${{flex:1,minHeight:0,display:hide?'none':'flex',flexDirection:'column'}}><div style=${{flex:1,overflowY:'auto',padding:'12px 20px',display:'flex',flexDirection:'column',gap:10}}>
-${ms.map((m,i)=>html`<div key=${i} style=${{display:'flex',flexDirection:'column',gap:6}}><div className=${'bub '+m.r}>${m.t}</div>${(m.dr||[]).map(x=>html`<${DraftCard} key=${x.op} dr=${x}/>`)}</div>`)}
-${busy&&html`<div className="bub a"><span className="dots"><i></i><i></i><i></i></span> <span className="mut">AI đang phân tích tin nhắn…</span></div>`}<div ref=${end}></div></div>
-<div className="row g8" style=${{padding:'10px 20px 18px',borderTop:'1px solid var(--b)'}}><div className="in f1"><input disabled=${!mode} placeholder=${mode?'Nhập giao dịch bằng tiếng Việt…':'AI chưa kết nối'} value=${v} maxLength="500" onChange=${ev=>setV(ev.target.value)} onKeyDown=${ev=>{if(ev.key==='Enter')send()}}/></div><button className="fab" style=${{margin:0,width:46,height:46,opacity:mode&&v.trim()&&!busy?1:.5}} disabled=${!mode||busy} aria-label="Gửi" onClick=${send}>➤</button></div></div>`}
-function Scan({mode,hide}){const{d,go}=useC();const[file,setFile]=useState(null),[url,setUrl]=useState(''),[busy,setBusy]=useState(false),[dr,setDr]=useState(null),[err,setErr]=useState('');
+<${Field} label="Ngày"><div className="in"><input type="date" max=${today()} value=${f.date} onChange=${ev=>setF({...f,date:ev.target.value})}/></div><//>
+<div className="row g8 mt"><button className="btn ghost" onClick=${onDone}>Huỷ</button><${Btn} busy=${busy} onClick=${ok}>Lưu giao dịch<//></div></div>`}
+
+function Scan(){const{d,go}=useC();const[file,setFile]=useState(null),[url,setUrl]=useState(''),[busy,setBusy]=useState(false),[dr,setDr]=useState(null),[err,setErr]=useState(''),[mode,setMode]=useState(undefined);
+const chk=()=>{setMode(undefined);AIS.mode().then(setMode)};useEffect(()=>{chk()},[]);
 const pick=ev=>{const f=ev.target.files[0];ev.target.value='';if(!f)return;if(!/^image\//.test(f.type)){toast('Vui lòng chọn file ảnh','err');return}if(f.size>15e6){toast('Ảnh quá lớn (tối đa 15MB)','err');return}setFile(f);setUrl(URL.createObjectURL(f));setDr(null);setErr('')};
-const run=async()=>{if(busy||!file||!mode)return;setBusy(true);setErr('');setDr(null);try{setDr(await AIS.parseReceipt(file,aiCtx(d)));toast('AI đã đọc xong hóa đơn, hãy kiểm tra thông tin')}catch(e){setErr(aiErr(e));toast('Không nhận diện được hóa đơn','err')}setBusy(false)};
-return html`<div style=${{flex:1,overflowY:'auto',padding:'0 20px 24px',display:hide?'none':'block'}}><div className=${'scanbox'+(busy?' on':'')}>${url?html`<img src=${url} alt="Ảnh hóa đơn"/>`:'Chưa có ảnh hóa đơn'}</div>
-<div className="row g8 mt"><label className="btn ghost" style=${{cursor:'pointer'}}>📷 Tải ảnh từ thiết bị<input type="file" accept="image/*" hidden onChange=${pick}/></label><${Btn} busy=${busy} disabled=${!file||!mode} onClick=${run}>Phân tích bằng AI<//></div>
-${err&&html`<div className="alert" style=${{background:'var(--rl)',color:'var(--r)',cursor:'default'}}>${err}</div>`}${err&&mode&&html`<button className="btn ghost mt" onClick=${()=>go('add',{type:'expense'})}>Nhập thủ công</button>`}
-${dr&&html`<div key=${dr.op}><${DraftCard} dr=${dr}/><button className="btn ghost" onClick=${()=>{setFile(null);setUrl('');setDr(null)}}>Quét hóa đơn khác</button></div>`}</div>`}
-const SPK='M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3zM19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8L19 15z';
-function AiChoice({close,go}){const[pk,setPk]=useState(null);const pick=t=>{if(pk)return;setPk(t);setTimeout(()=>go('ai',{tab:t}),320)};
-return html`<div><div className="row sb"><div className="row g8"><span className="aiic" style=${{width:36,height:36,borderRadius:12,background:'var(--pl)',color:'var(--pd)'}}><${Ic} d=${SPK} s=${20}/></span><h3 style=${{margin:0}}>Trợ lý AI</h3></div><button className="bk" aria-label="Đóng" onClick=${close}>✕</button></div>
-<p style=${{margin:'14px 0',fontSize:14,color:'var(--ts)'}}>Bạn muốn nhập giao dịch bằng cách nào?</p>
-${[['chat','CHAT VỚI AI','Nhập chi tiêu bằng ngôn ngữ tự nhiên','M21 12a8 8 0 01-11.6 7.1L3 21l1.9-6.2A8 8 0 1121 12z'],['scan','QUÉT HÓA ĐƠN','Chụp hoặc tải ảnh hóa đơn để AI phân tích','M4 8h3l2-3h6l2 3h3v12H4zM12 17a4 4 0 100-8 4 4 0 000 8z']].map(([k,t,s,ic])=>html`<button key=${k} className=${'opt'+(pk===k?' on':'')} disabled=${!!pk&&pk!==k} onClick=${()=>pick(k)}><span className="optic"><${Ic} d=${ic} s=${26}/></span><span className="f1"><b>${t}</b><span className="mut">${s}</span></span>${pk===k?html`<i className="sp" style=${{borderColor:'var(--pl)',borderTopColor:'var(--p)'}}></i>`:html`<span style=${{fontSize:22,color:'var(--tf)'}}>›</span>`}</button>`)}</div>`}
-function Ai({tab:t0}){const[tab,setTab]=useState(t0||'chat'),[mode,setMode]=useState(undefined),chk=()=>{setMode(undefined);AIS.mode().then(setMode)};useEffect(()=>{chk()},[]);
-return html`<div style=${{position:'absolute',inset:0,display:'flex',flexDirection:'column',animation:'in .35s'}}><div style=${{padding:'0 20px'}}><${Head} t="AI Smart Expense"/><div className="seg mt" style=${{marginTop:8}}>${[['chat','💬 AI Chat'],['scan','🧾 Quét hóa đơn']].map(([k,l])=>html`<button key=${k} className=${tab===k?'on':''} onClick=${()=>setTab(k)}>${l}</button>`)}</div>
-${mode===null&&html`<div className="alert" style=${{background:'var(--ol)',color:'var(--o)',cursor:'pointer'}} onClick=${chk}>${aiErr({code:AIS.why})} <b>Chạm để thử lại.</b></div>`}</div>
-<${Chat} mode=${mode} hide=${tab!=='chat'}/><${Scan} mode=${mode} hide=${tab!=='scan'}/></div>`}
+const run=async()=>{if(busy||!file)return;if(!mode){setErr(aiErr({code:AIS.why}));return}setBusy(true);setErr('');setDr(null);
+try{setDr(await AIS.parseReceipt(file,aiCtx(d)));toast('Đã đọc xong hóa đơn')}catch(e){setErr(aiErr(e));toast('Không nhận diện được hóa đơn','err')}setBusy(false)};
+return html`<div className="scr"><${Head} t="Quét hóa đơn"/>
+${mode===null&&html`<div className="alert" style=${{background:'var(--ol)',color:'var(--o)',cursor:'pointer'}} onClick=${chk}>${aiErr({code:AIS.why})} <b>Chạm để thử lại.</b></div>`}
+<div className=${'scanbox'+(busy?' on':'')}>${url?html`<img src=${url} alt="Ảnh hóa đơn"/>`:'Chưa có ảnh hóa đơn'}</div>
+<div className="row g8 mt"><label className="btn ghost" style=${{cursor:'pointer'}}>📷 Tải ảnh hóa đơn<input type="file" accept="image/*" hidden onChange=${pick}/></label><${Btn} busy=${busy} disabled=${!file} onClick=${run}>Phân tích AI<//></div>
+${err&&html`<div className="alert" style=${{background:'var(--rl)',color:'var(--r)'}}>${err}</div>`}
+${err&&html`<button className="btn ghost mt" onClick=${()=>go('add',{type:'expense'})}>Nhập thủ công</button>`}
+${dr&&html`<${DraftCard} key=${dr.op} dr=${dr} onDone=${()=>{setFile(null);setUrl('');setDr(null)}}/>`}</div>`}
 
 function App(){const[db,setDb]=useState(load),[user,setUser]=useState(()=>db.users.find(u=>u.email===db.session)||null),[r,setR]=useState({n:'home'});
 useEffect(()=>{try{localStorage.setItem(KEY,JSON.stringify(db))}catch(e){}},[db]);
 const go=(n,p)=>setR(c=>({...p,n,from:c.n})),enter=(u,rem)=>{setUser(u);setDb(x=>({...x,session:rem?u.email:null}));setR({n:'home'})},logout=()=>{setUser(null);setDb(x=>({...x,session:null}));toast('Đã đăng xuất')};
 const d=user?(db.data[user.email]||empty()):null,upd=fn=>setDb(x=>({...x,data:{...x.data,[user.email]:fn(x.data[user.email]||empty())}}));
-const S={home:Home,add:Add,budget:Budget,hist:Hist,stats:Stats,jars:Jars,cats:Cats,me:Me,ai:Ai}[r.n],N=[['home','Trang chủ','home'],['stats','Thống kê','stats'],null,['budget','Ngân sách','bud'],['me','Cá nhân','me']];
+const S={home:Home,add:Add,scan:Scan,hist:Hist,me:Me}[r.n]||Home;
 return html`<${Ctx.Provider} value=${{db,setDb,user,d,upd,r,go,enter,logout}}><${Toasts}/>${!user?html`<${Auth}/>`:html`<div style=${{height:'100%'}}><${S} key=${r.n} ...${r}/>
-${r.n!=='add'&&r.n!=='ai'&&html`<div className="nav">${N.map((n,i)=>n?html`<button key=${n[0]} className=${'ni'+(r.n===n[0]?' on':'')} onClick=${()=>go(n[0])}><${Ic} d=${IC[n[2]]}/>${n[1]}</button>`:html`<button key=${i} className="fab" aria-label="Thêm giao dịch" onClick=${()=>go('add',{type:'expense'})}><${Ic} d=${IC.plus} s=${26}/></button>`)}</div>`}</div>`}<//>`}
+<div className="nav">
+<button className=${'ni'+(r.n==='home'?' on':'')} onClick=${()=>go('home')}><${Ic} d=${IC.home}/>Trang chủ</button>
+<button className="fab" aria-label="Thêm khoản chi" onClick=${()=>go('add',{type:'expense'})}><${Ic} d=${IC.plus} s=${22}/></button>
+<button className=${'ni'+(r.n==='scan'?' on':'')} onClick=${()=>go('scan')}><${Ic} d=${IC.scan}/>Quét hóa đơn</button>
+<button className=${'ni'+(r.n==='me'?' on':'')} onClick=${()=>go('me')}><${Ic} d=${IC.me}/>Cá nhân</button>
+</div></div>`}<//>`}
 ReactDOM.createRoot(document.getElementById('root')).render(html`<${App}/>`);
 </script></body></html>
