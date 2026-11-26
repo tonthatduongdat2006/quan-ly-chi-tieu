@@ -166,6 +166,7 @@ erDiagram
     CATEGORIES ||--o{ TRANSACTIONS : classifies
     CATEGORIES ||--o{ BUDGETS : limits
 ```
+
 ## Demo & Ảnh chụp màn hình (Screenshots)
 
 - **Link triển khai (Live Web):** [AI Smart Expense](https://group6-quanlychitieu.vercel.app/)
