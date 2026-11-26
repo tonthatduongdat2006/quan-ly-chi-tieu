@@ -166,3 +166,28 @@ erDiagram
     CATEGORIES ||--o{ TRANSACTIONS : classifies
     CATEGORIES ||--o{ BUDGETS : limits
 ```
+## Demo & Ảnh chụp màn hình (Screenshots)
+
+- **Link triển khai (Live Web):** [AI Smart Expense](https://group6-quanlychitieu.vercel.app/)
+- **Link API / Backend:** https://group6-quanlychitieu-api.vercel.app
+- **Video Demo (YouTube, 720p, ≤ 10 phút):** *(Cập nhật link YouTube Unlisted/Public sau khi quay hoàn chỉnh)*
+- **Ảnh chụp màn hình:** *(Tải ảnh giao diện lên thư mục trong repo, ví dụ `doc/screenshots/`, rồi chèn bằng `![Mô tả](doc/screenshots/ten-anh.png)`)*
+
+## Thành viên & Đánh giá (Nhóm 6)
+
+| Thành viên | Mã sinh viên | Phụ trách / Vai trò | Đánh giá chung (1 file chung) | Tự đánh giá bản thân |
+| :--- | :--- | :--- | :--- | :--- |
+| **Tôn Thất Dương Đạt** | `24090061` | Phụ trách gần như toàn bộ cùng AI/code (`claude`): tính năng, API/CSDL, cấu hình môi trường, triển khai, xử lý lỗi/log và tài liệu dự án | [Đánh giá chung nhóm (1 file)](doc/BANG-TU-DANH-GIA-4-THANH-VIEN.md) | [Tự đánh giá - Tôn Thất Dương Đạt](doc/TU-DANH-GIA-TON-THAT-DUONG-DAT.md) |
+| **Văn Lê Tiến Hùng** | `24090008` | Góp ý và đề xuất cách xây dựng web, định hướng giao diện/luồng thao tác và cách tổ chức sản phẩm | *(Dùng chung file bên cạnh)* | *(Cập nhật thêm nếu cần)* |
+| **Phạm Minh Phúc** | `24090011` | *(Chưa cập nhật)* | *(Dùng chung file bên cạnh)* | *(Chưa cập nhật)* |
+| **Nguyễn Hải Đăng** | `24090018` | *(Chưa cập nhật)* | *(Dùng chung file bên cạnh)* | *(Chưa cập nhật)* |
+
+### Tài liệu bổ sung trong thư mục `doc/`
+
+- [doc/PRD-CHUC-NANG-HE-THONG.md](doc/PRD-CHUC-NANG-HE-THONG.md) — Đặc tả yêu cầu chức năng (PRD) theo mẫu chuẩn.
+- [doc/KE-HOACH-VA-PHAN-CONG.md](doc/KE-HOACH-VA-PHAN-CONG.md) — Kế hoạch triển khai theo mốc thời gian, phân công vai trò và quy trình Git.
+- [doc/WIREFRAME-KIEN-TRUC-ERD.md](doc/WIREFRAME-KIEN-TRUC-ERD.md) — Thiết kế Wireframe, luồng giao diện, kiến trúc hệ thống và lược đồ CSDL (ERD).
+- [doc/TOI-UU-VA-PEER-REVIEW.md](doc/TOI-UU-VA-PEER-REVIEW.md) — Kết quả tối ưu Google Lighthouse, thiết lập logging/tracking và báo cáo UI/UX Peer Review.
+- [doc/TU-DANH-GIA-5-SPRINT.md](doc/TU-DANH-GIA-5-SPRINT.md) — Báo cáo tự đánh giá qua 5 sprint (S1–S5).
+- [doc/TU-DANH-GIA-TON-THAT-DUONG-DAT.md](doc/TU-DANH-GIA-TON-THAT-DUONG-DAT.md) — Bản tự đánh giá bản thân của Tôn Thất Dương Đạt.
+- [doc/BANG-TU-DANH-GIA-4-THANH-VIEN.md](doc/BANG-TU-DANH-GIA-4-THANH-VIEN.md) — Bảng tự đánh giá bản thân cho 4 thành viên.
