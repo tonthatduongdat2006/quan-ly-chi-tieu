@@ -7,10 +7,7 @@ async function bootstrap() {
   app.setGlobalPrefix('api/v1');
 
   app.enableCors({
-    origin: [
-      'https://group6-quanlychitieu.vercel.app',
-      'https://group6-quanlychitieu-8l7sd5op6-quan-ly-chi-tieu-group6.vercel.app',
-    ],
+    origin: true
     methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
     credentials: true,
   });
