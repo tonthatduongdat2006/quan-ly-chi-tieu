@@ -8,7 +8,7 @@ Tài liệu tổng hợp tự đánh giá cá nhân và tiến độ 5 Sprint ch
 | --- | --- | --- |
 | Tôn Thất Dương Đạt | Điều phối kỹ thuật, xây dựng/chỉnh sửa mã nguồn, luồng nghiệp vụ, AI nhập nhanh (tin nhắn & hóa đơn), cơ sở dữ liệu/API, cấu hình biến môi trường, triển khai, xử lý lỗi/log và tài liệu dự án. | Gánh phần lớn khối lượng thực thi kỹ thuật; bám sát lỗi runtime/kết nối và hoàn thiện luồng sản phẩm. |
 | Văn Lê Tiến Hùng | Góp ý và đề xuất cách xây dựng web, định hướng giao diện/luồng thao tác và cách tổ chức sản phẩm. | Đóng góp ý kiến định hướng xây dựng web để đội ngũ tham khảo và chắt lọc khi triển khai. |
-| Nguyễn Hải Đăng | *[Cần thành viên cập nhật/xác nhận phần việc thực tế]* | *[Cần thành viên cập nhật/xác nhận tự đánh giá]* |
+| Nguyễn Hải Đăng | Chưa ghi nhận phần việc thực hiện hay đóng góp cụ thể trong quá trình triển khai dự án. | Mức độ tham gia và đóng góp thực tế chưa rõ ràng; cần đối chiếu thêm với lịch sử commit/bàn giao của nhóm. |
 | Phạm Minh Phúc | Chưa ghi nhận phần việc thực hiện hay đóng góp cụ thể trong quá trình triển khai dự án. | Mức độ tham gia và đóng góp thực tế chưa rõ ràng; cần đối chiếu thêm với lịch sử commit/bàn giao của nhóm. |
 
 ## 2. Chi tiết tự đánh giá theo từng thành viên
@@ -25,8 +25,9 @@ Tài liệu tổng hợp tự đánh giá cá nhân và tiến độ 5 Sprint ch
 - **Ghi chú:** Có thể bổ sung thêm chi tiết các đề xuất cụ thể và minh chứng tham gia theo từng Sprint.
 
 ### 2.3. Nguyễn Hải Đăng
-- **Phần việc phụ trách:** *[Cần bổ sung thông tin thực tế của thành viên]*
-- **Tự đánh giá & đóng góp:** *[Cần bổ sung tự đánh giá của thành viên]*
+- **Phần việc phụ trách:** Chưa ghi nhận đầu việc, mã nguồn hay nhiệm vụ cụ thể nào được hoàn thành hoặc đóng góp vào quá trình làm việc của nhóm.
+- **Tự đánh giá & đóng góp:** Chưa thể hiện sự tham gia và đóng góp thực tế vào sản phẩm và các đầu việc chung của dự án; các thành viên khác không ghi nhận đóng góp từ thành viên này.
+- **Ghi chú:** Nếu thành viên có minh chứng hoặc báo cáo bổ sung theo từng Sprint, cần cung cấp cụ thể để đối chiếu theo quy định đánh giá cá nhân của môn học.
 
 ### 2.4. Phạm Minh Phúc
 - **Phần việc phụ trách:** Chưa ghi nhận đầu việc, mã nguồn hay nhiệm vụ cụ thể nào được hoàn thành hoặc đóng góp vào quá trình làm việc của nhóm.
