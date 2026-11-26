@@ -13,3 +13,13 @@ Trình duyệt / Expo Web                        Backend / API                  
   Quét: gửi ảnh (base64) ───► POST /api/ai/parse-receipt ───┼─► gọi AI (API key ở biến môi trường)
   ◄── JSON có cấu trúc ◄────── kiểm tra + chuẩn hóa ◄───────┘
   Bản nháp → người dùng sửa → "Xác nhận lưu" → lưu vào PostgreSQL (Supabase): số dư, giao dịch, danh mục, ngân sách, hũ tiết kiệm
+## Chạy thử trên máy (3 bước)
+
+Cần Node.js **18 trở lên** và Git.
+
+```bash
+git clone [https://github.com/tonthatduongdat2006/Group6-QuanLyChiTieu.git](https://github.com/tonthatduongdat2006/Group6-QuanLyChiTieu.git)
+cd Group6-QuanLyChiTieu
+git checkout main
+npm install
+# Copy .env.example (nếu có) và điền biến môi trường AI / Supabase / API trước khi chạy
