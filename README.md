@@ -170,7 +170,7 @@ erDiagram
 
 - **Link triển khai (Live Web):** [AI Smart Expense](https://group6-quanlychitieu.vercel.app/)
 - **Link API / Backend:** https://group6-quanlychitieu-api.vercel.app
-- **Video Demo (YouTube, 720p, ≤ 10 phút):** [Xem video demo trên YouTube](https://youtu.be/4a6hydJPYX8)
+- **Video Demo (YouTube, 720p, ≤ 10 phút):** [Xem video demo trên YouTube](https://youtu.be/Lj0kUyLQhjQ)
 
 ### Ảnh chụp màn hình giao diện
 
