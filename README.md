@@ -13,3 +13,4 @@ Trình duyệt / Expo Web                        Backend / API                  
   Quét: gửi ảnh (base64) ───► POST /api/ai/parse-receipt ───┼─► gọi AI (API key ở biến môi trường)
   ◄── JSON có cấu trúc ◄────── kiểm tra + chuẩn hóa ◄───────┘
   Bản nháp → người dùng sửa → "Xác nhận lưu" → lưu vào PostgreSQL (Supabase): số dư, giao dịch, danh mục, ngân sách, hũ tiết kiệm
+```
