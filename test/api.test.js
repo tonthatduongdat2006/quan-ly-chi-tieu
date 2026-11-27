@@ -214,3 +214,35 @@ test('phục vụ giao diện, có CSP, không lộ key, chặn đường dẫn 
   for (const p of ['/server.js', '/%2e%2e/server.js', '/.env', '/api/khong-co']) assert.equal((await fetch(base + p)).status, 404, p);
   assert.equal((await fetch(base + '/api/ai/parse-text')).status, 405);
 });
+
+test('giao diện: CSS nằm trong <style>, đủ biến :root và @keyframes, giữ Google Analytics', () => {
+  const html = require('node:fs').readFileSync(path.join(__dirname, '..', 'public', 'index.html'), 'utf8');
+  const headEnd = html.indexOf('</head>');
+  assert.ok(headEnd > 0, 'thiếu </head>');
+  const head = html.slice(0, headEnd);
+  assert.equal((head.match(/<style>/g) || []).length, 1, 'phải có đúng một thẻ <style> trong <head>');
+  assert.equal((head.match(/<\/style>/g) || []).length, 1, 'phải có đúng một thẻ </style> trong <head>');
+  const css = head.slice(head.indexOf('<style>') + 7, head.indexOf('</style>'));
+  assert.ok(css.length > 0, 'thẻ <style> không được rỗng');
+
+  // Không có quy tắc CSS nằm ngoài <style>/<script> (nếu có, trình duyệt sẽ in ra như chữ thường)
+  const outside = head.replace(/<style>[\s\S]*?<\/style>/g, '').replace(/<script\b[\s\S]*?<\/script>/g, '').replace(/<!--[\s\S]*?-->/g, '');
+  assert.ok(!/[.#:@*a-z][^<>]*\{[^<>]*\}/i.test(outside.replace(/<[^>]*>/g, '')), 'có CSS nằm ngoài thẻ <style>');
+
+  // Mọi biến var(--x) được dùng đều phải được định nghĩa trong :root
+  const rootM = css.match(/:root\{([^}]*)\}/);
+  assert.ok(rootM, 'thiếu khối :root');
+  const defined = new Set([...rootM[1].matchAll(/--([\w-]+)\s*:/g)].map(m => m[1]));
+  const used = new Set([...html.matchAll(/var\(--([\w-]+)/g)].map(m => m[1]));
+  for (const v of used) assert.ok(defined.has(v), `biến --${v} được dùng nhưng chưa định nghĩa trong :root`);
+
+  // Mọi animation đều có @keyframes tương ứng
+  const frames = new Set([...css.matchAll(/@keyframes\s+([\w-]+)/g)].map(m => m[1]));
+  const anims = new Set([...html.matchAll(/animation:\s*([\w-]+)/g)].map(m => m[1]));
+  for (const a of anims) assert.ok(frames.has(a), `animation "${a}" chưa có @keyframes`);
+
+  for (const sel of ['body{', '#root{', 'html,body{']) assert.ok(css.includes(sel), `thiếu CSS cho ${sel}`);
+  assert.match(css, /@media\(min-width:768px\)/, 'thiếu media query responsive');
+  assert.match(head, /googletagmanager\.com\/gtag\/js\?id=G-L4X1JXCPK0/, 'mất thẻ Google Analytics');
+  assert.match(head, /gtag\('config', 'G-L4X1JXCPK0'\)/, 'mất cấu hình Google Analytics');
+});
