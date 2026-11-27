@@ -2,9 +2,9 @@
 
 Ứng dụng quản lý chi tiêu cá nhân hỗ trợ thiết lập số dư ban đầu, nhập khoản chi thủ công, phân tích tin nhắn nhanh và quét hóa đơn bằng AI. Frontend chỉ gọi backend của bạn; backend giữ API key và gọi AI.
 **Môn học:** Web Design and Development (CSB25022) — VN-UK Institute for Research and Executive Education (VNUK)
-- **Web ứng dụng:** [AI Smart Expense](https:/https://quan-ly-chi-tieu-sooty.vercel.app/)
-- **API / Backend:** https://group6-quanlychitieu-api.vercel.app
-- **Kho mã nguồn (GitHub):** [Group6-QuanLyChiTieu](https://github.com/tonthatduongdat2006/Group6-QuanLyChiTieu)
+- **Web ứng dụng:** [AI Smart Expense](https://quan-ly-chi-tieu-sooty.vercel.app/)
+- **API / Backend:** [https://quan-ly-chi-tieu-sooty.vercel.app](https://quan-ly-chi-tieu-sooty.vercel.app)
+- **Kho mã nguồn (GitHub):** [quan-ly-chi-tieu](https://github.com/tonthatduongdat2006/quan-ly-chi-tieu)
 
 ```text
 Trình duyệt / Expo Web                        Backend / API                      Dịch vụ AI & CSDL
