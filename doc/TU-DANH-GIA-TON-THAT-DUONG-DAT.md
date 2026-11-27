@@ -4,7 +4,7 @@
 * **MSSV:** 24090061
 * **Nhóm:** Nhóm 6
 * **Dự án:** Quản Lý Chi Tiêu Cá Nhân — AI Smart Expense
-* **Tỷ lệ đóng góp nhóm:** Tôn Thất Dương Đạt (40%) — Văn Lê Tiến Hùng (25%) — Nguyễn Hải Đăng (20%) — Phạm Minh Phúc (15%)
+* **Tỷ lệ đóng góp nhóm:** Tôn Thất Dương Đạt (30%) — Văn Lê Tiến Hùng (30%) — Nguyễn Hải Đăng (20%) — Phạm Minh Phúc (20%)
 * **Vai trò thực tế:** Phụ trách chính về kỹ thuật, kiến trúc hệ thống, chức năng cốt lõi, AI nhập nhanh, CSDL/API, triển khai, log và tài liệu dự án (phối hợp triển khai kỹ thuật cùng **claude**, tiếp thu góp ý xây dựng web từ **Văn Lê Tiến Hùng**).
 
 ---
