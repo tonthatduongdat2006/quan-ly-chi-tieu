@@ -194,7 +194,7 @@ erDiagram
 
 | Thành viên | Mã sinh viên | Phụ trách / Vai trò | Đánh giá chung (1 file chung) | Tự đánh giá bản thân |
 | :--- | :--- | :--- | :--- | :--- |
-| **Tôn Thất Dương Đạt** | `24090061` | Phụ trách gần như toàn bộ cùng AI/code (`claude`): tính năng, API/CSDL, cấu hình môi trường, triển khai, xử lý lỗi/log và tài liệu dự án | [Đánh giá chung nhóm (1 file)](doc/BANG-TU-DANH-GIA-4-THANH-VIEN.md) | [Tự đánh giá - Tôn Thất Dương Đạt](doc/TU-DANH-GIA-TON-THAT-DUONG-DAT.md) |
+| **Tôn Thất Dương Đạt** | `24090061` | Phụ trách gần như toàn bộ cùng AI/code (`claude`): tính năng, API/CSDL, cấu hình môi trường, triển khai, xử lý lỗi/log và tài liệu dự án | [Đánh giá chung nhóm)](doc/BANG-TU-DANH-GIA-4-THANH-VIEN.md) | [Tự đánh giá - Tôn Thất Dương Đạt](doc/TU-DANH-GIA-TON-THAT-DUONG-DAT.md) |
 | **Văn Lê Tiến Hùng** | `24090008` | Góp ý và đề xuất cách xây dựng web, định hướng giao diện/luồng thao tác và cách tổ chức sản phẩm | *(Chưa cập nhật)* | *(Chưa cập nhật)* |
 | **Phạm Minh Phúc** | `24090011` | *(Chưa cập nhật)* | *(Chưa cập nhật)* | *(Chưa cập nhật)* |
 | **Nguyễn Hải Đăng** | `24090018` | *(Chưa cập nhật)* | *(Chưa cập nhật)* | *(Chưa cập nhật)* |
