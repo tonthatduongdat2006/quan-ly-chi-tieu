@@ -11,7 +11,7 @@
 
 ## 1. Tổng quan công việc & mức độ đóng góp
 
-Trong suốt quá trình thực hiện dự án **AI Smart Expense (Nhóm 6)**, **Tôn Thất Dương Đạt** (mức phân bổ ghi nhận **40%**; cùng **Văn Lê Tiến Hùng 25%**, **Nguyễn Hải Đăng 20%**, **Phạm Minh Phúc 15%**) đảm nhận phần lớn khối lượng công việc kỹ thuật, triển khai và tài liệu (phối hợp chặt chẽ cùng **claude** để đẩy nhanh tiến độ và hoàn thiện sản phẩm), kết hợp tiếp thu các ý kiến góp ý, đề xuất xây dựng web từ **Văn Lê Tiến Hùng**.
+Trong suốt quá trình thực hiện dự án **AI Smart Expense (Nhóm 6)**, **Tôn Thất Dương Đạt** (mức phân bổ ghi nhận **30%**; cùng **Văn Lê Tiến Hùng 30%**, **Nguyễn Hải Đăng 20%**, **Phạm Minh Phúc 20%**) đảm nhận công việc kỹ thuật, triển khai và tài liệu (phối hợp chặt chẽ cùng **claude** để đẩy nhanh tiến độ và hoàn thiện sản phẩm), kết hợp tiếp thu các ý kiến góp ý, đề xuất xây dựng web từ **Văn Lê Tiến Hùng**.
 
 | Hạng mục phụ trách | Nội dung thực hiện chi tiết |
 | :--- | :--- |
@@ -37,7 +37,7 @@ Trong suốt quá trình thực hiện dự án **AI Smart Expense (Nhóm 6)**, 
 
 ## 3. Tự đánh giá năng lực & điểm mạnh
 
-* **Tinh thần trách nhiệm & gánh vác:** Chủ động đảm nhận phần lớn đầu việc từ khâu lên khung ý tưởng đến khi đưa hệ thống lên môi trường chạy thật, giữ cho dự án có sản phẩm hoạt động và tài liệu đầy đủ.
+* **Tinh thần trách nhiệm:** Đảm nhận từ khâu lên khung ý tưởng đến khi đưa hệ thống lên môi trường chạy thật, giữ cho dự án có sản phẩm hoạt động và tài liệu đầy đủ.
 * **Khả năng bám sát & xử lý sự cố thực tế:** Khi gặp lỗi kết nối hoặc xác thực cơ sở dữ liệu trong quá trình deploy, kiên trì theo dõi log, đối chiếu biến môi trường và từng bước khoanh vùng nguyên nhân thay vì bỏ dở.
 * **Kết nối giữa tài liệu và mã nguồn:** Biết đối chiếu tài liệu đặc tả với cấu trúc route/module thực tế để cập nhật đồng bộ trên kho mã nguồn GitHub.
 
