@@ -349,4 +349,6 @@ if (require.main === module) {
   });
   for (const s of ['SIGTERM', 'SIGINT']) process.on(s, () => server.close(() => process.exit(0)));
 }
-module.exports = { server, CFG };
+module.exports = server;
+module.exports.server = server;
+module.exports.CFG = CFG;
