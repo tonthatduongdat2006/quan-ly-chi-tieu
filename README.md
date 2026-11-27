@@ -167,18 +167,21 @@ erDiagram
     CATEGORIES ||--o{ BUDGETS : limits
 ```
 
-## Theo dõi, Ghi log & Góp ý từ Nhóm 2
+## Theo dõi, Ghi log 
 
 - **Google Analytics 4 (`G-L4X1JXCPK0`):** Đã gắn thẻ `gtag.js` và mở quyền `Content-Security-Policy` trong `server.js` để theo dõi lượt xem trang và người dùng hoạt động theo thời gian thực trên [AI Smart Expense](https://quan-ly-chi-tieu-sooty.vercel.app/).
 - **Ghi nhận lỗi & Log hệ thống:** Backend `server.js` ghi log từng request (`method`, `path`, `status`, `latency`, mã lỗi) ra stdout và theo dõi lỗi runtime trên Vercel.
-- **Cập nhật theo góp ý của Nhóm 2:**
-  - Hiển thị rõ **Điều khoản sử dụng** và **Chính sách quyền riêng tư** (có thể mở xem chi tiết và bắt buộc đồng ý trước khi tạo tài khoản).
-  - Sau khi đăng ký thành công, tự động vào thẳng ứng dụng thay vì bắt đăng nhập lại.
 
 | Minh chứng GA4 Realtime | Giao diện đăng ký & Điều khoản |
 | :---: | :---: |
 | ![GA4 Realtime](doc/ga4-realtime.png) | ![Đăng ký và điều khoản](doc/02-dang-ky-tai-khoan.png) |
 
+# XỬ LÝ FEEDBACK TỪ CÁC NHÓM KHÁC
+
+| # | Nguồn góp ý (Nhóm / Link Issue) | Nội dung góp ý nhận được | Quyết định | Minh chứng xử lý (Commit / PR) hoặc Lý do không làm |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | Nhóm 2 (Peer Review UI/UX) | Hiển thị rõ **Điều khoản sử dụng** và **Chính sách quyền riêng tư** (có thể mở xem chi tiết và bắt buộc đồng ý trước khi tạo tài khoản) | Đồng ý sửa | Đã cập nhật form đăng ký trên `public/index.html` (`https://quan-ly-chi-tieu-sooty.vercel.app/`) thêm checkbox đồng ý và liên kết mở nội dung Điều khoản sử dụng & Chính sách quyền riêng tư; xem ảnh minh chứng tại `README.md` |
+| 2 | Nhóm 5 (Peer Review UI/UX) | Tự động đăng nhập và chuyển thẳng vào ứng dụng sau khi đăng ký thành công thay vì bắt đăng nhập lại | Đồng ý sửa | Đã cập nhật luồng xử lý đăng ký trên giao diện để tự lưu phiên và điều hướng thẳng vào trang chủ sau khi tạo tài khoản thành công |
 
 ## Demo & Ảnh chụp màn hình (Screenshots)
 
