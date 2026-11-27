@@ -37,19 +37,32 @@ Tài liệu tổng hợp tự đánh giá cá nhân và tiến độ 5 Sprint ch
 - **Tự đánh giá & đóng góp:** Chưa thể hiện sự tham gia và đóng góp thực tế vào sản phẩm và các đầu việc chung của dự án; các thành viên khác không ghi nhận đóng góp từ thành viên này.
 - **Ghi chú:** Nếu thành viên có minh chứng hoặc báo cáo bổ sung theo từng Sprint, cần cung cấp cụ thể để đối chiếu theo quy định đánh giá cá nhân của môn học.
 
-## 3. Báo cáo Self-Report theo 5 Sprint (Tôn Thất Dương Đạt)
+## 3. Báo cáo Self-Report theo 5 Sprint
+## Báo cáo 5 Sprint — Tôn Thất Dương Đạt
 
-| Sprint | Mục tiêu & liên kết tiêu chí | Công việc đã thực hiện | Kết quả & bài học / ghi chú |
-| --- | --- | --- | --- |
-| **Sprint 1** | Lập kế hoạch, phân vai, wireframe/ERD & quản lý GitHub (Task 1) | Tham gia định hướng dự án, thiết kế luồng hệ thống và lược đồ dữ liệu/ERD, khởi tạo và tổ chức repository, tạo Issue và thực hiện quy trình nhánh + Pull Request. | Thiết lập được nền tảng quản lý mã nguồn, Issue và Pull Request; cần đảm bảo các thành viên cùng cập nhật đóng góp rõ ràng. |
-| **Sprint 2** | Giao diện đa màn hình & tương tác người dùng (Task 2) | Xây dựng và hoàn thiện giao diện các màn hình chính (Trang chủ, Thêm chi, Quét hóa đơn, Cá nhân), biểu mẫu nhập liệu, chọn danh mục và thao tác kiểm tra bản nháp. | Các màn hình hoạt động đúng luồng điều hướng và hiển thị trên nhiều kích thước màn hình; cần lưu ý rà soát bố cục màn hình lớn và thư viện CSS theo đề bài. |
-| **Sprint 3** | Cơ sở dữ liệu PostgreSQL & nội dung động (Task 3) | Thiết kế cơ sở dữ liệu quan hệ (profiles, categories, transactions, budgets, savings_jars), tích hợp PostgreSQL qua dịch vụ API và hiển thị dữ liệu động theo tài khoản. | Đã kết nối dữ liệu thực tế cho các luồng giao dịch, số dư và danh mục; cần kiểm tra kỹ các endpoint xác thực và xác nhận bản nháp khi thao tác. |
-| **Sprint 4** | Tối ưu hóa hiệu năng, theo dõi & ghi log (Task 4) | Rà soát lỗi runtime/deploy, kiểm tra log trên nền tảng triển khai, cấu hình biến môi trường và ghi nhận các nội dung tối ưu hóa, theo dõi hành vi và ghi log. | Phát hiện và lần theo các lỗi API/môi trường khi deploy; rút ra kinh nghiệm đối chiếu kỹ biến môi trường và log trước khi chốt bản chạy chính thức. |
-| **Sprint 5** | UI/UX Peer Review, tài liệu & hoàn tất nộp bài (Task 5 & Submission) | Thực hiện đánh giá UI/UX, rà soát và phản hồi góp ý, cập nhật tài liệu README và thư mục tài liệu, gắn link video demo và chuẩn bị báo cáo tự đánh giá 5 Sprint. | Hoàn thiện tài liệu tổng hợp và danh sách đầu mục nộp bài; cần rà soát lần cuối link video demo và xác nhận của các thành viên trong nhóm. |
+| Sprint | Công việc của Tôn Thất Dương Đạt | Kết quả & lưu ý |
+| :--- | :--- | :--- |
+| **Sprint 1** | Khởi tạo và tổ chức repository GitHub, thiết lập quy trình nhánh, Issue và Pull Request. | Thiết lập được nền tảng quản lý mã nguồn và quy trình làm việc nhóm rõ ràng. |
+| **Sprint 2** | Xây dựng giao diện và xử lý logic các màn hình chức năng (Trang chủ, Thêm chi, Quét hóa đơn, Cá nhân). | Các màn hình hoạt động đúng luồng điều hướng và thao tác nhập liệu/bản nháp. |
+| **Sprint 3** | Thiết kế lược đồ cơ sở dữ liệu quan hệ (ERD), tích hợp PostgreSQL/Supabase và xây dựng API backend. | Kết nối thành công dữ liệu thực tế qua API; các thao tác lưu và truy vấn hoạt động ổn định. |
+| **Sprint 4** | Triển khai hệ thống lên Vercel, cấu hình biến môi trường, đọc log và xử lý lỗi runtime/kết nối API. | Ứng dụng chạy ổn định trên môi trường thật; kiểm soát tốt lỗi kết nối và biến môi trường. |
+| **Sprint 5** | Cập nhật hoàn chỉnh `README.md`, hệ thống hóa thư mục tài liệu `doc/` và chốt danh sách đầu mục nộp bài trên GitHub. | Hoàn thiện hồ sơ tài liệu và các đầu mục nộp bài theo đúng yêu cầu. |
+
+---
+
+## Báo cáo 5 Sprint — Văn Lê Tiến Hùng
+
+| Sprint | Công việc của Văn Lê Tiến Hùng | Kết quả & lưu ý |
+| :--- | :--- | :--- |
+| **Sprint 1** | Định hướng ý tưởng dự án, thiết kế khung giao diện (Wireframe) và phác thảo luồng thao tác người dùng. | Định hình rõ cấu trúc giao diện và luồng trải nghiệm ngay từ giai đoạn lập kế hoạch. |
+| **Sprint 2** | Rà soát bố cục hiển thị trên các kích thước màn hình, kiểm thử thao tác bản nháp và góp ý chỉnh sửa trải nghiệm. | Đảm bảo giao diện gọn gàng, dễ dùng trên nhiều thiết bị; tiếp tục rà soát chi tiết hiển thị. |
+| **Sprint 3** | Đối chiếu dữ liệu hiển thị trên giao diện (số dư, giao dịch, danh mục, ngân sách, hũ tiết kiệm) và kiểm thử luồng lưu dữ liệu. | Dữ liệu hiển thị bám sát nhu cầu quản lý chi tiêu cá nhân hằng ngày. |
+| **Sprint 4** | Thiết lập và kiểm tra theo dõi hành vi người dùng (Google Analytics 4), đánh giá tốc độ tải trang và trải nghiệm sử dụng thực tế. | Ghi nhận được dữ liệu truy cập thực tế và phản hồi trải nghiệm sau khi triển khai. |
+| **Sprint 5** | Thực hiện đánh giá UI/UX Peer Review, tổng hợp phản hồi từ các nhóm khác và kiểm tra video demo trước khi nộp. | Hoàn thiện phần phản hồi peer review và kiểm tra luồng minh họa trước khi nộp bài. |
 
 ## 4. Khung Self-Report 5 Sprint dành cho các thành viên còn lại
 
-Các thành viên **Văn Lê Tiến Hùng**, **Nguyễn Hải Đăng** và **Phạm Minh Phúc** có thể điền trực tiếp vào khung dưới đây cho từng Sprint (từ Sprint 1 đến Sprint 5):
+Các thành viên **Nguyễn Hải Đăng** và **Phạm Minh Phúc** có thể điền trực tiếp vào khung dưới đây cho từng Sprint (từ Sprint 1 đến Sprint 5):
 
 1. **Sprint 1:** Công việc phụ trách — Kết quả đạt được — Khó khăn/lưu ý.
 2. **Sprint 2:** Công việc phụ trách — Kết quả đạt được — Khó khăn/lưu ý.
