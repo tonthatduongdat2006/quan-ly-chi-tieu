@@ -26,16 +26,6 @@ Tài liệu tổng hợp tự đánh giá cá nhân và tiến độ 5 Sprint ch
 - **Điểm mạnh:** Kiên trì lần theo lỗi khi triển khai gặp sự cố; biết đối chiếu log, biến môi trường và chuỗi kết nối để đảm bảo hệ thống vận hành ổn định.
 - **Khó khăn & bài học rút ra:** Quá trình cấu hình kết nối cơ sở dữ liệu, biến môi trường và đối chiếu bản deploy/log có nhiều điểm dễ nhầm lẫn. Bài học rút ra là luôn kiểm tra đúng môi trường/bản deploy, rà soát kỹ định dạng chuỗi kết nối trước khi redeploy và đối chiếu log trước khi chốt bản.
 - **Hướng cải thiện:** Tiếp tục rà soát kỹ biến môi trường và log trước mỗi lần triển khai, bổ sung kiểm thử kết nối/lỗi và cập nhật tài liệu rõ ràng, đầy đủ.
-### 2.1. Tôn Thất Dương Đạt
-- **Khối lượng & mức độ tham gia:** Đảm nhận phần lớn công việc kỹ thuật thực tế của dự án AI Smart Expense, từ thiết kế luồng hệ thống, phát triển chức năng (tài khoản, giao dịch, danh mục, số dư/tổng quan, nhập nhanh AI bằng tin nhắn và hóa đơn) đến cấu hình môi trường, triển khai, kiểm tra log và biên soạn tài liệu.
-- **Điểm mạnh:** Kiên trì lần theo lỗi khi triển khai gặp sự cố, biết đối chiếu log, biến môi trường và chuỗi kết nối; giữ được sự kết nối giữa đặc tả tính năng và mã nguồn thực tế.
-- **Khó khăn & bài học rút ra:** Quá trình cấu hình kết nối cơ sở dữ liệu, biến môi trường và đối chiếu bản deploy/log có nhiều điểm dễ nhầm lẫn. Bài học rút ra là luôn kiểm tra đúng môi trường/bản deploy, rà soát kỹ định dạng chuỗi kết nối trước khi redeploy và kiểm thử từng luồng cụ thể.
-- **Hướng cải thiện:** Tiếp tục ổn định các luồng nghiệp vụ chính, bổ sung thêm kiểm thử cho các trường hợp lỗi và duy trì tài liệu gọn, rõ ràng.
-
-### 2.2. Văn Lê Tiến Hùng
-- **Phần việc phụ trách:** Góp ý và đề xuất cách xây dựng web cho dự án AI Smart Expense.
-- **Tự đánh giá & đóng góp:** Đưa ra các góc nhìn, góp ý và đề xuất về cách tổ chức/xây dựng web để đội ngũ cân nhắc áp dụng vào quá trình phát triển sản phẩm.
-- **Ghi chú:** Có thể bổ sung thêm chi tiết các đề xuất cụ thể và minh chứng tham gia theo từng Sprint.
 
 ### 2.3. Nguyễn Hải Đăng
 - **Phần việc phụ trách:** Chưa ghi nhận đầu việc, mã nguồn hay nhiệm vụ cụ thể nào được hoàn thành hoặc đóng góp vào quá trình làm việc của nhóm.
