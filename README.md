@@ -173,8 +173,8 @@ erDiagram
 - **Ghi nhận lỗi & Log hệ thống:** Backend `server.js` ghi log từng request (`method`, `path`, `status`, `latency`, mã lỗi) ra stdout và theo dõi lỗi runtime trên Vercel.
 
 | Minh chứng GA4 Realtime |
-| :---: | :---: |
-| ![GA4 Realtime](doc/ga4-realtime.png) | ![Đăng ký và điều khoản](doc/02-dang-ky-tai-khoan.png) |
+| :---: |
+| ![GA4 Realtime](doc/ga4-realtime.png) |
 
 # XỬ LÝ FEEDBACK TỪ CÁC NHÓM KHÁC
 
@@ -185,7 +185,7 @@ erDiagram
 
 | Giao diện đăng ký & Điều khoản |
 | :---: |
-| ![Đăng ký và điều khoản](doc/02-dang-ky-tai-khoan.png) |
+| ![Đăng ký và điều khoản](doc/Dieu-khoan.png) |
 
 ## Demo & Ảnh chụp màn hình (Screenshots)
 
