@@ -14,6 +14,19 @@ Tài liệu tổng hợp tự đánh giá cá nhân và tiến độ 5 Sprint ch
 ## 2. Chi tiết tự đánh giá theo từng thành viên
 
 ### 2.1. Tôn Thất Dương Đạt
+- **Phần việc phụ trách:** Thiết kế luồng hệ thống, lược đồ dữ liệu/ERD, tổ chức cấu trúc dự án; phát triển các luồng chức năng chính (tài khoản, giao dịch, danh mục, số dư/tổng quan) và tính năng AI nhập nhanh bằng tin nhắn & hóa đơn.
+- **Tự đánh giá & đóng góp:** Đảm nhận phần thiết kế luồng, xây dựng chức năng và kết nối nghiệp vụ cho ứng dụng AI Smart Expense.
+- **Điểm mạnh:** Kiên trì lần theo lỗi khi phát triển và vận hành; giữ được sự khớp nhau giữa đặc tả tính năng, luồng nghiệp vụ và mã nguồn thực tế.
+- **Khó khăn & bài học rút ra:** Việc đồng bộ các luồng nghiệp vụ và xử lý các tình huống nhập liệu/biến động dữ liệu có nhiều điểm cần rà soát kỹ. Bài học rút ra là kiểm thử từng luồng cụ thể và giữ tính nhất quán giữa đặc tả và mã nguồn.
+- **Hướng cải thiện:** Tiếp tục ổn định các luồng nghiệp vụ chính, bổ sung thêm kiểm thử cho các trường hợp lỗi và duy trì tài liệu gọn, rõ ràng.
+
+### 2.2. Văn Lê Tiến Hùng
+- **Phần việc phụ trách:** Thiết kế cơ sở dữ liệu quan hệ (`profiles`, `categories`, `transactions`, `budgets`, `savings_jars`), tích hợp PostgreSQL qua API và hiển thị dữ liệu động; quản lý biến môi trường, triển khai ứng dụng, theo dõi log/xử lý lỗi và biên soạn tài liệu dự án.
+- **Tự đánh giá & đóng góp:** Đảm nhận phần cơ sở dữ liệu/API, cấu hình môi trường, triển khai, kiểm tra log và hoàn thiện tài liệu cho dự án AI Smart Expense.
+- **Điểm mạnh:** Kiên trì lần theo lỗi khi triển khai gặp sự cố; biết đối chiếu log, biến môi trường và chuỗi kết nối để đảm bảo hệ thống vận hành ổn định.
+- **Khó khăn & bài học rút ra:** Quá trình cấu hình kết nối cơ sở dữ liệu, biến môi trường và đối chiếu bản deploy/log có nhiều điểm dễ nhầm lẫn. Bài học rút ra là luôn kiểm tra đúng môi trường/bản deploy, rà soát kỹ định dạng chuỗi kết nối trước khi redeploy và đối chiếu log trước khi chốt bản.
+- **Hướng cải thiện:** Tiếp tục rà soát kỹ biến môi trường và log trước mỗi lần triển khai, bổ sung kiểm thử kết nối/lỗi và cập nhật tài liệu rõ ràng, đầy đủ.
+### 2.1. Tôn Thất Dương Đạt
 - **Khối lượng & mức độ tham gia:** Đảm nhận phần lớn công việc kỹ thuật thực tế của dự án AI Smart Expense, từ thiết kế luồng hệ thống, phát triển chức năng (tài khoản, giao dịch, danh mục, số dư/tổng quan, nhập nhanh AI bằng tin nhắn và hóa đơn) đến cấu hình môi trường, triển khai, kiểm tra log và biên soạn tài liệu.
 - **Điểm mạnh:** Kiên trì lần theo lỗi khi triển khai gặp sự cố, biết đối chiếu log, biến môi trường và chuỗi kết nối; giữ được sự kết nối giữa đặc tả tính năng và mã nguồn thực tế.
 - **Khó khăn & bài học rút ra:** Quá trình cấu hình kết nối cơ sở dữ liệu, biến môi trường và đối chiếu bản deploy/log có nhiều điểm dễ nhầm lẫn. Bài học rút ra là luôn kiểm tra đúng môi trường/bản deploy, rà soát kỹ định dạng chuỗi kết nối trước khi redeploy và kiểm thử từng luồng cụ thể.
