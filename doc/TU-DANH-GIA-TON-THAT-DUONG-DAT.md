@@ -23,7 +23,7 @@ Trong suốt quá trình thực hiện dự án **AI Smart Expense (Nhóm 6)**, 
 
 ---
 
-## 2. Báo cáo Self-Report theo 5 Sprint (Tôn Thất Dương Đạt — 40%)
+## 2. Báo cáo Self-Report theo 5 Sprint
 
 | Sprint | Mục tiêu & liên kết tiêu chí | Công việc đã thực hiện | Kết quả & ghi chú |
 | :--- | :--- | :--- | :--- |
