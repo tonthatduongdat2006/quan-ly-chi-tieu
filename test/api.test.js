@@ -246,3 +246,70 @@ test('giao diện: CSS nằm trong <style>, đủ biến :root và @keyframes, g
   assert.match(head, /googletagmanager\.com\/gtag\/js\?id=G-L4X1JXCPK0/, 'mất thẻ Google Analytics');
   assert.match(head, /gtag\('config', 'G-L4X1JXCPK0'\)/, 'mất cấu hình Google Analytics');
 });
+
+/* ----- G1.1: nền dữ liệu frontend (chạy thật khối data-helpers trong index.html) ----- */
+function loadDataHelpers() {
+  const html = require('node:fs').readFileSync(path.join(__dirname, '..', 'public', 'index.html'), 'utf8');
+  const pick = re => { const m = html.match(re); assert.ok(m, `không tìm thấy ${re}`); return m[0]; };
+  const code = [pick(/^const vnd=.*$/m), pick(/^const dk=.*$/m), pick(/\/\* data-helpers:start[\s\S]*?\/\* data-helpers:end \*\//)].join('\n');
+  const H = require('node:vm').runInNewContext(`${code}\n;({empty,norm,spent,spent2,bst,jarTotal,avail})`, {});
+  const plain = v => JSON.parse(JSON.stringify(v)); // so sánh giữa 2 context của vm
+  return { H, html, plain };
+}
+
+test('G1.1 norm(): dữ liệu localStorage cũ được bổ sung trường mới, không mất dữ liệu', () => {
+  const { H, html, plain } = loadDataHelpers();
+  const SHAPE = { initialBalance: null, txs: [], budgets: [], jars: [], cats: { expense: [], income: [] } };
+  assert.deepEqual(plain(H.empty()), SHAPE);
+  assert.notEqual(H.empty().txs, H.empty().txs, 'empty() phải tạo mảng mới mỗi lần');
+
+  // Dữ liệu đúng dạng đang lưu ở bản hiện tại (chỉ có initialBalance + txs)
+  const tx = { id: 'a1', op: 'o1', type: 'expense', cat: 'Ăn uống', amount: 45000, note: 'Phở', date: '2026-11-20', ts: 1 };
+  const cur = { initialBalance: 500000, txs: [tx] };
+  const before = JSON.stringify(cur);
+  const n = H.norm(cur);
+  assert.equal(JSON.stringify(cur), before, 'norm() không được sửa object gốc');
+  assert.deepEqual(plain(n), { ...SHAPE, initialBalance: 500000, txs: [tx] });
+
+  // Giữ nguyên trường lạ và dữ liệu đã có; số dư ban đầu 0 vẫn là 0
+  const kept = H.norm({ initialBalance: 0, txs: [], budgets: [{ cat: 'Ăn uống', limit: 1000000 }], cats: { expense: ['Thú cưng'] }, extra: 'x' });
+  assert.equal(kept.initialBalance, 0);
+  assert.equal(kept.extra, 'x');
+  assert.deepEqual(plain(kept.budgets), [{ cat: 'Ăn uống', limit: 1000000 }]);
+  assert.deepEqual(plain(kept.cats), { expense: ['Thú cưng'], income: [] });
+
+  // Dữ liệu hỏng / thiếu không làm sập ứng dụng
+  for (const bad of [undefined, null, 'abc', 42, { txs: 'x', budgets: null, jars: {}, cats: 'y', initialBalance: '500' }])
+    assert.deepEqual(plain(H.norm(bad)), SHAPE, `norm(${JSON.stringify(bad)})`);
+
+  // App dùng norm khi đọc/ghi, giữ khóa localStorage, không có dữ liệu mẫu
+  assert.match(html, /const d=user\?norm\(db\.data\[user\.email\]\):null/);
+  assert.match(html, /fn\(norm\(x\.data\[user\.email\]\)\)/);
+  assert.match(html, /const KEY='qlct_group6_v1';/);
+  assert.ok(!/\bseed\s*\(/.test(html), 'không được có dữ liệu mẫu seed()');
+});
+
+test('G1.1 helper ngân sách, thống kê và số dư khả dụng', () => {
+  const { H } = loadDataHelpers();
+  const T = (type, cat, amount, date) => ({ type, cat, amount, date });
+  const txs = [T('expense', 'Ăn uống', 300000, '2026-11-02'), T('expense', 'Ăn uống', 500000, '2026-11-20'), T('expense', 'Ăn uống', 90000, '2026-10-30'),
+    T('expense', 'Di chuyển', 60000, '2026-11-05'), T('income', 'Lương', 2000000, '2026-11-01'), T('income', 'Khác', 10000, '2026-11-03')];
+  assert.equal(H.spent(txs, 'Ăn uống', '2026-11'), 800000, 'chỉ tính khoản chi đúng danh mục, đúng tháng');
+  assert.equal(H.spent(txs, 'Khác', '2026-11'), 0, 'khoản thu không tính vào spent');
+  assert.equal(H.spent2(txs, 'income', 'Lương', '2026-11'), 2000000);
+  assert.equal(H.spent2(txs, 'expense', 'Ăn uống', '2026-10'), 90000);
+
+  assert.equal(H.bst(790000, 1000000).c, 'var(--p)', '< 80%: bình thường');
+  assert.equal(H.bst(800000, 1000000).c, 'var(--o)', '>= 80%: sắp hết');
+  assert.equal(H.bst(1000000, 1000000).c, 'var(--o)', '= 100%: chưa vượt');
+  const over = H.bst(1100000, 1000000);
+  assert.equal(over.c, 'var(--r)');
+  assert.equal(over.l, '⚠ Vượt 100.000 đ');
+
+  // Số dư khả dụng = ban đầu + thu − chi − tiền trong hũ
+  const d = { initialBalance: 1000000, txs: [T('income', 'Lương', 200000, '2026-11-01'), T('expense', 'Ăn uống', 300000, '2026-11-02')], jars: [{ saved: 100000 }, { saved: 50000 }] };
+  assert.equal(H.jarTotal(d), 150000);
+  assert.equal(H.avail(d), 750000);
+  assert.equal(H.avail(H.norm({ txs: d.txs })), -100000, 'chưa đặt số dư ban đầu thì tính là 0');
+  assert.equal(H.avail(H.empty()), 0);
+});

@@ -30,6 +30,7 @@ h1{font-size:21px;font-weight:800;letter-spacing:-.02em}h3{font-size:16.5px;font
 .btn{width:100%;height:46px;border:0;border-radius:12px;background:var(--p);color:#F8FAFC;font-weight:700;font-size:14.5px;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;transition:transform .15s ease-out,background-color .15s ease-out,border-color .15s ease-out;box-shadow:0 4px 12px -6px rgba(21,128,61,.4)}
 .btn:hover{background:var(--pd);transform:translateY(-1px)}.btn:active{transform:translateY(0)}.btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
 .btn.ghost{background:var(--card);color:var(--t);border:1px solid var(--b);box-shadow:none}.btn.ghost:hover{background:#F1F5F9;border-color:#CBD5E1}.btn.red{background:var(--r);box-shadow:none}
+.btn.gr{background:var(--g);box-shadow:none}
 .sp{width:18px;height:18px;border:2.5px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;animation:sp .7s linear infinite}
 .in{display:flex;align-items:center;gap:8px;height:48px;border:1px solid var(--b);border-radius:12px;background:var(--card);padding:0 14px;transition:border-color .15s ease-out,box-shadow .15s ease-out}
 .in:focus-within{border-color:var(--p);box-shadow:0 0 0 3px var(--pl)}.in.bad{border-color:var(--r)}
@@ -78,8 +79,20 @@ const amtErr=v=>/[^\d.,\s]/.test(v)?(v.includes('-')?'Số tiền phải lớn h
 const dlabel=s=>{const t=new Date();if(s===dk(t))return'Hôm nay';t.setDate(t.getDate()-1);return s===dk(t)?'Hôm qua':s.slice(8)+'/'+s.slice(5,7)};
 const DEF={expense:[['Ăn uống','🍜','#E5484D'],['Di chuyển','🚌','#2F6FED'],['Mua sắm','🛍️','#8B5CF6'],['Hóa đơn','🧾','#F59E0B'],['Giải trí','🎮','#EC4899'],['Học tập','📚','#6366F1'],['Sức khỏe','💊','#14B8A6'],['Khác','📦','#6B7A99']],income:[['Lương','💼','#1BAA63'],['Làm thêm','⏱️','#2F6FED'],['Thưởng','🎁','#F59E0B'],['Khác','📦','#6B7A99']]};
 const catsOf=(d,t)=>DEF[t],catMeta=(d,t,n)=>catsOf(d,t).find(c=>c[0]===n)||[n,'📦','#6B7A99'];
+/* data-helpers:start — G1.1 nền dữ liệu (test/api.test.js chạy thử khối này) */
 const sum=(tx,type,m)=>tx.filter(t=>t.type===type&&(!m||mk(t.date)===m)).reduce((s,t)=>s+t.amount,0);
-const empty=()=>({initialBalance:null,txs:[]});
+const empty=()=>({initialBalance:null,txs:[],budgets:[],jars:[],cats:{expense:[],income:[]}});
+/* Bổ sung trường còn thiếu cho dữ liệu đã lưu trước đây; giữ nguyên mọi trường đang có, không ghi lại localStorage */
+const arr=v=>Array.isArray(v)?v:[];
+const norm=x=>{const o=x&&typeof x==='object'?x:{},c=o.cats&&typeof o.cats==='object'?o.cats:{};
+return{...o,initialBalance:typeof o.initialBalance==='number'?o.initialBalance:null,txs:arr(o.txs),budgets:arr(o.budgets),jars:arr(o.jars),cats:{...c,expense:arr(c.expense),income:arr(c.income)}}};
+const spent=(tx,cat,m)=>tx.filter(t=>t.type==='expense'&&t.cat===cat&&mk(t.date)===m).reduce((s,t)=>s+t.amount,0);
+const spent2=(tx,ty,cat,m)=>tx.filter(t=>t.type===ty&&t.cat===cat&&mk(t.date)===m).reduce((s,t)=>s+t.amount,0);
+const bst=(sp,l)=>sp>l?{c:'var(--r)',l:'⚠ Vượt '+vnd(sp-l)}:sp/l>=.8?{c:'var(--o)',l:'Còn '+vnd(l-sp)}:{c:'var(--p)',l:'Còn '+vnd(l-sp)};
+/* Số dư khả dụng = số dư ban đầu + thu − chi − tiền đang nằm trong hũ (chưa dùng ở G1.1) */
+const jarTotal=d=>arr(d.jars).reduce((s,j)=>s+(Number(j.saved)||0),0);
+const avail=d=>(typeof d.initialBalance==='number'?d.initialBalance:0)+sum(d.txs,'income')-sum(d.txs,'expense')-jarTotal(d);
+/* data-helpers:end */
 const KEY='qlct_group6_v1';
 const load=()=>{try{const s=JSON.parse(localStorage.getItem(KEY));if(s&&s.users)return s}catch(e){}return{users:[{name:'Nhóm 6',email:'demo@demo.vn',pass:'Demo@123'}],data:{'demo@demo.vn':empty()},session:'demo@demo.vn'}};
 const IC={home:'M3 11l9-8 9 8v9a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z',plus:'M12 5v14M5 12h14',scan:'M4 8h3l2-3h6l2 3h3v12H4zM12 17a4 4 0 100-8 4 4 0 000 8z',me:'M12 12a4 4 0 100-8 4 4 0 000 8zM4 21a8 8 0 0116 0',back:'M15 5l-7 7 7 7',eye:'M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12zM12 15a3 3 0 100-6 3 3 0 000 6z'};
@@ -228,7 +241,7 @@ ${dr&&html`<${DraftCard} key=${dr.op} dr=${dr} onDone=${()=>{setFile(null);setUr
 function App(){const[db,setDb]=useState(load),[user,setUser]=useState(()=>db.users.find(u=>u.email===db.session)||null),[r,setR]=useState({n:'home'});
 useEffect(()=>{try{localStorage.setItem(KEY,JSON.stringify(db))}catch(e){}},[db]);
 const go=(n,p)=>setR(c=>({...p,n,from:c.n})),enter=(u,rem)=>{setUser(u);setDb(x=>({...x,session:rem?u.email:null}));setR({n:'home'})},logout=()=>{setUser(null);setDb(x=>({...x,session:null}));toast('Đã đăng xuất')};
-const d=user?(db.data[user.email]||empty()):null,upd=fn=>setDb(x=>({...x,data:{...x.data,[user.email]:fn(x.data[user.email]||empty())}}));
+const d=user?norm(db.data[user.email]):null,upd=fn=>setDb(x=>({...x,data:{...x.data,[user.email]:fn(norm(x.data[user.email]))}}));
 const S={home:Home,add:Add,scan:Scan,hist:Hist,me:Me}[r.n]||Home;
 return html`<${Ctx.Provider} value=${{db,setDb,user,d,upd,r,go,enter,logout}}><${Toasts}/>${!user?html`<${Auth}/>`:html`<div style=${{height:'100%'}}><${S} key=${r.n} ...${r}/>
 <div className="nav">
