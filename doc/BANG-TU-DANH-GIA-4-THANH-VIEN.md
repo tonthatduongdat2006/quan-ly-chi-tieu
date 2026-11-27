@@ -1,65 +1,72 @@
-# BẢN TỰ ĐÁNH GIÁ BẢN THÂN & BÁO CÁO 5 SPRINT — TÔN THẤT DƯƠNG ĐẠT
+# BẢNG TỰ ĐÁNH GIÁ BẢN THÂN & BÁO CÁO 5 SPRINT — NHÓM 6 (AI SMART EXPENSE)
 
-* **Họ và tên:** Tôn Thất Dương Đạt
-* **MSSV:** 24090061
-* **Nhóm:** Nhóm 6
-* **Dự án:** Quản Lý Chi Tiêu Cá Nhân — [AI Smart Expense](https://quan-ly-chi-tieu-sooty.vercel.app/)
-* **Vai trò thực tế:** Điều phối kỹ thuật, xây dựng/chỉnh sửa mã nguồn, luồng nghiệp vụ, AI nhập nhanh (tin nhắn & hóa đơn), cơ sở dữ liệu/API, cấu hình biến môi trường, triển khai, xử lý lỗi/log và tài liệu dự án (phối hợp triển khai kỹ thuật cùng **Claude**, trao đổi và tiếp thu góp ý giao diện/trải nghiệm người dùng từ **Văn Lê Tiến Hùng**).
+Tài liệu tổng hợp tự đánh giá cá nhân và tiến độ 5 Sprint cho dự án **AI Smart Expense** (Nhóm 6 — Môn Web Basic / CSB25022, VNUK).
 
-### Tỷ lệ đóng góp nhóm
+## 1. Bảng tổng hợp tự đánh giá 4 thành viên
 
-| Thành viên | Tỷ lệ đóng góp | Ghi chú |
-| :--- | :---: | :--- |
-| **Tôn Thất Dương Đạt** | **30%** | Điều phối kỹ thuật, mã nguồn, luồng nghiệp vụ, AI nhập nhanh, CSDL/API, triển khai, log & tài liệu |
-| **Văn Lê Tiến Hùng** | **30%** | Định hướng giao diện/luồng thao tác, kiểm thử luồng dữ liệu, theo dõi GA4 & UI/UX Peer Review |
-| **Nguyễn Hải Đăng** | **20%** | Đối chiếu thêm minh chứng/báo cáo thực tế theo từng Sprint |
-| **Phạm Minh Phúc** | **20%** | Đối chiếu thêm minh chứng/báo cáo thực tế theo từng Sprint |
-| **Tổng cộng** | **100%** | — |
+| Họ tên | Vai trò & phần việc phụ trách | Tự đánh giá & ghi chú |
+| --- | --- | --- |
+| Tôn Thất Dương Đạt | Quản lý repository GitHub (nhánh, Issue, PR); xây dựng giao diện và xử lý logic các màn hình chức năng (Trang chủ, Thêm chi, Quét hóa đơn, Cá nhân); thiết kế ERD, tích hợp PostgreSQL/Supabase, API backend; triển khai Vercel, cấu hình môi trường/log và hoàn thiện `README.md` cùng thư mục tài liệu `doc/`. | Gánh phần lớn khối lượng thực thi kỹ thuật từ mã nguồn, CSDL/API đến triển khai và tổng hợp hồ sơ dự án. |
+| Văn Lê Tiến Hùng | Định hướng ý tưởng, thiết kế khung giao diện (Wireframe) và luồng thao tác người dùng; rà soát bố cục đa thiết bị, kiểm thử thao tác bản nháp & luồng lưu dữ liệu; thiết lập/kiểm tra Google Analytics 4, đánh giá tốc độ tải trang; thực hiện UI/UX Peer Review và kiểm tra video demo. | Đóng góp định hướng giao diện/trải nghiệm người dùng, kiểm thử luồng dữ liệu, theo dõi GA4 và phản hồi Peer Review. |
+| Nguyễn Hải Đăng | Chưa ghi nhận phần việc thực hiện hay đóng góp cụ thể trong quá trình triển khai dự án. | Mức độ tham gia và đóng góp thực tế chưa rõ ràng; cần đối chiếu thêm với lịch sử commit/bàn giao của nhóm. |
+| Phạm Minh Phúc | Chưa ghi nhận phần việc thực hiện hay đóng góp cụ thể trong quá trình triển khai dự án. | Mức độ tham gia và đóng góp thực tế chưa rõ ràng; cần đối chiếu thêm với lịch sử commit/bàn giao của nhóm. |
 
----
+## 2. Chi tiết tự đánh giá theo từng thành viên
 
-## 1. Tổng quan công việc & mức độ đóng góp
+### 2.1. Tôn Thất Dương Đạt
+- **Phần việc phụ trách:** Khởi tạo và tổ chức repository GitHub (nhánh, Issue, Pull Request); xây dựng giao diện và xử lý logic các màn hình chức năng (Trang chủ, Thêm chi, Quét hóa đơn, Cá nhân); thiết kế lược đồ cơ sở dữ liệu quan hệ (ERD), tích hợp PostgreSQL/Supabase và API backend; triển khai hệ thống lên Vercel, cấu hình biến môi trường, đọc log xử lý lỗi runtime/kết nối và cập nhật hoàn chỉnh `README.md` cùng thư mục `doc/`.
+- **Tự đánh giá & đóng góp:** Đảm nhận xuyên suốt mảng kỹ thuật cốt lõi từ khởi tạo mã nguồn, giao diện chức năng, CSDL/API đến triển khai thực tế và hoàn thiện hồ sơ nộp bài cho ứng dụng AI Smart Expense.
+- **Điểm mạnh:** Kiên trì lần theo lỗi runtime/kết nối API khi triển khai; giữ được sự đồng bộ giữa đặc tả kỹ thuật, lược đồ dữ liệu, mã nguồn và tài liệu dự án.
+- **Khó khăn & bài học rút ra:** Việc cấu hình biến môi trường triển khai, kết nối PostgreSQL/Supabase và rà soát log giữa các bản deploy tốn nhiều thời gian kiểm tra. Bài học rút ra là luôn kiểm tra kỹ chuỗi kết nối, redeploy đúng bản cập nhật và đối chiếu log trước khi chốt tính năng.
+- **Hướng cải thiện:** Tiếp tục bổ sung kiểm thử tự động cho các endpoint API và duy trì tài liệu kỹ thuật gọn gàng, dễ theo dõi.
 
-Trong suốt quá trình thực hiện dự án **AI Smart Expense (Nhóm 6)**, **Tôn Thất Dương Đạt** (mức phân bổ ghi nhận **30%**) gánh phần lớn khối lượng thực thi kỹ thuật từ khởi tạo kho mã nguồn, phát triển chức năng, kết nối cơ sở dữ liệu/API đến triển khai, kiểm tra log và hoàn thiện hồ sơ nộp bài (phối hợp triển khai cùng **Claude**, kết hợp trao đổi luồng giao diện và trải nghiệm cùng **Văn Lê Tiến Hùng**).
+### 2.2. Văn Lê Tiến Hùng
+- **Phần việc phụ trách:** Định hướng ý tưởng dự án, thiết kế khung giao diện (Wireframe) và phác thảo luồng thao tác người dùng; rà soát bố cục hiển thị trên các kích thước màn hình, kiểm thử thao tác bản nháp và đối chiếu dữ liệu hiển thị (số dư, giao dịch, danh mục, ngân sách, hũ tiết kiệm); thiết lập và kiểm tra theo dõi hành vi người dùng (Google Analytics 4), đánh giá tốc độ tải trang; thực hiện đánh giá UI/UX Peer Review, tổng hợp phản hồi từ các nhóm khác và kiểm tra video demo trước khi nộp.
+- **Tự đánh giá & đóng góp:** Đảm nhận định hướng giao diện/trải nghiệm người dùng ngay từ giai đoạn Wireframe, kiểm thử các luồng hiển thị và lưu dữ liệu thực tế, theo dõi thống kê truy cập GA4 và tổng hợp phản hồi Peer Review cho dự án.
+- **Điểm mạnh:** Nhạy bén với góc nhìn người dùng cuối khi rà soát bố cục, thao tác bản nháp và phản hồi giao diện; phối hợp sát sao trong khâu kiểm thử trải nghiệm và đánh giá chéo giữa các nhóm.
+- **Khó khăn & bài học rút ra:** Một số ý tưởng bố cục và luồng thao tác trên Wireframe cần điều chỉnh để tương thích với cấu trúc dữ liệu và khả năng hiển thị trên màn hình nhỏ. Bài học rút ra là luôn kiểm thử chéo trên nhiều kích thước màn hình và đối chiếu dữ liệu thực tế sau khi tích hợp API.
+- **Hướng cải thiện:** Nâng cao thêm kỹ năng xử lý trực tiếp mã nguồn giao diện và mở rộng kịch bản kiểm thử trải nghiệm người dùng cho các phiên bản tiếp theo.
 
-| Hạng mục phụ trách | Nội dung thực hiện chi tiết |
-| :--- | :--- |
-| **Quản lý kho mã nguồn & quy trình Git** | Khởi tạo và tổ chức repository GitHub, thiết lập nhánh, Issue và Pull Request cho dự án. |
-| **Phát triển chức năng & giao diện cốt lõi** | Xây dựng giao diện và xử lý logic các màn hình chức năng (Trang chủ, Thêm chi, Quét hóa đơn, Cá nhân), tài khoản, số dư đầu kỳ, danh mục, giao dịch và tổng hợp bảng điều khiển. |
-| **Tích hợp AI nhập nhanh** | Xây dựng luồng nhập nhanh chi tiêu bằng tin nhắn văn bản và quét ảnh hóa đơn (bill), tạo bản nháp để người dùng kiểm tra, chỉnh sửa trước khi xác nhận lưu. |
-| **Cơ sở dữ liệu, API & triển khai** | Thiết kế lược đồ cơ sở dữ liệu quan hệ (`profiles`, `categories`, `transactions`, `budgets`, `savings_jars`), tích hợp PostgreSQL/Supabase, xây dựng API backend, triển khai lên [Vercel](https://vercel.com/quan-ly-chi-tieu-group6/quan-ly-chi-tieu/settings/domains), cấu hình biến môi trường, đọc log và xử lý lỗi runtime/kết nối. |
-| **Tài liệu & tổng hợp nộp bài** | Cập nhật hoàn chỉnh `README.md`, hệ thống hóa thư mục tài liệu `doc/`, tổng hợp bảng tự đánh giá thành viên, báo cáo 5 Sprint và chốt danh sách đầu mục nộp bài trên GitHub. |
+### 2.3. Nguyễn Hải Đăng
+- **Phần việc phụ trách:** Chưa ghi nhận đầu việc, mã nguồn hay nhiệm vụ cụ thể nào được hoàn thành hoặc đóng góp vào quá trình làm việc của nhóm.
+- **Tự đánh giá & đóng góp:** Chưa thể hiện sự tham gia và đóng góp thực tế vào sản phẩm và các đầu việc chung của dự án; các thành viên khác không ghi nhận đóng góp từ thành viên này.
+- **Ghi chú:** Nếu thành viên có minh chứng hoặc báo cáo bổ sung theo từng Sprint, cần cung cấp cụ thể để đối chiếu theo quy định đánh giá cá nhân của môn học.
 
----
+### 2.4. Phạm Minh Phúc
+- **Phần việc phụ trách:** Chưa ghi nhận đầu việc, mã nguồn hay nhiệm vụ cụ thể nào được hoàn thành hoặc đóng góp vào quá trình làm việc của nhóm.
+- **Tự đánh giá & đóng góp:** Chưa thể hiện sự tham gia và đóng góp thực tế vào sản phẩm và các đầu việc chung của dự án; các thành viên khác không ghi nhận đóng góp từ thành viên này.
+- **Ghi chú:** Nếu thành viên có minh chứng hoặc báo cáo bổ sung theo từng Sprint, cần cung cấp cụ thể để đối chiếu theo quy định đánh giá cá nhân của môn học.
 
-## 2. Báo cáo Self-Report theo 5 Sprint
+## 3. Báo cáo Self-Report theo 5 Sprint
 
-| Sprint | Mục tiêu & liên kết tiêu chí | Công việc đã thực hiện | Kết quả & ghi chú |
-| :--- | :--- | :--- | :--- |
-| **Sprint 1** | Lập kế hoạch, phân vai, wireframe/ERD & quản lý GitHub (Task 1) | Khởi tạo và tổ chức repository GitHub, thiết lập quy trình nhánh, Issue và Pull Request. | Thiết lập được nền tảng quản lý mã nguồn và quy trình làm việc nhóm rõ ràng. |
-| **Sprint 2** | Giao diện đa màn hình & tương tác người dùng (Task 2) | Xây dựng giao diện và xử lý logic các màn hình chức năng (Trang chủ, Thêm chi, Quét hóa đơn, Cá nhân), biểu mẫu nhập liệu và thao tác bản nháp. | Các màn hình hoạt động đúng luồng điều hướng và thao tác nhập liệu/bản nháp; cần lưu ý rà soát bố cục màn hình lớn và thư viện CSS theo đề bài. |
-| **Sprint 3** | Cơ sở dữ liệu PostgreSQL & nội dung động (Task 3) | Thiết kế lược đồ cơ sở dữ liệu quan hệ (ERD), tích hợp PostgreSQL/Supabase và xây dựng API backend. | Kết nối thành công dữ liệu thực tế qua API; các thao tác lưu và truy vấn hoạt động ổn định. |
-| **Sprint 4** | Tối ưu hóa hiệu năng, theo dõi & ghi log (Task 4) | Triển khai hệ thống lên Vercel, cấu hình biến môi trường, đọc log và xử lý lỗi runtime/kết nối API. | Ứng dụng chạy ổn định trên môi trường thật; kiểm soát tốt lỗi kết nối và biến môi trường. |
-| **Sprint 5** | UI/UX Peer Review, tài liệu & hoàn tất nộp bài (Task 5 & Submission) | Cập nhật hoàn chỉnh `README.md`, hệ thống hóa thư mục tài liệu `doc/` và chốt danh sách đầu mục nộp bài trên GitHub. | Hoàn thiện hồ sơ tài liệu và các đầu mục nộp bài theo đúng yêu cầu của giảng viên. |
+### Báo cáo 5 Sprint — Tôn Thất Dương Đạt
 
----
-
-## 3. Tự đánh giá năng lực & điểm mạnh
-
-* **Tinh thần trách nhiệm:** Đảm nhận từ khâu lên khung ý tưởng đến khi đưa hệ thống lên môi trường chạy thật, giữ cho dự án có sản phẩm hoạt động và tài liệu đầy đủ.
-* **Khả năng bám sát & xử lý sự cố thực tế:** Khi gặp lỗi kết nối hoặc xác thực cơ sở dữ liệu trong quá trình deploy, kiên trì theo dõi log, đối chiếu biến môi trường và từng bước khoanh vùng nguyên nhân thay vì bỏ dở.
-* **Kết nối giữa tài liệu và mã nguồn:** Biết đối chiếu tài liệu đặc tả với cấu trúc route/module thực tế để cập nhật đồng bộ trên kho mã nguồn GitHub.
-
----
-
-## 4. Hạn chế gặp phải & bài học rút ra
-
-* **Vướng mắc trong quá trình thực hiện:** Một số khâu cấu hình môi trường triển khai (chuỗi kết nối database, mã hóa ký tự đặc biệt trong mật khẩu, phân biệt bản deploy cũ/mới khi đọc log) tốn nhiều thời gian rà soát.
-* **Bài học rút ra:** Luôn kiểm tra kỹ định dạng chuỗi kết nối trước khi lưu biến môi trường, thực hiện redeploy sau mỗi lần cập nhật cấu hình và đối chiếu đúng deployment ID khi kiểm tra log.
+| Sprint | Công việc của Tôn Thất Dương Đạt | Kết quả & lưu ý |
+| :--- | :--- | :--- |
+| **Sprint 1** | Khởi tạo và tổ chức repository GitHub, thiết lập quy trình nhánh, Issue và Pull Request. | Thiết lập được nền tảng quản lý mã nguồn và quy trình làm việc nhóm rõ ràng. |
+| **Sprint 2** | Xây dựng giao diện và xử lý logic các màn hình chức năng (Trang chủ, Thêm chi, Quét hóa đơn, Cá nhân). | Các màn hình hoạt động đúng luồng điều hướng và thao tác nhập liệu/bản nháp. |
+| **Sprint 3** | Thiết kế lược đồ cơ sở dữ liệu quan hệ (ERD), tích hợp PostgreSQL/Supabase và xây dựng API backend. | Kết nối thành công dữ liệu thực tế qua API; các thao tác lưu và truy vấn hoạt động ổn định. |
+| **Sprint 4** | Triển khai hệ thống lên Vercel, cấu hình biến môi trường, đọc log và xử lý lỗi runtime/kết nối API. | Ứng dụng chạy ổn định trên môi trường thật; kiểm soát tốt lỗi kết nối và biến môi trường. |
+| **Sprint 5** | Cập nhật hoàn chỉnh `README.md`, hệ thống hóa thư mục tài liệu `doc/` và chốt danh sách đầu mục nộp bài trên GitHub. | Hoàn thiện hồ sơ tài liệu và các đầu mục nộp bài theo đúng yêu cầu. |
 
 ---
 
-## 5. Định hướng cải thiện tiếp theo
+### Báo cáo 5 Sprint — Văn Lê Tiến Hùng
 
-* Tiếp tục kiểm thử đầu cuối (end-to-end) toàn bộ luồng tài khoản, giao dịch và AI nhập nhanh sau khi hoàn tất cấu hình kết nối cơ sở dữ liệu.
-* Bổ sung thêm các kịch bản kiểm thử tự động cho các trường hợp dữ liệu biên và duy trì tài liệu gọn gàng, dễ theo dõi.
+| Sprint | Công việc của Văn Lê Tiến Hùng | Kết quả & lưu ý |
+| :--- | :--- | :--- |
+| **Sprint 1** | Định hướng ý tưởng dự án, thiết kế khung giao diện (Wireframe) và phác thảo luồng thao tác người dùng. | Định hình rõ cấu trúc giao diện và luồng trải nghiệm ngay từ giai đoạn lập kế hoạch. |
+| **Sprint 2** | Rà soát bố cục hiển thị trên các kích thước màn hình, kiểm thử thao tác bản nháp và góp ý chỉnh sửa trải nghiệm. | Đảm bảo giao diện gọn gàng, dễ dùng trên nhiều thiết bị; tiếp tục rà soát chi tiết hiển thị. |
+| **Sprint 3** | Đối chiếu dữ liệu hiển thị trên giao diện (số dư, giao dịch, danh mục, ngân sách, hũ tiết kiệm) và kiểm thử luồng lưu dữ liệu. | Dữ liệu hiển thị bám sát nhu cầu quản lý chi tiêu cá nhân hằng ngày. |
+| **Sprint 4** | Thiết lập và kiểm tra theo dõi hành vi người dùng (Google Analytics 4), đánh giá tốc độ tải trang và trải nghiệm sử dụng thực tế. | Ghi nhận được dữ liệu truy cập thực tế và phản hồi trải nghiệm sau khi triển khai. |
+| **Sprint 5** | Thực hiện đánh giá UI/UX Peer Review, tổng hợp phản hồi từ các nhóm khác và kiểm tra video demo trước khi nộp. | Hoàn thiện phần phản hồi peer review và kiểm tra luồng minh họa trước khi nộp bài. |
+
+## 4. Khung Self-Report 5 Sprint dành cho các thành viên còn lại
+
+Các thành viên **Nguyễn Hải Đăng** và **Phạm Minh Phúc** có thể điền trực tiếp vào khung dưới đây cho từng Sprint (từ Sprint 1 đến Sprint 5):
+
+1. **Sprint 1:** Công việc phụ trách — Kết quả đạt được — Khó khăn/lưu ý.
+2. **Sprint 2:** Công việc phụ trách — Kết quả đạt được — Khó khăn/lưu ý.
+3. **Sprint 3:** Công việc phụ trách — Kết quả đạt được — Khó khăn/lưu ý.
+4. **Sprint 4:** Công việc phụ trách — Kết quả đạt được — Khó khăn/lưu ý.
+5. **Sprint 5:** Công việc phụ trách — Kết quả đạt được — Khó khăn/lưu ý.
