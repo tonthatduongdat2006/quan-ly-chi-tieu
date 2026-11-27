@@ -186,6 +186,9 @@ erDiagram
 | Giao diện đăng ký & Điều khoản |
 | :---: |
 | ![Đăng ký và điều khoản](doc/Dieu-khoan.png) |
+| Giao diện đăng ký | Điều khoản |
+| :---: | :---: |
+| ![Đăng ký](doc/01-dang-nhap.png) | ![Đăng ký và điều khoản](doc/Dieu-khoan.png) |
 
 ## Demo & Ảnh chụp màn hình (Screenshots)
 
