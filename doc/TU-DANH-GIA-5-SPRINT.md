@@ -8,7 +8,7 @@ Theo mục **Grading Methods** của đề bài (*"Each student must submit a Se
 
 | Thành viên | Vai trò thực tế | S1 (Lập kế hoạch & Wireframe) | S2 (Thiết kế CSDL & API) | S3 (Xây dựng UI & Backend) | S4 (Tích hợp AI & Tính năng động) | S5 (Kiểm thử, Tối ưu & Báo cáo) |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Tôn Thất Dương Đạt** | Phụ trách gần như toàn bộ cùng **claude** | Chốt đề tài, luồng màn hình & cấu trúc dự án | Thiết kế ERD, quy ước dữ liệu & API contract | Xây dựng `public/index.html` & `server.js` | Hoàn thiện luồng AI nhập text/bill & bản nháp | Viết test (`test/`), Lighthouse, logging & bộ tài liệu `doc/` |
+| **Tôn Thất Dương Đạt** | Chốt đề tài, luồng màn hình & cấu trúc dự án | Thiết kế ERD, quy ước dữ liệu & API contract | Xây dựng `public/index.html` & `server.js` | Hoàn thiện luồng AI nhập text/bill & bản nháp | Viết test (`test/`), Lighthouse, logging & bộ tài liệu `doc/` |
 | **Văn Lê Tiến Hùng** | Góp ý & đề xuất cách xây dựng web | Đề xuất ý tưởng cách tổ chức web quản lý chi tiêu | Góp ý luồng thao tác người dùng | Góp ý bố cục giao diện dễ dùng | Đề xuất luồng kiểm tra bản nháp trước khi lưu | Rà soát trải nghiệm giao diện tổng thể |
 | **Nguyễn Hải Đăng** | *(Để trống)* | *(Để trống)* | *(Để trống)* | *(Để trống)* | *(Để trống)* | *(Để trống)* |
 | **Phạm Minh Phúc** | *(Để trống)* | *(Để trống)* | *(Để trống)* | *(Để trống)* | *(Để trống)* | *(Để trống)* |
