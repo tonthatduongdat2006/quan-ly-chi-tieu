@@ -183,9 +183,6 @@ erDiagram
 | 1 | Nhóm 2 (Peer Review UI/UX) | Hiển thị rõ **Điều khoản sử dụng** và **Chính sách quyền riêng tư** (có thể mở xem chi tiết và bắt buộc đồng ý trước khi tạo tài khoản) | Đồng ý sửa | Đã cập nhật form đăng ký trên `public/index.html` (`https://quan-ly-chi-tieu-sooty.vercel.app/`) thêm checkbox đồng ý và liên kết mở nội dung Điều khoản sử dụng & Chính sách quyền riêng tư; xem ảnh minh chứng tại `README.md` |
 | 2 | Nhóm 5 (Peer Review UI/UX) | Tự động đăng nhập và chuyển thẳng vào ứng dụng sau khi đăng ký thành công thay vì bắt đăng nhập lại | Đồng ý sửa | Đã cập nhật luồng xử lý đăng ký trên giao diện để tự lưu phiên và điều hướng thẳng vào trang chủ sau khi tạo tài khoản thành công |
 
-| Giao diện đăng ký & Điều khoản |
-| :---: |
-| ![Đăng ký và điều khoản](doc/Dieu-khoan.png) |
 | Giao diện đăng ký | Điều khoản |
 | :---: | :---: |
 | ![Đăng ký](doc/01-dang-nhap.png) | ![Đăng ký và điều khoản](doc/Dieu-khoan.png) |
