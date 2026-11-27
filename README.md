@@ -167,6 +167,19 @@ erDiagram
     CATEGORIES ||--o{ BUDGETS : limits
 ```
 
+## Theo dõi, Ghi log & Góp ý từ Nhóm 2
+
+- **Google Analytics 4 (`G-L4X1JXCPK0`):** Đã gắn thẻ `gtag.js` và mở quyền `Content-Security-Policy` trong `server.js` để theo dõi lượt xem trang và người dùng hoạt động theo thời gian thực trên [AI Smart Expense](https://quan-ly-chi-tieu-sooty.vercel.app/).
+- **Ghi nhận lỗi & Log hệ thống:** Backend `server.js` ghi log từng request (`method`, `path`, `status`, `latency`, mã lỗi) ra stdout và theo dõi lỗi runtime trên Vercel.
+- **Cập nhật theo góp ý của Nhóm 2:**
+  - Hiển thị rõ **Điều khoản sử dụng** và **Chính sách quyền riêng tư** (có thể mở xem chi tiết và bắt buộc đồng ý trước khi tạo tài khoản).
+  - Sau khi đăng ký thành công, tự động vào thẳng ứng dụng thay vì bắt đăng nhập lại.
+
+| Minh chứng GA4 Realtime | Giao diện đăng ký & Điều khoản |
+| :---: | :---: |
+| ![GA4 Realtime](doc/ga4-realtime.png) | ![Đăng ký và điều khoản](doc/02-dang-ky-tai-khoan.png) |
+
+
 ## Demo & Ảnh chụp màn hình (Screenshots)
 
 - **Link triển khai (Live Web):** [AI Smart Expense](https://group6-quanlychitieu.vercel.app/)
