@@ -14,7 +14,7 @@ Tài liệu tổng hợp tự đánh giá cá nhân và tiến độ 5 Sprint ch
 ## 2. Chi tiết tự đánh giá theo từng thành viên
 
 ### 2.1. Tôn Thất Dương Đạt
-- **Khối lượng & mức độ tham gia:** Đảm nhận phần lớn công việc kỹ thuật thực tế của dự án AI Smart Expense, từ thiết kế luồng hệ thống, phát triển chức năng (tài khoản, giao dịch, danh mục, số dư/tổng quan, nhập nhanh AI bằng tin nhắn và hóa đơn) đến cấu hình môi trường, triển khai, kiểm tra log và biên soạn tài liệu.
+- **Khối lượng & mức độ tham gia:** Đảm nhận công việc kỹ thuật thực tế của dự án AI Smart Expense, từ thiết kế luồng hệ thống, phát triển chức năng (tài khoản, giao dịch, danh mục, số dư/tổng quan, nhập nhanh AI bằng tin nhắn và hóa đơn) đến cấu hình môi trường, triển khai, kiểm tra log và biên soạn tài liệu.
 - **Điểm mạnh:** Kiên trì lần theo lỗi khi triển khai gặp sự cố, biết đối chiếu log, biến môi trường và chuỗi kết nối; giữ được sự kết nối giữa đặc tả tính năng và mã nguồn thực tế.
 - **Khó khăn & bài học rút ra:** Quá trình cấu hình kết nối cơ sở dữ liệu, biến môi trường và đối chiếu bản deploy/log có nhiều điểm dễ nhầm lẫn. Bài học rút ra là luôn kiểm tra đúng môi trường/bản deploy, rà soát kỹ định dạng chuỗi kết nối trước khi redeploy và kiểm thử từng luồng cụ thể.
 - **Hướng cải thiện:** Tiếp tục ổn định các luồng nghiệp vụ chính, bổ sung thêm kiểm thử cho các trường hợp lỗi và duy trì tài liệu gọn, rõ ràng.
