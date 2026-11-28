@@ -4,16 +4,18 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lịch sử giao dịch — AI Smart Expense</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="description" content="Xem và lọc lịch sử thu chi của tài khoản đang đăng nhập trong AI Smart Expense." />
+  <link rel="stylesheet" href="/css/tailwind.css" />
 </head>
 <body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col">
   <header class="bg-white border-b border-slate-200">
-    <nav class="max-w-5xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+    <nav aria-label="Điều hướng chính" class="max-w-5xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
       <a href="/index.html" class="font-bold text-lg text-emerald-700">AI Smart Expense</a>
-      <div class="flex flex-wrap items-center gap-4 text-sm font-medium">
-        <a href="/index.html" class="hover:text-emerald-700">Trang chủ</a>
-        <a href="/history.html" class="text-emerald-700 underline">Lịch sử</a>
-        <a href="/about.html" class="hover:text-emerald-700">Giới thiệu</a>
+      <div class="flex flex-wrap items-center gap-1 text-sm font-medium">
+        <a href="/index.html" class="rounded-lg px-3 py-2 text-slate-600 hover:bg-slate-100 hover:text-emerald-700">Trang chủ</a>
+        <a href="/history.html" class="rounded-lg px-3 py-2 bg-emerald-50 text-emerald-700" aria-current="page">Lịch sử</a>
+        <a href="/about.html" class="rounded-lg px-3 py-2 text-slate-600 hover:bg-slate-100 hover:text-emerald-700">Giới thiệu</a>
+        <a href="/contact.html" class="rounded-lg px-3 py-2 text-slate-600 hover:bg-slate-100 hover:text-emerald-700">Liên hệ</a>
       </div>
     </nav>
   </header>
@@ -82,11 +84,12 @@
 
   <footer class="bg-white border-t border-slate-200">
     <div class="max-w-5xl mx-auto px-4 py-4 text-sm text-slate-500 flex flex-wrap items-center justify-between gap-2">
-      <span>AI Smart Expense — Group 6</span>
-      <div class="flex items-center gap-4">
+      <span>AI Smart Expense — Nhóm 6 · CSB25022</span>
+      <div class="flex flex-wrap items-center gap-4">
         <a href="/index.html" class="hover:text-slate-800">Trang chủ</a>
         <a href="/history.html" class="hover:text-slate-800">Lịch sử</a>
         <a href="/about.html" class="hover:text-slate-800">Giới thiệu</a>
+        <a href="/contact.html" class="hover:text-slate-800">Liên hệ</a>
       </div>
     </div>
   </footer>
@@ -95,24 +98,22 @@
     const STORAGE_KEY = 'qlct_group6_v1';
     const formatVnd = (n) => Math.round(Number(n) || 0).toLocaleString('de-DE') + ' đ';
 
+    const esc = (v) => String(v ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+    // Chỉ đọc giao dịch của tài khoản đang đăng nhập (cùng khóa localStorage với trang chủ)
     function loadTransactions() {
       try {
         const raw = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
-        const list = [];
-        if (raw && raw.data && typeof raw.data === 'object') {
-          for (const bucket of Object.values(raw.data)) {
-            if (bucket && Array.isArray(bucket.txs)) {
-              for (const tx of bucket.txs) list.push(tx);
-            }
-          }
-        }
-        return list;
+        const me = raw && raw.session;
+        const bucket = me && raw.data ? raw.data[me] : null;
+        return { loggedIn: !!me, list: bucket && Array.isArray(bucket.txs) ? bucket.txs.slice() : [] };
       } catch {
-        return [];
+        return { loggedIn: false, list: [] };
       }
     }
 
-    const allTxs = loadTransactions();
+    const { loggedIn, list: allTxs } = loadTransactions();
+    allTxs.sort((a, b) => String(b.date).localeCompare(String(a.date)) || (b.ts || 0) - (a.ts || 0));
     const typeEl = document.getElementById('filter-type');
     const searchEl = document.getElementById('filter-search');
     const tbodyEl = document.getElementById('tx-tbody');
@@ -142,6 +143,7 @@
 
       if (!filtered.length) {
         tbodyEl.innerHTML = '';
+        emptyEl.textContent = loggedIn ? 'Chưa có giao dịch nào phù hợp với bộ lọc hiện tại.' : 'Bạn chưa đăng nhập. Hãy đăng nhập ở Trang chủ để xem lịch sử của mình.';
         emptyEl.classList.remove('hidden');
         return;
       }
@@ -154,9 +156,9 @@
           const sign = isIncome ? '+' : '-';
           return `
             <tr>
-              <td class="py-2.5 pr-4 text-slate-600 whitespace-nowrap">${tx.date || '—'}</td>
-              <td class="py-2.5 px-4 font-medium text-slate-800">${tx.cat || 'Khác'}</td>
-              <td class="py-2.5 px-4 text-slate-600">${tx.note || '—'}</td>
+              <td class="py-2.5 pr-4 text-slate-600 whitespace-nowrap">${esc(tx.date || '—')}</td>
+              <td class="py-2.5 px-4 font-medium text-slate-800">${esc(tx.cat || 'Khác')}</td>
+              <td class="py-2.5 px-4 text-slate-600">${esc(tx.note || '—')}</td>
               <td class="py-2.5 pl-4 text-right whitespace-nowrap ${amtClass}">${sign}${formatVnd(tx.amount)}</td>
             </tr>
           `;

@@ -4,16 +4,18 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Giới thiệu — AI Smart Expense</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="description" content="Giới thiệu dự án AI Smart Expense của Nhóm 6: ghi chép thu chi, quét hóa đơn bằng AI, xem lịch sử giao dịch." />
+  <link rel="stylesheet" href="/css/tailwind.css" />
 </head>
 <body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col">
   <header class="bg-white border-b border-slate-200">
-    <nav class="max-w-5xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+    <nav aria-label="Điều hướng chính" class="max-w-5xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
       <a href="/index.html" class="font-bold text-lg text-emerald-700">AI Smart Expense</a>
-      <div class="flex flex-wrap items-center gap-4 text-sm font-medium">
-        <a href="/index.html" class="hover:text-emerald-700">Trang chủ</a>
-        <a href="/history.html" class="hover:text-emerald-700">Lịch sử</a>
-        <a href="/about.html" class="text-emerald-700 underline">Giới thiệu</a>
+      <div class="flex flex-wrap items-center gap-1 text-sm font-medium">
+        <a href="/index.html" class="rounded-lg px-3 py-2 text-slate-600 hover:bg-slate-100 hover:text-emerald-700">Trang chủ</a>
+        <a href="/history.html" class="rounded-lg px-3 py-2 text-slate-600 hover:bg-slate-100 hover:text-emerald-700">Lịch sử</a>
+        <a href="/about.html" class="rounded-lg px-3 py-2 bg-emerald-50 text-emerald-700" aria-current="page">Giới thiệu</a>
+        <a href="/contact.html" class="rounded-lg px-3 py-2 text-slate-600 hover:bg-slate-100 hover:text-emerald-700">Liên hệ</a>
       </div>
     </nav>
   </header>
@@ -48,17 +50,21 @@
         <a href="/history.html" class="text-center px-4 py-2 rounded-lg border border-slate-300 text-slate-700 text-sm font-medium hover:bg-slate-50">
           Xem Lịch sử
         </a>
+        <a href="/contact.html" class="text-center px-4 py-2 rounded-lg border border-slate-300 text-slate-700 text-sm font-medium hover:bg-slate-50">
+          Liên hệ nhóm
+        </a>
       </div>
     </aside>
   </main>
 
   <footer class="bg-white border-t border-slate-200">
     <div class="max-w-5xl mx-auto px-4 py-4 text-sm text-slate-500 flex flex-wrap items-center justify-between gap-2">
-      <span>AI Smart Expense — Group 6</span>
-      <div class="flex items-center gap-4">
+      <span>AI Smart Expense — Nhóm 6 · CSB25022</span>
+      <div class="flex flex-wrap items-center gap-4">
         <a href="/index.html" class="hover:text-slate-800">Trang chủ</a>
         <a href="/history.html" class="hover:text-slate-800">Lịch sử</a>
         <a href="/about.html" class="hover:text-slate-800">Giới thiệu</a>
+        <a href="/contact.html" class="hover:text-slate-800">Liên hệ</a>
       </div>
     </div>
   </footer>

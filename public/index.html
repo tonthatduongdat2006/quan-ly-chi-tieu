@@ -1,7 +1,9 @@
 <!DOCTYPE html><html lang="vi"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="api-base" content="">
+<meta name="description" content="AI Smart Expense — quản lý chi tiêu cá nhân: ghi thu chi, quét hóa đơn bằng AI, xem lịch sử giao dịch.">
 <title>AI Smart Expense</title>
+<link rel="stylesheet" href="/css/tailwind-app.css">
 <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-L4X1JXCPK0"></script>
     <script>
@@ -68,7 +70,7 @@ h1{font-size:21px;font-weight:800;letter-spacing:-.02em}h3{font-size:16.5px;font
 .scanbox.on::after{content:'';position:absolute;left:0;right:0;height:2px;background:var(--p);box-shadow:0 0 8px var(--p);animation:scan 1.5s ease-in-out infinite}@keyframes scan{0%,100%{top:0}50%{top:calc(100% - 2px)}}
 @media(min-width:768px){.grid{grid-template-columns:repeat(6,1fr)}.scr{padding:0 28px 104px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
-</style></head><body><div id="root"></div>
+</style></head><body><!-- Khung ứng dụng: Tailwind căn giữa, giới hạn bề rộng trên màn hình lớn --><div class="relative h-full lg:mx-auto lg:max-w-3xl lg:border-x lg:border-slate-200 lg:shadow-sm"><div id="root"></div></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/htm@3.1.1/dist/htm.umd.js"></script>
@@ -136,6 +138,7 @@ ${reg&&html`<${Field} label="Họ và tên" err=${e.name}><div className=${'in'+
 ${reg&&html`<div><div className="terms-row"><input id="agree-terms" type="checkbox" checked=${f.agree} onChange=${set('agree')}/><label for="agree-terms">Tôi đồng ý với <button type="button" className="lk" onClick=${()=>setTermsOpen('terms')}>Điều khoản sử dụng</button> và <button type="button" className="lk" onClick=${()=>setTermsOpen('privacy')}>Chính sách quyền riêng tư</button></label></div>${e.agree&&html`<div className="err">${e.agree}</div>`}</div>`}
 ${e.form&&html`<div className="alert" style=${{background:'var(--rl)',color:'var(--r)'}}>${e.form}</div>`}
 <div className="mt"><${Btn} type="submit" busy=${busy}>${reg?'Tạo tài khoản':'Đăng nhập'}<//></div></form>
+<p className="mt-3 flex justify-center gap-4 text-sm"><a href="/about.html" className="font-semibold text-green-700 no-underline hover:underline">Giới thiệu</a><a href="/contact.html" className="font-semibold text-green-700 no-underline hover:underline">Liên hệ</a></p>
 <p className="mut" style=${{textAlign:'center',marginTop:16}}>${reg?'Đã có tài khoản? ':'Chưa có tài khoản? '}<button type="button" className="lk" onClick=${()=>{setReg(!reg);setE({})}}>${reg?'Đăng nhập':'Đăng ký'}</button></p>
 ${termsOpen&&html`<${Modal} center onClose=${()=>setTermsOpen(null)}>${close=>html`<${TermsModal} tab=${termsOpen} close=${close}/>`}<//>`}</div>`}
 
@@ -191,6 +194,11 @@ return html`<div className="scr"><div style=${{textAlign:'center',padding:'28px 
 <button className="tx tap" onClick=${()=>setBalOpen(true)} style=${{width:'100%',background:'none',border:0,borderBottom:'1px solid var(--b)',color:'var(--t)',fontSize:14,fontWeight:600,textAlign:'left'}}><span style=${{fontSize:20}}>💰</span><span className="f1">Số dư ban đầu (${d.initialBalance!==null?vnd(d.initialBalance):'Chưa đặt'})</span>›</button>
 <button className="tx tap" onClick=${()=>go('hist')} style=${{width:'100%',background:'none',border:0,color:'var(--t)',fontSize:14,fontWeight:600,textAlign:'left'}}><span style=${{fontSize:20}}>🕘</span><span className="f1">Lịch sử giao dịch</span>›</button>
 </div>
+<nav aria-label="Trang khác" className="mt-4 flex gap-2 text-center text-sm font-semibold">
+<a href="/history.html" className="flex-1 rounded-xl border border-slate-200 bg-white px-2 py-3 text-slate-700 no-underline hover:border-green-700 hover:text-green-700">📋 Lịch sử chi tiết</a>
+<a href="/about.html" className="flex-1 rounded-xl border border-slate-200 bg-white px-2 py-3 text-slate-700 no-underline hover:border-green-700 hover:text-green-700">ℹ️ Giới thiệu</a>
+<a href="/contact.html" className="flex-1 rounded-xl border border-slate-200 bg-white px-2 py-3 text-slate-700 no-underline hover:border-green-700 hover:text-green-700">✉️ Liên hệ</a>
+</nav>
 <button className="btn ghost mt" onClick=${()=>setC('clear')}>Xoá dữ liệu hiện tại</button>
 <div className="mt" style=${{marginTop:10}}><button className="btn red" onClick=${()=>setC('out')}>Đăng xuất</button></div>
 ${balOpen&&html`<${Modal} center onClose=${()=>setBalOpen(false)}>${close=>html`<${InitBalModal} cur=${d.initialBalance} close=${close}/>`}<//>`}
