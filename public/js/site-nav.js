@@ -14,11 +14,11 @@
   ];
   // Bộ class chung — đổi ở đây là cả 4 trang đổi theo
   var NAV = 'mx-auto box-border flex h-full w-full max-w-5xl flex-col justify-center gap-1 px-4 py-2 sm:flex-row sm:items-center sm:justify-between sm:gap-3 sm:py-0';
-  var LOGO = 'm-0 flex h-10 shrink-0 items-center self-start sm:self-auto whitespace-nowrap text-lg font-bold leading-7 text-emerald-700 no-underline';
+  var LOGO = 'm-0 flex h-10 shrink-0 items-center self-start sm:self-auto whitespace-nowrap text-lg font-bold leading-7 text-emerald-700 dark:text-emerald-400 no-underline';
   var LIST = 'm-0 flex list-none items-center gap-1 overflow-x-auto p-0';
   var ITEM = 'box-border block h-9 whitespace-nowrap rounded-lg px-3 py-2 text-sm font-medium leading-5 no-underline';
-  var ON = ' bg-emerald-50 text-emerald-700';
-  var OFF = ' text-slate-600 hover:bg-slate-100 hover:text-emerald-700';
+  var ON = ' bg-emerald-50 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-400';
+  var OFF = ' text-slate-600 hover:bg-slate-100 hover:text-emerald-700 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-emerald-300';
 
   var host = document.getElementById('site-nav');
   if (!host) return;

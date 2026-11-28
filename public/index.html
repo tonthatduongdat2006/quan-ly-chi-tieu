@@ -1,5 +1,6 @@
 <!DOCTYPE html><html lang="vi"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script src="/js/theme.js"></script>
 <meta name="api-base" content="">
 <meta name="description" content="AI Smart Expense — quản lý chi tiêu cá nhân: ghi thu chi, quét hóa đơn bằng AI, xem lịch sử giao dịch.">
 <title>AI Smart Expense</title>
@@ -14,7 +15,7 @@
     </script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#F8FAFC;--card:#FFFFFF;--t:#0F172A;--ts:#475569;--b:#E2E8F0;--p:#15803D;--pd:#166534;--pl:#DCFCE7;--g:#16A34A;--gl:#DCFCE7;--r:#DC2626;--rl:#FEE2E2;--o:#D97706;--ol:#FEF3C7}
+:root{--pt:#15803D;--bg:#F8FAFC;--card:#FFFFFF;--t:#0F172A;--ts:#475569;--b:#E2E8F0;--p:#15803D;--pd:#166534;--pl:#DCFCE7;--g:#16A34A;--gl:#DCFCE7;--r:#DC2626;--rl:#FEE2E2;--o:#D97706;--ol:#FEF3C7}
 *{box-sizing:border-box}html,body,#root{margin:0;height:100%;background:var(--bg);color:var(--t);font-family:'Inter',system-ui,-apple-system,sans-serif}
 @keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 @keyframes fd{from{opacity:0}to{opacity:1}}
@@ -68,14 +69,29 @@ h1{font-size:21px;font-weight:800;letter-spacing:-.02em}h3{font-size:16.5px;font
 .bub{max-width:88%;padding:10px 14px;border-radius:14px;animation:in .18s ease-out;line-height:1.45}.bub.u{align-self:flex-end;background:var(--p);color:#F8FAFC;border-bottom-right-radius:4px}.bub.a{align-self:flex-start;background:var(--card);border:1px solid var(--b);border-bottom-left-radius:4px}
 .scanbox{position:relative;height:210px;border:1.5px dashed #CBD5E1;border-radius:16px;background:var(--card);overflow:hidden;display:flex;align-items:center;justify-content:center;color:var(--ts);margin-top:14px}.scanbox img{width:100%;height:100%;object-fit:contain}
 .scanbox.on::after{content:'';position:absolute;left:0;right:0;height:2px;background:var(--p);box-shadow:0 0 8px var(--p);animation:scan 1.5s ease-in-out infinite}@keyframes scan{0%,100%{top:0}50%{top:calc(100% - 2px)}}
+/* ===== Giao diện tối: bật bằng class "dark" trên <html> (public/js/theme.js) ===== */
+html.dark{color-scheme:dark;--pt:#4ADE80;--bg:#0B1220;--card:#131C2E;--t:#E2E8F0;--ts:#94A3B8;--b:#273449;--pl:#14321F;--gl:#14321F;--g:#4ADE80;--r:#F87171;--rl:#3B1518;--o:#FBBF24;--ol:#3A2A0C}
+html.dark .tap:hover,html.dark .cb:hover{border-color:#3B4A63}
+html.dark .btn.ghost:hover,html.dark .bk:hover{background:#1B2638;border-color:#3B4A63}
+html.dark .btn.red{background:#DC2626}html.dark .btn.red:hover{background:#B91C1C}
+html.dark .lk,html.dark .ni.on,html.dark .ni:hover,html.dark .seg button.on{color:#4ADE80}html.dark .lk:hover{color:#86EFAC}
+html.dark .cb.on,html.dark .chip:hover,html.dark .chip.on{color:#86EFAC}
+html.dark .seg{background:#0E1626}html.dark .terms-box{background:var(--bg)}html.dark .scanbox{border-color:#3B4A63}
+html.dark .ov{background:rgba(2,6,23,.66)}html.dark .card{box-shadow:none}
+html.dark .toast.ok{background:#15803D}html.dark .toast.err{background:#DC2626}html.dark .toast.warn{background:#B45309}
+html.dark .in input::placeholder{color:#64748B}
+/* Công tắc sáng/tối trong màn Cá nhân */
+.sw{position:relative;width:44px;height:26px;border-radius:999px;background:#CBD5E1;flex-shrink:0;transition:background-color .15s ease-out}
+.sw::after{content:'';position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(15,23,42,.25);transition:transform .15s ease-out}
+.sw.on{background:var(--p)}.sw.on::after{transform:translateX(18px)}html.dark .sw:not(.on){background:#475569}
 @media(min-width:768px){.grid{grid-template-columns:repeat(6,1fr)}.scr{padding:0 28px 104px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 </style></head><body>
-  <header id="site-nav" class="box-border h-24 shrink-0 border-0 border-b border-solid border-slate-200 bg-white font-sans sm:h-16"></header>
+  <header id="site-nav" class="box-border h-24 shrink-0 border-0 border-b border-solid border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 font-sans sm:h-16"></header>
   <script src="/js/site-nav.js"></script>
 <script src="/js/enter-next.js" defer></script>
 <!-- Khung ứng dụng: chiếm phần còn lại dưới menu chung; Tailwind căn giữa, giới hạn bề rộng trên màn hình lớn -->
-<div class="relative h-[calc(100%-6rem)] sm:h-[calc(100%-4rem)] lg:mx-auto lg:max-w-3xl lg:border-x lg:border-slate-200 lg:shadow-sm"><div id="root"></div></div>
+<div class="relative h-[calc(100%-6rem)] sm:h-[calc(100%-4rem)] lg:mx-auto lg:max-w-3xl lg:border-x lg:border-slate-200 dark:lg:border-slate-700 lg:shadow-sm"><div id="root"></div></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/htm@3.1.1/dist/htm.umd.js"></script>
@@ -172,7 +188,7 @@ ${reg&&html`<${Field} label="Họ và tên" err=${e.name}><div className=${'in'+
 ${reg&&html`<div><div className="terms-row"><input id="agree-terms" type="checkbox" checked=${f.agree} onChange=${set('agree')}/><label for="agree-terms">Tôi đồng ý với <button type="button" className="lk" onClick=${()=>setTermsOpen('terms')}>Điều khoản sử dụng</button> và <button type="button" className="lk" onClick=${()=>setTermsOpen('privacy')}>Chính sách quyền riêng tư</button></label></div>${e.agree&&html`<div className="err">${e.agree}</div>`}</div>`}
 ${e.form&&html`<div className="alert" style=${{background:'var(--rl)',color:'var(--r)'}}>${e.form}</div>`}
 <div className="mt"><${Btn} type="submit" busy=${busy}>${reg?'Tạo tài khoản':'Đăng nhập'}<//></div></form>
-<p className="mt-3 flex justify-center gap-4 text-sm"><a href="/about.html" className="font-semibold text-green-700 no-underline hover:underline">Giới thiệu</a><a href="/contact.html" className="font-semibold text-green-700 no-underline hover:underline">Liên hệ</a></p>
+<p className="mt-3 flex justify-center gap-4 text-sm"><a href="/about.html" className="font-semibold text-green-700 dark:text-green-400 no-underline hover:underline">Giới thiệu</a><a href="/contact.html" className="font-semibold text-green-700 dark:text-green-400 no-underline hover:underline">Liên hệ</a></p>
 <p className="mut" style=${{textAlign:'center',marginTop:16}}>${reg?'Đã có tài khoản? ':'Chưa có tài khoản? '}<button type="button" className="lk" onClick=${()=>{setReg(!reg);setE({})}}>${reg?'Đăng nhập':'Đăng ký'}</button></p>
 ${termsOpen&&html`<${Modal} center onClose=${()=>setTermsOpen(null)}>${close=>html`<${TermsModal} tab=${termsOpen} close=${close}/>`}<//>`}</div>`}
 
@@ -223,20 +239,28 @@ ${days.map(day=>{const g=list.filter(t=>t.date===day);return html`<div key=${day
 ${!list.length&&html`<div className="card" style=${{textAlign:'center'}}><p className="mut">Không có giao dịch nào trong tháng này</p></div>`}</div>`}
 
 function Me(){const{user,d,logout,upd,go}=useC();const[c,setC]=useState(null),[balOpen,setBalOpen]=useState(false);
-return html`<div className="scr"><div style=${{textAlign:'center',padding:'28px 0 8px'}}><div className="ico" style=${{width:68,height:68,borderRadius:20,background:'var(--pl)',color:'var(--p)',fontSize:28,fontWeight:800,margin:'0 auto'}}>${user.name.charAt(0).toUpperCase()}</div><h1 style=${{marginTop:12}}>${user.name}</h1><p className="mut">${user.email}</p></div>
+const T=window.QLCTTheme,[theme,setTheme]=useState(()=>T?T.get():'light');
+useEffect(()=>{const on=e=>setTheme(e.detail);window.addEventListener('qlct-theme',on);return()=>window.removeEventListener('qlct-theme',on)},[]);
+const toggleTheme=()=>{if(!T)return;T.toggle();setTheme(T.get())};
+/* Chuyển đổi tài khoản: chỉ thoát phiên hiện tại (giống Đăng xuất), KHÔNG xoá dữ liệu, rồi về màn Đăng nhập */
+const switchAccount=()=>{go('home');logout();toast('Hãy đăng nhập bằng tài khoản khác')};
+return html`<div className="scr"><div style=${{textAlign:'center',padding:'28px 0 8px'}}><div className="ico" style=${{width:68,height:68,borderRadius:20,background:'var(--pl)',color:'var(--pt)',fontSize:28,fontWeight:800,margin:'0 auto'}}>${user.name.charAt(0).toUpperCase()}</div><h1 style=${{marginTop:12}}>${user.name}</h1><p className="mut">${user.email}</p></div>
 <div className="card" style=${{padding:'4px 16px'}}>
 <button className="tx tap" onClick=${()=>setBalOpen(true)} style=${{width:'100%',background:'none',border:0,borderBottom:'1px solid var(--b)',color:'var(--t)',fontSize:14,fontWeight:600,textAlign:'left'}}><span style=${{fontSize:20}}>💰</span><span className="f1">Số dư ban đầu (${d.initialBalance!==null?vnd(d.initialBalance):'Chưa đặt'})</span>›</button>
-<button className="tx tap" onClick=${()=>go('hist')} style=${{width:'100%',background:'none',border:0,color:'var(--t)',fontSize:14,fontWeight:600,textAlign:'left'}}><span style=${{fontSize:20}}>🕘</span><span className="f1">Lịch sử giao dịch</span>›</button>
+<button className="tx tap" onClick=${()=>go('hist')} style=${{width:'100%',background:'none',border:0,borderBottom:'1px solid var(--b)',color:'var(--t)',fontSize:14,fontWeight:600,textAlign:'left'}}><span style=${{fontSize:20}}>🕘</span><span className="f1">Lịch sử giao dịch</span>›</button>
+<button className="tx tap" role="switch" aria-checked=${theme==='dark'} onClick=${toggleTheme} style=${{width:'100%',background:'none',border:0,color:'var(--t)',fontSize:14,fontWeight:600,textAlign:'left'}}><span style=${{fontSize:20}} aria-hidden="true">${theme==='dark'?'🌙':'☀️'}</span><span className="f1">Giao diện tối<span className="mut" style=${{display:'block',fontWeight:500,marginTop:2}}>${theme==='dark'?'Đang bật — áp dụng cho cả 4 trang':'Đang tắt — đang dùng giao diện sáng'}</span></span><span className=${'sw'+(theme==='dark'?' on':'')} aria-hidden="true"></span></button>
 </div>
 <nav aria-label="Trang khác" className="mt-4 flex gap-2 text-center text-sm font-semibold">
-<a href="/history.html" className="flex-1 rounded-xl border border-slate-200 bg-white px-2 py-3 text-slate-700 no-underline hover:border-green-700 hover:text-green-700">📋 Lịch sử chi tiết</a>
-<a href="/about.html" className="flex-1 rounded-xl border border-slate-200 bg-white px-2 py-3 text-slate-700 no-underline hover:border-green-700 hover:text-green-700">ℹ️ Giới thiệu</a>
-<a href="/contact.html" className="flex-1 rounded-xl border border-slate-200 bg-white px-2 py-3 text-slate-700 no-underline hover:border-green-700 hover:text-green-700">✉️ Liên hệ</a>
+<a href="/history.html" className="flex-1 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-2 py-3 text-slate-700 dark:text-slate-200 no-underline hover:border-green-700 dark:hover:border-green-500 hover:text-green-700 dark:hover:text-green-400">📋 Lịch sử chi tiết</a>
+<a href="/about.html" className="flex-1 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-2 py-3 text-slate-700 dark:text-slate-200 no-underline hover:border-green-700 dark:hover:border-green-500 hover:text-green-700 dark:hover:text-green-400">ℹ️ Giới thiệu</a>
+<a href="/contact.html" className="flex-1 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-2 py-3 text-slate-700 dark:text-slate-200 no-underline hover:border-green-700 dark:hover:border-green-500 hover:text-green-700 dark:hover:text-green-400">✉️ Liên hệ</a>
 </nav>
-<button className="btn ghost mt" onClick=${()=>setC('clear')}>Xoá dữ liệu hiện tại</button>
+<button className="btn ghost mt" onClick=${()=>setC('switch')}>🔁 Chuyển đổi tài khoản</button>
+<button className="btn ghost" style=${{marginTop:10}} onClick=${()=>setC('clear')}>Xoá dữ liệu hiện tại</button>
 <div className="mt" style=${{marginTop:10}}><button className="btn red" onClick=${()=>setC('out')}>Đăng xuất</button></div>
 ${balOpen&&html`<${Modal} center onClose=${()=>setBalOpen(false)}>${close=>html`<${InitBalModal} cur=${d.initialBalance} close=${close}/>`}<//>`}
 ${c==='out'&&html`<${Confirm} danger title="Đăng xuất?" text="Bạn sẽ quay về màn hình đăng nhập." ok="Đăng xuất" onYes=${logout} onClose=${()=>setC(null)}/>`}
+${c==='switch'&&html`<${Confirm} title="Chuyển đổi tài khoản?" text=${'Bạn sẽ thoát khỏi '+user.email+' để đăng nhập tài khoản khác. Dữ liệu của tài khoản này vẫn được giữ nguyên.'} ok="Chuyển tài khoản" onYes=${switchAccount} onClose=${()=>setC(null)}/>`}
 ${c==='clear'&&html`<${Confirm} danger title="Xoá dữ liệu?" text="Toàn bộ số dư ban đầu và giao dịch sẽ được xoá." ok="Xoá" onYes=${()=>{upd(()=>empty());toast('Đã xoá dữ liệu')}} onClose=${()=>setC(null)}/>`}</div>`}
 
 const clean=(i,x)=>{const t=i.type==='income'?'income':'expense',a=Math.round(Number(i.amount)),ok=/^\d{4}-\d\d-\d\d$/.test(i.date||'')&&i.date<=today();return{op:uid(),type:t,amount:a>0?a:0,cat:x.cats[t].includes(i.cat)?i.cat:'Khác',note:String(i.note||'').slice(0,80),date:ok?i.date:today(),noDate:!ok}};
