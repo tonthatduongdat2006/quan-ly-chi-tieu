@@ -1,29 +1,62 @@
-# Quản Lý Chi Tiêu — AI Smart Expense (Group6-QuanLyChiTieu)
+# Quản Lý Chi Tiêu — AI Smart Expense (Nhóm 6)
 
-Ứng dụng quản lý chi tiêu cá nhân hỗ trợ thiết lập số dư ban đầu, nhập khoản chi thủ công, phân tích tin nhắn nhanh và quét hóa đơn bằng AI. Frontend chỉ gọi backend của bạn; backend giữ API key và gọi AI.
-**Môn học:** Web Design and Development (CSB25022) — VN-UK Institute for Research and Executive Education (VNUK)
-- **Web ứng dụng:** [AI Smart Expense](https://quan-ly-chi-tieu-sooty.vercel.app/)
-- **API / Backend:** [https://quan-ly-chi-tieu-sooty.vercel.app](https://quan-ly-chi-tieu-sooty.vercel.app)
-- **Kho mã nguồn (GitHub):** [quan-ly-chi-tieu](https://github.com/tonthatduongdat2006/quan-ly-chi-tieu)
+Ứng dụng quản lý chi tiêu cá nhân: thiết lập số dư ban đầu, thêm khoản thu/chi thủ công, **quét hóa đơn bằng AI** (AI tạo bản nháp, người dùng sửa rồi mới lưu), xem lịch sử giao dịch. Frontend chỉ gọi backend; backend giữ API key và gọi AI.
+
+**Môn học:** Web Design and Development (CSB25022) — VNUK
+- **Web ứng dụng:** https://quan-ly-chi-tieu-sooty.vercel.app/
+- **Kho mã nguồn:** https://github.com/tonthatduongdat2006/quan-ly-chi-tieu
+
+> **Trạng thái dữ liệu:** ứng dụng hiện lưu tài khoản và giao dịch trong `localStorage` của trình duyệt. Thiết kế CSDL PostgreSQL ở mục *Thiết kế cơ sở dữ liệu* bên dưới **chưa được kết nối** với ứng dụng.
+
+## Các trang (mỗi trang có URL riêng)
+
+| URL | Nội dung | Giao diện |
+|---|---|---|
+| [`/index.html`](https://quan-ly-chi-tieu-sooty.vercel.app/index.html) (trang chủ `/`) | Đăng nhập/đăng ký, Trang chủ (số dư), Thêm khoản chi/thu, Quét hóa đơn AI, Cá nhân | CSS tự viết + Tailwind cho khung bố cục (căn giữa trên màn hình ≥1024px) và các liên kết điều hướng |
+| [`/history.html`](https://quan-ly-chi-tieu-sooty.vercel.app/history.html) | Lịch sử giao dịch của tài khoản đang đăng nhập; lọc theo loại, tìm theo danh mục/ghi chú; tổng thu, tổng chi | Tailwind |
+| [`/about.html`](https://quan-ly-chi-tieu-sooty.vercel.app/about.html) | Giới thiệu dự án | Tailwind |
+| [`/contact.html`](https://quan-ly-chi-tieu-sooty.vercel.app/contact.html) | Liên hệ: gửi góp ý/báo lỗi qua GitHub Issues, thông tin nhóm | Tailwind |
+
+Các trang con có thanh điều hướng chung (Trang chủ · Lịch sử · Giới thiệu · Liên hệ). Từ trang chủ, mở màn **Cá nhân** để tới Lịch sử chi tiết, Giới thiệu, Liên hệ.
+
+## Công nghệ & cấu trúc thư mục
+
+- **Giao diện:** HTML, React 18 (bản UMD, không cần build) + `htm` trong `public/index.html`; JavaScript thuần trong `history.html`.
+- **Tailwind CSS v4** cài qua npm (`tailwindcss`, `@tailwindcss/cli`), biên dịch sẵn thành file CSS tĩnh — không dùng CDN.
+- **Backend:** Node.js thuần (`server.js`, không thư viện ngoài) — phục vụ `public/` và API AI.
+- **Theo dõi:** Google Analytics 4.
 
 ```text
-Trình duyệt / Expo Web                        Backend / API                      Dịch vụ AI & CSDL
-  Chat: gửi tin nhắn ───────► POST /api/ai/parse-text ──────┐
-  Quét: gửi ảnh (base64) ───► POST /api/ai/parse-receipt ───┼─► gọi AI (API key ở biến môi trường)
-  ◄── JSON có cấu trúc ◄────── kiểm tra + chuẩn hóa ◄───────┘
-  Bản nháp → người dùng sửa → "Xác nhận lưu" → lưu vào PostgreSQL (Supabase): số dư, giao dịch, danh mục, ngân sách, hũ tiết kiệm
+public/
+  index.html            Ứng dụng chính (React UMD)
+  history.html          Lịch sử giao dịch
+  about.html            Giới thiệu
+  contact.html          Liên hệ
+  css/tailwind.css      Tailwind đã biên dịch (đầy đủ) cho history/about/contact
+  css/tailwind-app.css  Tailwind không có preflight cho index.html (không làm đổi CSS sẵn có)
+src/styles/             File nguồn Tailwind (đầu vào của npm run build:css)
+server.js               Backend: phục vụ public/ + API AI
+test/api.test.js        Kiểm thử backend (npm test)
+db/schema.sql           Bản thiết kế lược đồ PostgreSQL (chưa kết nối ứng dụng)
+doc/                    Tài liệu, ảnh minh chứng
 ```
-## Chạy thử trên máy (3 bước)
 
-Cần Node.js **18 trở lên** và Git.
+## Chạy thử trên máy
+
+Cần Node.js **18 trở lên**.
 
 ```bash
 git clone https://github.com/tonthatduongdat2006/quan-ly-chi-tieu.git
 cd quan-ly-chi-tieu
-git checkout main
-npm install
-# Copy .env.example (nếu có) và điền biến môi trường AI / Supabase / API trước khi chạy
+npm install          # cài Tailwind CSS (devDependencies)
+npm run build:css    # biên dịch src/styles/*.css -> public/css/*.css (cần chạy lại khi thêm class Tailwind mới)
+cp .env.example .env # điền AI_API_KEY (và AI_PROVIDER nếu không dùng anthropic)
+npm start            # mở http://localhost:3000
+npm test             # chạy kiểm thử backend
 ```
+
+Không có `AI_API_KEY` thì các trang vẫn chạy; riêng nút **Phân tích AI** sẽ báo "Tính năng AI chưa được cấu hình".
+
 ## API
 
 Mọi lỗi đều có dạng `{ "error": { "code": "...", "message": "..." } }` kèm mã HTTP tương ứng.
@@ -31,7 +64,7 @@ Mọi lỗi đều có dạng `{ "error": { "code": "...", "message": "..." } }`
 | Endpoint | Gửi lên | Trả về |
 |---|---|---|
 | `GET /api/health` | — | `{ ok, ai: { configured } }` |
-| `POST /api/ai/parse-text` | JSON `{ text, ctx }` | `{ items: [{ type, amount, cat, note, date }], reply }` |
+| `POST /api/ai/parse-text` (backend có sẵn, giao diện hiện chưa có màn hình gọi endpoint này) | JSON `{ text, ctx }` | `{ items: [{ type, amount, cat, note, date }], reply }` |
 | `POST /api/ai/parse-receipt` | JSON `{ image, mimeType, ctx }` (`image` = base64) | `{ readable, merchant, type, amount, cat, note, date }` |
 
 `ctx` = `{ today: "YYYY-MM-DD", cats: { expense: [...], income: [...] } }`: ngày hôm nay theo múi giờ người dùng và danh sách danh mục hiện có.
@@ -76,8 +109,8 @@ Backend phục vụ luôn giao diện trong `public/`, cùng domain nên không 
 ### Cách B — frontend và backend ở hai nơi
 
 1. Triển khai backend như trên, đặt `SERVE_FRONTEND=false` (tuỳ chọn) và `ALLOWED_ORIGINS=https://ten-mien-frontend.com`.
-2. Đưa giao diện lên Vercel ([AI Smart Expense](https://group6-quanlychitieu.vercel.app/)).
-3. Cấu hình biến môi trường / địa chỉ backend (`[https://group6-quanlychitieu-api.vercel.app](https://group6-quanlychitieu-api.vercel.app)`) và biến kết nối Supabase cho frontend & API.
+2. Đưa thư mục `public/` lên hosting tĩnh (ví dụ Vercel).
+3. Đặt địa chỉ backend vào thẻ `<meta name="api-base">` trong `public/index.html`.
 
 > Nếu sai `ALLOWED_ORIGINS`, trình duyệt chặn phản hồi nên giao diện chỉ hiện "Không kết nối được máy chủ AI". Mở DevTools → Console để thấy lỗi CORS.
 
@@ -101,9 +134,11 @@ Backend phục vụ luôn giao diện trong `public/`, cùng domain nên không 
 
 Log của backend (stdout) ghi mỗi request một dòng cùng mã lỗi; chi tiết lỗi từ dịch vụ AI chỉ ghi ở log, không trả cho người dùng.
 
-## Sơ đồ Cơ sở dữ liệu (ERD) & Schema
+## Thiết kế cơ sở dữ liệu (ERD) — chưa kết nối ứng dụng
 
-Cơ sở dữ liệu quan hệ trên PostgreSQL (Supabase) gồm 5 bảng chính (`profiles`, `categories`, `transactions`, `budgets`, `savings_jars`), có khóa ngoại liên kết và Row Level Security theo người dùng:
+> Đây là **bản thiết kế**. Ứng dụng hiện **chưa** đọc/ghi PostgreSQL (dữ liệu đang ở `localStorage`). File `db/schema.sql` hiện có cấu trúc khác với ERD dưới đây và cần được đồng bộ.
+
+Thiết kế trên PostgreSQL (Supabase) gồm 5 bảng (`profiles`, `categories`, `transactions`, `budgets`, `savings_jars`) có khóa ngoại liên kết:
 
 ```text
 profiles (id [PK -> auth.users.id], full_name, phone, created_at)
@@ -167,7 +202,12 @@ erDiagram
     CATEGORIES ||--o{ BUDGETS : limits
 ```
 
-## Theo dõi, Ghi log 
+## Kiểm thử
+
+- `npm test`: 11 bài kiểm thử tự động cho backend (chuẩn hóa dữ liệu AI, lỗi dịch vụ AI, giới hạn tần suất, CORS, không lộ API key, chặn đường dẫn ngoài `public/`). Dùng AI giả lập cục bộ nên không tốn phí.
+- Kiểm thử thủ công và ảnh responsive 3 kích thước: [doc/TEST_REPORT.md](doc/TEST_REPORT.md), [doc/responsive/](doc/responsive/) (Phạm Minh Phúc).
+
+## Theo dõi, Ghi log
 
 - **Google Analytics 4 (`G-L4X1JXCPK0`):** Đã gắn thẻ `gtag.js` và mở quyền `Content-Security-Policy` trong `server.js` để theo dõi lượt xem trang và người dùng hoạt động theo thời gian thực trên [AI Smart Expense](https://quan-ly-chi-tieu-sooty.vercel.app/).
 - **Ghi nhận lỗi & Log hệ thống:** Backend `server.js` ghi log từng request (`method`, `path`, `status`, `latency`, mã lỗi) ra stdout và theo dõi lỗi runtime trên Vercel.
@@ -189,8 +229,7 @@ erDiagram
 
 ## Demo & Ảnh chụp màn hình (Screenshots)
 
-- **Link triển khai (Live Web):** [AI Smart Expense](https://group6-quanlychitieu.vercel.app/)
-- **Link API / Backend:** https://group6-quanlychitieu-api.vercel.app
+- **Link triển khai (Live Web):** https://quan-ly-chi-tieu-sooty.vercel.app/
 - **Video Demo (YouTube, 720p, ≤ 10 phút):** [Xem video demo trên YouTube](https://youtu.be/Lj0kUyLQhjQ)
 
 ### Ảnh chụp màn hình giao diện
@@ -214,9 +253,9 @@ erDiagram
 
 | Thành viên | Mã sinh viên | Phụ trách / Vai trò | Đánh giá chung (1 file chung) | Tự đánh giá bản thân |
 | :--- | :--- | :--- | :--- | :--- |
-| **Tôn Thất Dương Đạt** | `24090061` | Phụ trách gần như toàn bộ cùng AI/code (`claude`): tính năng, API/CSDL, cấu hình môi trường, triển khai, xử lý lỗi/log và tài liệu dự án | [Đánh giá chung nhóm](doc/BANG-TU-DANH-GIA-4-THANH-VIEN.md) | [Tự đánh giá - Tôn Thất Dương Đạt](doc/TU-DANH-GIA-TON-THAT-DUONG-DAT.md) |
-| **Văn Lê Tiến Hùng** | `24090008` | Góp ý và đề xuất cách xây dựng web, định hướng giao diện/luồng thao tác và cách tổ chức sản phẩm | [Đánh giá chung nhóm](doc/BANG-TU-DANH-GIA-4-THANH-VIEN.md) | [Tự đánh giá - Văn Lê Tiến Hùng](doc/TU-DANH-GIA-VAN-LE-TIEN-HUNG.md) |
-| **Phạm Minh Phúc** | `24090011` | *(Chưa cập nhật)* | [Đánh giá chung nhóm](doc/BANG-TU-DANH-GIA-4-THANH-VIEN.md) | *(Chưa cập nhật)* |
+| **Tôn Thất Dương Đạt** | `24090061` | Code (cùng AI `claude`): giao diện nhiều trang, Tailwind CSS, backend API AI, cấu hình triển khai, quản lý GitHub, README | [Đánh giá chung nhóm](doc/BANG-TU-DANH-GIA-4-THANH-VIEN.md) | [Tự đánh giá - Tôn Thất Dương Đạt](doc/TU-DANH-GIA-TON-THAT-DUONG-DAT.md) |
+| **Văn Lê Tiến Hùng** | `24090008` | Wireframe, Lighthouse, UI/UX Peer Review hai nhóm; định hướng giao diện/luồng thao tác | [Đánh giá chung nhóm](doc/BANG-TU-DANH-GIA-4-THANH-VIEN.md) | [Tự đánh giá - Văn Lê Tiến Hùng](doc/TU-DANH-GIA-VAN-LE-TIEN-HUNG.md) |
+| **Phạm Minh Phúc** | `24090011` | Bảng kiểm thử thủ công, ảnh responsive Mobile/Tablet/Desktop, self-report | [Đánh giá chung nhóm](doc/BANG-TU-DANH-GIA-4-THANH-VIEN.md) | *(Chưa cập nhật)* |
 | **Nguyễn Hải Đăng** | `24090018` | *(Chưa cập nhật)* | [Đánh giá chung nhóm](doc/BANG-TU-DANH-GIA-4-THANH-VIEN.md) | *(Chưa cập nhật)* |
 
 ### Tài liệu bổ sung trong thư mục `doc/`

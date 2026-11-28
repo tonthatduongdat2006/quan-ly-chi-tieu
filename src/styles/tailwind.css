@@ -1,0 +1,5 @@
+/* Tailwind CSS đầy đủ (gồm preflight) cho các trang: history.html, about.html, contact.html */
+@import "tailwindcss";
+
+/* Chế độ tối bật bằng class "dark" trên <html> (public/js/theme.js), không theo cài đặt hệ điều hành */
+@custom-variant dark (&:where(.dark, .dark *));

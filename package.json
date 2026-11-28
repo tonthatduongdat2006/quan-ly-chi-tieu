@@ -4,10 +4,18 @@
   "private": true,
   "description": "Backend AI Smart Expense cho ứng dụng Quản Lý Chi Tiêu (không phụ thuộc thư viện ngoài)",
   "main": "server.js",
-  "engines": { "node": ">=18" },
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "start": "node server.js",
     "dev": "node --watch server.js",
-    "test": "node --test test/api.test.js"
+    "test": "node --test test/api.test.js",
+    "build:css": "tailwindcss -i ./src/styles/tailwind.css -o ./public/css/tailwind.css --minify && tailwindcss -i ./src/styles/tailwind-app.css -o ./public/css/tailwind-app.css --minify",
+    "watch:css": "tailwindcss -i ./src/styles/tailwind.css -o ./public/css/tailwind.css --watch"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.0",
+    "tailwindcss": "^4.1.0"
   }
 }

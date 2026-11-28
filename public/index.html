@@ -1,7 +1,10 @@
 <!DOCTYPE html><html lang="vi"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script src="/js/theme.js"></script>
 <meta name="api-base" content="">
+<meta name="description" content="AI Smart Expense — quản lý chi tiêu cá nhân: ghi thu chi, quét hóa đơn bằng AI, xem lịch sử giao dịch.">
 <title>AI Smart Expense</title>
+<link rel="stylesheet" href="/css/tailwind-app.css">
 <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-L4X1JXCPK0"></script>
     <script>
@@ -12,7 +15,7 @@
     </script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#F8FAFC;--card:#FFFFFF;--t:#0F172A;--ts:#475569;--b:#E2E8F0;--p:#15803D;--pd:#166534;--pl:#DCFCE7;--g:#16A34A;--gl:#DCFCE7;--r:#DC2626;--rl:#FEE2E2;--o:#D97706;--ol:#FEF3C7}
+:root{--pt:#15803D;--bg:#F8FAFC;--card:#FFFFFF;--t:#0F172A;--ts:#475569;--b:#E2E8F0;--p:#15803D;--pd:#166534;--pl:#DCFCE7;--g:#16A34A;--gl:#DCFCE7;--r:#DC2626;--rl:#FEE2E2;--o:#D97706;--ol:#FEF3C7}
 *{box-sizing:border-box}html,body,#root{margin:0;height:100%;background:var(--bg);color:var(--t);font-family:'Inter',system-ui,-apple-system,sans-serif}
 @keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 @keyframes fd{from{opacity:0}to{opacity:1}}
@@ -66,19 +69,42 @@ h1{font-size:21px;font-weight:800;letter-spacing:-.02em}h3{font-size:16.5px;font
 .bub{max-width:88%;padding:10px 14px;border-radius:14px;animation:in .18s ease-out;line-height:1.45}.bub.u{align-self:flex-end;background:var(--p);color:#F8FAFC;border-bottom-right-radius:4px}.bub.a{align-self:flex-start;background:var(--card);border:1px solid var(--b);border-bottom-left-radius:4px}
 .scanbox{position:relative;height:210px;border:1.5px dashed #CBD5E1;border-radius:16px;background:var(--card);overflow:hidden;display:flex;align-items:center;justify-content:center;color:var(--ts);margin-top:14px}.scanbox img{width:100%;height:100%;object-fit:contain}
 .scanbox.on::after{content:'';position:absolute;left:0;right:0;height:2px;background:var(--p);box-shadow:0 0 8px var(--p);animation:scan 1.5s ease-in-out infinite}@keyframes scan{0%,100%{top:0}50%{top:calc(100% - 2px)}}
+/* ===== Giao diện tối: bật bằng class "dark" trên <html> (public/js/theme.js) ===== */
+html.dark{color-scheme:dark;--pt:#4ADE80;--bg:#0B1220;--card:#131C2E;--t:#E2E8F0;--ts:#94A3B8;--b:#273449;--pl:#14321F;--gl:#14321F;--g:#4ADE80;--r:#F87171;--rl:#3B1518;--o:#FBBF24;--ol:#3A2A0C}
+html.dark .tap:hover,html.dark .cb:hover{border-color:#3B4A63}
+html.dark .btn.ghost:hover,html.dark .bk:hover{background:#1B2638;border-color:#3B4A63}
+html.dark .btn.red{background:#DC2626}html.dark .btn.red:hover{background:#B91C1C}
+html.dark .lk,html.dark .ni.on,html.dark .ni:hover,html.dark .seg button.on{color:#4ADE80}html.dark .lk:hover{color:#86EFAC}
+html.dark .cb.on,html.dark .chip:hover,html.dark .chip.on{color:#86EFAC}
+html.dark .seg{background:#0E1626}html.dark .terms-box{background:var(--bg)}html.dark .scanbox{border-color:#3B4A63}
+html.dark .ov{background:rgba(2,6,23,.66)}html.dark .card{box-shadow:none}
+html.dark .toast.ok{background:#15803D}html.dark .toast.err{background:#DC2626}html.dark .toast.warn{background:#B45309}
+html.dark .in input::placeholder{color:#64748B}
+/* Công tắc sáng/tối trong màn Cá nhân */
+.sw{position:relative;width:44px;height:26px;border-radius:999px;background:#CBD5E1;flex-shrink:0;transition:background-color .15s ease-out}
+.sw::after{content:'';position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(15,23,42,.25);transition:transform .15s ease-out}
+.sw.on{background:var(--p)}.sw.on::after{transform:translateX(18px)}html.dark .sw:not(.on){background:#475569}
 @media(min-width:768px){.grid{grid-template-columns:repeat(6,1fr)}.scr{padding:0 28px 104px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
-</style></head><body><div id="root"></div>
+</style></head><body>
+  <header id="site-nav" class="box-border h-24 shrink-0 border-0 border-b border-solid border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 font-sans sm:h-16"></header>
+  <script src="/js/site-nav.js"></script>
+<script src="/js/enter-next.js" defer></script>
+<!-- Khung ứng dụng: chiếm phần còn lại dưới menu chung; Tailwind căn giữa, giới hạn bề rộng trên màn hình lớn -->
+<div class="relative h-[calc(100%-6rem)] sm:h-[calc(100%-4rem)] lg:mx-auto lg:max-w-3xl lg:border-x lg:border-slate-200 dark:lg:border-slate-700 lg:shadow-sm"><div id="root"></div></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/htm@3.1.1/dist/htm.umd.js"></script>
 <script>
-const {useState,useEffect,useRef,useContext,createContext}=React;
+const {useState,useEffect,useLayoutEffect,useRef,useContext,createContext}=React;
 const html=htm.bind(React.createElement),Ctx=createContext(),useC=()=>useContext(Ctx);
 const vnd=n=>Math.round(n).toLocaleString('de-DE')+' đ',pad=n=>String(n).padStart(2,'0');
 const dk=d=>d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate()),today=()=>dk(new Date()),mk=s=>s.slice(0,7);
 const uid=()=>Math.random().toString(36).slice(2,9),num=s=>parseInt(String(s).replace(/\D/g,''),10)||0;
-const fmtIn=s=>{const n=String(s).replace(/\D/g,'');return n?Number(n).toLocaleString('de-DE'):''};
+/* Số tiền: chỉ giữ chữ số, bỏ số 0 đứng đầu, nhóm hàng nghìn bằng dấu chấm (kiểu VN).
+   Xử lý bằng chuỗi (không qua Number) để không sai số với số lớn. */
+const AMT_MAX_DIGITS=12,digitsOf=s=>String(s==null?'':s).replace(/\D/g,''),groupVN=d=>d.replace(/\B(?=(\d{3})+(?!\d))/g,'.');
+const fmtIn=s=>groupVN(digitsOf(s).replace(/^0+(?=\d)/,'').slice(0,AMT_MAX_DIGITS));
 const amtErr=v=>/[^\d.,\s]/.test(v)?(v.includes('-')?'Số tiền phải lớn hơn 0':'Số tiền chỉ được nhập chữ số'):'';
 const dlabel=s=>{const t=new Date();if(s===dk(t))return'Hôm nay';t.setDate(t.getDate()-1);return s===dk(t)?'Hôm qua':s.slice(8)+'/'+s.slice(5,7)};
 const DEF={expense:[['Ăn uống','🍜','#E5484D'],['Di chuyển','🚌','#2F6FED'],['Mua sắm','🛍️','#8B5CF6'],['Hóa đơn','🧾','#F59E0B'],['Giải trí','🎮','#EC4899'],['Học tập','📚','#6366F1'],['Sức khỏe','💊','#14B8A6'],['Khác','📦','#6B7A99']],income:[['Lương','💼','#1BAA63'],['Làm thêm','⏱️','#2F6FED'],['Thưởng','🎁','#F59E0B'],['Khác','📦','#6B7A99']]};
@@ -102,15 +128,41 @@ return html`<div><h3>${cur==='terms'?'Điều khoản sử dụng':'Chính sách
 ${cur==='terms'?html`<div className="terms-box"><b>Tóm tắt Điều khoản sử dụng</b><ul><li>Ứng dụng hỗ trợ ghi chép thu chi cá nhân, theo dõi số dư và hỗ trợ phân tích hóa đơn/giao dịch phục vụ mục đích học tập & quản lý cá nhân.</li><li>Người dùng chịu trách nhiệm với tính chính xác của số tiền, danh mục và ghi chú đã nhập.</li><li>Không sử dụng hệ thống cho các hành vi vi phạm pháp luật hoặc gây quá tải dịch vụ.</li></ul></div>`:html`<div className="terms-box"><b>Tóm tắt Chính sách quyền riêng tư</b><ul><li>Dữ liệu tài khoản demo, số dư và lịch sử giao dịch trên bản này được lưu cục bộ trên trình duyệt của bạn (localStorage), và ảnh hóa đơn chỉ gửi đi khi bạn bấm phân tích AI.</li><li>Chúng tôi không bán hoặc chia sẻ dữ liệu chi tiêu cá nhân của bạn cho bên thứ ba trái phép.</li><li>Bạn có thể xoá dữ liệu hoặc đăng xuất bất kỳ lúc nào tại mục Cá nhân.</li></ul></div>`}
 <div className="mt"><button className="btn" onClick=${close}>Đã hiểu</button></div></div>`}
 const Field=({label,err,children})=>html`<div className="fld"><label>${label}</label>${children}${err&&html`<div className="err">${err}</div>`}</div>`;
-const Amt=({v,set,err})=>html`<div className=${'in amt'+(err?' bad':'')}><input inputMode="numeric" placeholder="0" value=${v} onChange=${ev=>set(ev.target.value)}/><b>đ</b></div>`;
+/* Ô nhập số tiền dùng chung (số dư ban đầu, thêm chi/thu, bản nháp AI).
+   set(giá_trị_hiển_thị, chuỗi_người_dùng_nhập). Giá trị lưu luôn lấy bằng num() -> số nguyên.
+   Nguyên nhân các lỗi đã gặp:
+   1) Định dạng lại làm React gán value mới -> con trỏ nhảy về cuối. Sửa: nhớ con trỏ theo
+      SỐ CHỮ SỐ đứng trước nó và đặt lại sau render.
+   2) Backspace/Delete trúng dấu chấm thì dấu được thêm lại ngay -> số không giảm. Sửa: xóa chữ số kề bên.
+   3) Bộ gõ tiếng Việt dạng IME (Telex/VNI của Windows, một số chế độ Unikey/EVKey) giữ cả cụm số
+      đang gõ trong "vùng soạn thảo" (composition). Chèn dấu chấm GIỮA lúc đang soạn làm vùng soạn của
+      bộ gõ lệch với nội dung ô -> phím kế tiếp thay sai đoạn (10000 thành 110.000).
+      Sửa: trong lúc soạn KHÔNG định dạng, giữ nguyên chuỗi; chỉ định dạng khi bộ gõ chốt (compositionend). */
+function Amt({v,set,err,label='Số tiền'}){const ref=useRef(null),want=useRef(null),composing=useRef(false),[,rerender]=useState(0);
+useLayoutEffect(()=>{const el=ref.current,n=want.current;want.current=null;if(n===null||!el||document.activeElement!==el)return;
+const s=el.value;let pos=0,seen=0;while(pos<s.length&&seen<n){if(s[pos]>='0'&&s[pos]<='9')seen++;pos++}el.setSelectionRange(pos,pos)});
+/* Định dạng nội dung hiện tại của ô. prev = giá trị đã hiển thị trước đó (null: không so sánh). */
+const commit=(el,type,prev)=>{const raw=el.value,at=el.selectionStart==null?raw.length:el.selectionStart;
+let d=digitsOf(raw),before=digitsOf(raw.slice(0,at)).length;const old=prev==null?null:digitsOf(prev);
+if(old!==null&&d===old&&raw.length<prev.length){/* chỉ xóa mất dấu chấm -> xóa chữ số kề bên */
+if(type==='deleteContentForward')d=d.slice(0,before)+d.slice(before+1);else if(before>0){d=d.slice(0,before-1)+d.slice(before);before--}}
+const lead=d.length-d.replace(/^0+(?=\d)/,'').length;if(lead){d=d.slice(lead);before=Math.max(0,before-lead)}
+if(d.length>AMT_MAX_DIGITS){if(old!==null&&old.length<=AMT_MAX_DIGITS){before=Math.max(0,Math.min(old.length,before-(d.length-old.length)));d=old}else{d=d.slice(0,AMT_MAX_DIGITS);before=Math.min(before,AMT_MAX_DIGITS)}}
+want.current=before;rerender(x=>x+1);set(groupVN(d),raw)};
+const onChange=ev=>{const el=ev.target,ne=ev.nativeEvent||{};
+if(composing.current||ne.isComposing){set(el.value,el.value);return}/* bộ gõ đang soạn: giữ nguyên, không chèn dấu chấm */
+commit(el,ne.inputType||'',v)};
+const onCompositionStart=()=>{composing.current=true};
+const onCompositionEnd=ev=>{composing.current=false;commit(ev.currentTarget,'',null)};
+return html`<div className=${'in amt'+(err?' bad':'')}><input ref=${ref} inputMode="numeric" autoComplete="off" aria-label=${label} placeholder="0" value=${v} onChange=${onChange} onCompositionStart=${onCompositionStart} onCompositionEnd=${onCompositionEnd}/><b>đ</b></div>`}
 const Btn=({busy,cls='',children,...p})=>html`<button ...${p} className=${'btn '+cls} disabled=${busy}>${busy?html`<i className="sp"></i>`:children}</button>`;
-function Head({t}){const{r,go}=useC();return html`<div className="row" style=${{padding:'20px 0 6px'}}><button className="bk" onClick=${()=>go(r.from&&r.from!==r.n?r.from:'home')}><${Ic} d=${IC.back} s=${18}/></button><h1>${t}</h1></div>`}
+function Head({t}){const{r,go}=useC();return html`<div className="row" style=${{padding:'20px 0 6px'}}><button className="bk" aria-label="Quay lại" onClick=${()=>go(r.from&&r.from!==r.n?r.from:'home')}><${Ic} d=${IC.back} s=${18}/></button><h1>${t}</h1></div>`}
 function Tx({t,d}){const c=catMeta(d,t.type,t.cat),inc=t.type==='income';return html`<div className="tx"><div className="ico" style=${{background:c[2]+'22'}}>${c[1]}</div><div className="f1"><b>${t.cat}</b><div className="mut">${t.note||'—'} · ${dlabel(t.date)}</div></div><b className=${inc?'pos':'neg'}>${inc?'+':'-'}${vnd(t.amount)}</b></div>`}
 
 function InitBalModal({cur,close}){const{upd}=useC();const[v,setV]=useState(cur!==null?fmtIn(cur):''),[e,setE]=useState('');
 const save=()=>{const a=num(v);if(!v||a<=0){setE('Vui lòng nhập số dư ban đầu lớn hơn 0');return}upd(x=>({...x,initialBalance:a}));toast('Đã thiết lập số dư ban đầu');close()};
 return html`<div><h3>Thiết lập số dư ban đầu</h3><p className="mut">Nhập số tiền hiện có để tính số dư khả dụng chính xác.</p>
-<${Field} label="Số dư ban đầu" err=${e}><${Amt} v=${v} err=${e} set=${x=>{setV(fmtIn(x));setE(amtErr(x))}}/><//>
+<${Field} label="Số dư ban đầu" err=${e}><${Amt} label="Số dư ban đầu" v=${v} err=${e} set=${(x,raw)=>{setV(x);setE(amtErr(raw))}}/><//>
 <div className="row g8 mt" style=${{marginTop:20}}><button className="btn ghost" onClick=${close}>Huỷ</button><button className="btn" onClick=${save}>Lưu số dư</button></div></div>`}
 
 function Auth(){const{db,setDb,enter}=useC();const[reg,setReg]=useState(false),[f,setF]=useState({name:'',email:'',pass:'',rem:true,agree:false}),[e,setE]=useState({}),[busy,setBusy]=useState(false),[show,setShow]=useState(false),[shake,setShake]=useState(0),[termsOpen,setTermsOpen]=useState(null),lock=useRef(false);
@@ -132,10 +184,11 @@ return html`<div className="scr" style=${{paddingTop:36}}>
 <form key=${reg+'-'+shake} className=${shake?'sh':''} onSubmit=${submit} noValidate>
 ${reg&&html`<${Field} label="Họ và tên" err=${e.name}><div className=${'in'+(e.name?' bad':'')}><input placeholder="Nguyễn Văn A" value=${f.name} onChange=${set('name')}/></div><//>`}
 <${Field} label="Email" err=${e.email}><div className=${'in'+(e.email?' bad':'')}><input type="email" placeholder="ban@email.com" value=${f.email} onChange=${set('email')}/></div><//>
-<${Field} label="Mật khẩu" err=${e.pass}><div className=${'in'+(e.pass?' bad':'')}><input type=${show?'text':'password'} placeholder="Nhập mật khẩu" value=${f.pass} onChange=${set('pass')}/><button type="button" className="eye" onClick=${()=>setShow(!show)}><${Ic} d=${IC.eye} s=${18}/></button></div><//>
+<${Field} label="Mật khẩu" err=${e.pass}><div className=${'in'+(e.pass?' bad':'')}><input type=${show?'text':'password'} placeholder="Nhập mật khẩu" value=${f.pass} onChange=${set('pass')}/><button type="button" className="eye" aria-label=${show?'Ẩn mật khẩu':'Hiện mật khẩu'} onClick=${()=>setShow(!show)}><${Ic} d=${IC.eye} s=${18}/></button></div><//>
 ${reg&&html`<div><div className="terms-row"><input id="agree-terms" type="checkbox" checked=${f.agree} onChange=${set('agree')}/><label for="agree-terms">Tôi đồng ý với <button type="button" className="lk" onClick=${()=>setTermsOpen('terms')}>Điều khoản sử dụng</button> và <button type="button" className="lk" onClick=${()=>setTermsOpen('privacy')}>Chính sách quyền riêng tư</button></label></div>${e.agree&&html`<div className="err">${e.agree}</div>`}</div>`}
 ${e.form&&html`<div className="alert" style=${{background:'var(--rl)',color:'var(--r)'}}>${e.form}</div>`}
 <div className="mt"><${Btn} type="submit" busy=${busy}>${reg?'Tạo tài khoản':'Đăng nhập'}<//></div></form>
+<p className="mt-3 flex justify-center gap-4 text-sm"><a href="/about.html" className="font-semibold text-green-700 dark:text-green-400 no-underline hover:underline">Giới thiệu</a><a href="/contact.html" className="font-semibold text-green-700 dark:text-green-400 no-underline hover:underline">Liên hệ</a></p>
 <p className="mut" style=${{textAlign:'center',marginTop:16}}>${reg?'Đã có tài khoản? ':'Chưa có tài khoản? '}<button type="button" className="lk" onClick=${()=>{setReg(!reg);setE({})}}>${reg?'Đăng nhập':'Đăng ký'}</button></p>
 ${termsOpen&&html`<${Modal} center onClose=${()=>setTermsOpen(null)}>${close=>html`<${TermsModal} tab=${termsOpen} close=${close}/>`}<//>`}</div>`}
 
@@ -169,32 +222,45 @@ if(ok){const c=catMeta(d,ok.type,ok.cat);return html`<div className="scr" style=
 <div className="mt"><button className="btn" onClick=${()=>go('home')}>Quay về trang chủ</button></div><div className="mt" style=${{marginTop:10}}><button className="btn ghost" onClick=${again}>Thêm giao dịch khác</button></div></div>`}
 return html`<div className="scr" style=${{paddingBottom:30}}><${Head} t=${isE?'Thêm khoản chi':'Thêm khoản thu'}/>
 <div className="seg mt">${[['expense','Chi tiêu'],['income','Thu nhập']].map(([k,l])=>html`<button key=${k} className=${t===k?'on':''} onClick=${()=>{setT(k);setF({...f,cat:''});setE({})}}>${l}</button>`)}</div>
-<${Field} label="Số tiền" err=${e.amt}><${Amt} v=${f.amt} err=${e.amt} set=${v=>{setF({...f,amt:fmtIn(v)});setE({...e,amt:amtErr(v)})}}/><//>
+<${Field} label="Số tiền" err=${e.amt}><${Amt} v=${f.amt} err=${e.amt} set=${(v,raw)=>{setF(o=>({...o,amt:v}));setE(o=>({...o,amt:amtErr(raw)}))}}/><//>
 <${Field} label="Danh mục" err=${e.cat}><div className="grid">${cats.map(c=>html`<button key=${c[0]} type="button" className=${'cb'+(f.cat===c[0]?' on':'')} onClick=${()=>{setF({...f,cat:c[0]});setE({...e,cat:''})}}><span>${c[1]}</span>${c[0]}</button>`)}</div><//>
 <${Field} label="Ghi chú"><div className="in"><input placeholder="Ví dụ: Ăn trưa" maxLength="80" value=${f.note} onChange=${ev=>setF({...f,note:ev.target.value})}/></div><//>
-<${Field} label="Ngày"><div className="in"><input type="date" max=${today()} value=${f.date} onChange=${ev=>setF({...f,date:ev.target.value})}/></div><//>
+<${Field} label="Ngày"><div className="in"><input type="date" aria-label="Ngày giao dịch" max=${today()} value=${f.date} onChange=${ev=>setF({...f,date:ev.target.value})}/></div><//>
 <div className="mt" style=${{marginTop:20}}><${Btn} busy=${busy} onClick=${save}>${isE?'Lưu khoản chi':'Lưu khoản thu'}<//></div></div>`}
 
 function Hist(){const{d}=useC();const[m,setM]=useState(mk(today())),[fl,setFl]=useState('all');
 const shift=n=>{const[y,mo]=m.split('-').map(Number),x=new Date(y,mo-1+n,1);setM(x.getFullYear()+'-'+pad(x.getMonth()+1))};
 const list=d.txs.filter(t=>mk(t.date)===m&&(fl==='all'||t.type===fl)).sort((a,b)=>b.ts-a.ts),days=[...new Set(list.map(t=>t.date))];
 return html`<div className="scr"><${Head} t="Lịch sử giao dịch"/>
-<div className="row sb mt"><button className="bk" onClick=${()=>shift(-1)}>‹</button><b>Tháng ${m.slice(5)}/${m.slice(0,4)}</b><button className="bk" onClick=${()=>shift(1)}>›</button></div>
+<div className="row sb mt"><button className="bk" aria-label="Tháng trước" onClick=${()=>shift(-1)}>‹</button><b>Tháng ${m.slice(5)}/${m.slice(0,4)}</b><button className="bk" aria-label="Tháng sau" onClick=${()=>shift(1)}>›</button></div>
 <div className="row g8 mt">${[['all','Tất cả'],['expense','Chi tiêu'],['income','Thu nhập']].map(([k,l])=>html`<button key=${k} className=${'chip'+(fl===k?' on':'')} onClick=${()=>setFl(k)}>${l}</button>`)}</div>
 <div className="row sb mt"><span className="pos"><b>Thu ${vnd(sum(list,'income'))}</b></span><span className="neg"><b>Chi ${vnd(sum(list,'expense'))}</b></span></div>
 ${days.map(day=>{const g=list.filter(t=>t.date===day);return html`<div key=${day} className="card" style=${{padding:'12px 16px'}}><div className="row sb mut"><b>${dlabel(day)}</b><span>${vnd(sum(g,'income')-sum(g,'expense'))}</span></div>${g.map(t=>html`<${Tx} key=${t.id} t=${t} d=${d}/>`)}</div>`})}
 ${!list.length&&html`<div className="card" style=${{textAlign:'center'}}><p className="mut">Không có giao dịch nào trong tháng này</p></div>`}</div>`}
 
 function Me(){const{user,d,logout,upd,go}=useC();const[c,setC]=useState(null),[balOpen,setBalOpen]=useState(false);
-return html`<div className="scr"><div style=${{textAlign:'center',padding:'28px 0 8px'}}><div className="ico" style=${{width:68,height:68,borderRadius:20,background:'var(--pl)',color:'var(--p)',fontSize:28,fontWeight:800,margin:'0 auto'}}>${user.name.charAt(0).toUpperCase()}</div><h1 style=${{marginTop:12}}>${user.name}</h1><p className="mut">${user.email}</p></div>
+const T=window.QLCTTheme,[theme,setTheme]=useState(()=>T?T.get():'light');
+useEffect(()=>{const on=e=>setTheme(e.detail);window.addEventListener('qlct-theme',on);return()=>window.removeEventListener('qlct-theme',on)},[]);
+const toggleTheme=()=>{if(!T)return;T.toggle();setTheme(T.get())};
+/* Chuyển đổi tài khoản: chỉ thoát phiên hiện tại (giống Đăng xuất), KHÔNG xoá dữ liệu, rồi về màn Đăng nhập */
+const switchAccount=()=>{go('home');logout();toast('Hãy đăng nhập bằng tài khoản khác')};
+return html`<div className="scr"><div style=${{textAlign:'center',padding:'28px 0 8px'}}><div className="ico" style=${{width:68,height:68,borderRadius:20,background:'var(--pl)',color:'var(--pt)',fontSize:28,fontWeight:800,margin:'0 auto'}}>${user.name.charAt(0).toUpperCase()}</div><h1 style=${{marginTop:12}}>${user.name}</h1><p className="mut">${user.email}</p></div>
 <div className="card" style=${{padding:'4px 16px'}}>
 <button className="tx tap" onClick=${()=>setBalOpen(true)} style=${{width:'100%',background:'none',border:0,borderBottom:'1px solid var(--b)',color:'var(--t)',fontSize:14,fontWeight:600,textAlign:'left'}}><span style=${{fontSize:20}}>💰</span><span className="f1">Số dư ban đầu (${d.initialBalance!==null?vnd(d.initialBalance):'Chưa đặt'})</span>›</button>
-<button className="tx tap" onClick=${()=>go('hist')} style=${{width:'100%',background:'none',border:0,color:'var(--t)',fontSize:14,fontWeight:600,textAlign:'left'}}><span style=${{fontSize:20}}>🕘</span><span className="f1">Lịch sử giao dịch</span>›</button>
+<button className="tx tap" onClick=${()=>go('hist')} style=${{width:'100%',background:'none',border:0,borderBottom:'1px solid var(--b)',color:'var(--t)',fontSize:14,fontWeight:600,textAlign:'left'}}><span style=${{fontSize:20}}>🕘</span><span className="f1">Lịch sử giao dịch</span>›</button>
+<button className="tx tap" role="switch" aria-checked=${theme==='dark'} onClick=${toggleTheme} style=${{width:'100%',background:'none',border:0,color:'var(--t)',fontSize:14,fontWeight:600,textAlign:'left'}}><span style=${{fontSize:20}} aria-hidden="true">${theme==='dark'?'🌙':'☀️'}</span><span className="f1">Giao diện tối<span className="mut" style=${{display:'block',fontWeight:500,marginTop:2}}>${theme==='dark'?'Đang bật — áp dụng cho cả 4 trang':'Đang tắt — đang dùng giao diện sáng'}</span></span><span className=${'sw'+(theme==='dark'?' on':'')} aria-hidden="true"></span></button>
 </div>
-<button className="btn ghost mt" onClick=${()=>setC('clear')}>Xoá dữ liệu hiện tại</button>
+<nav aria-label="Trang khác" className="mt-4 flex gap-2 text-center text-sm font-semibold">
+<a href="/history.html" className="flex-1 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-2 py-3 text-slate-700 dark:text-slate-200 no-underline hover:border-green-700 dark:hover:border-green-500 hover:text-green-700 dark:hover:text-green-400">📋 Lịch sử chi tiết</a>
+<a href="/about.html" className="flex-1 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-2 py-3 text-slate-700 dark:text-slate-200 no-underline hover:border-green-700 dark:hover:border-green-500 hover:text-green-700 dark:hover:text-green-400">ℹ️ Giới thiệu</a>
+<a href="/contact.html" className="flex-1 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-2 py-3 text-slate-700 dark:text-slate-200 no-underline hover:border-green-700 dark:hover:border-green-500 hover:text-green-700 dark:hover:text-green-400">✉️ Liên hệ</a>
+</nav>
+<button className="btn ghost mt" onClick=${()=>setC('switch')}>🔁 Chuyển đổi tài khoản</button>
+<button className="btn ghost" style=${{marginTop:10}} onClick=${()=>setC('clear')}>Xoá dữ liệu hiện tại</button>
 <div className="mt" style=${{marginTop:10}}><button className="btn red" onClick=${()=>setC('out')}>Đăng xuất</button></div>
 ${balOpen&&html`<${Modal} center onClose=${()=>setBalOpen(false)}>${close=>html`<${InitBalModal} cur=${d.initialBalance} close=${close}/>`}<//>`}
 ${c==='out'&&html`<${Confirm} danger title="Đăng xuất?" text="Bạn sẽ quay về màn hình đăng nhập." ok="Đăng xuất" onYes=${logout} onClose=${()=>setC(null)}/>`}
+${c==='switch'&&html`<${Confirm} title="Chuyển đổi tài khoản?" text=${'Bạn sẽ thoát khỏi '+user.email+' để đăng nhập tài khoản khác. Dữ liệu của tài khoản này vẫn được giữ nguyên.'} ok="Chuyển tài khoản" onYes=${switchAccount} onClose=${()=>setC(null)}/>`}
 ${c==='clear'&&html`<${Confirm} danger title="Xoá dữ liệu?" text="Toàn bộ số dư ban đầu và giao dịch sẽ được xoá." ok="Xoá" onYes=${()=>{upd(()=>empty());toast('Đã xoá dữ liệu')}} onClose=${()=>setC(null)}/>`}</div>`}
 
 const clean=(i,x)=>{const t=i.type==='income'?'income':'expense',a=Math.round(Number(i.amount)),ok=/^\d{4}-\d\d-\d\d$/.test(i.date||'')&&i.date<=today();return{op:uid(),type:t,amount:a>0?a:0,cat:x.cats[t].includes(i.cat)?i.cat:'Khác',note:String(i.note||'').slice(0,80),date:ok?i.date:today(),noDate:!ok}};
@@ -219,10 +285,10 @@ setTimeout(()=>{const ts=f.date===today()?Date.now():new Date(f.date+'T12:00:00'
 upd(x=>x.txs.some(y=>y.op===dr.op)?x:{...x,txs:[{id:uid(),op:dr.op,type:f.type,cat:f.cat,amount:a,note:f.note.trim(),date:f.date,ts},...x.txs]});
 setBusy(false);toast('Đã lưu giao dịch');if(onDone)onDone();go('home')},350)};
 return html`<div className="card"><div className="mut" style=${{fontWeight:700}}>BẢN NHÁP TỪ HÓA ĐƠN</div>
-<${Field} label="Số tiền" err=${e.amt}><${Amt} v=${f.amt} err=${e.amt} set=${v=>{setF({...f,amt:fmtIn(v)});setE({...e,amt:amtErr(v)})}}/><//>
-<${Field} label="Danh mục" err=${e.cat}><div className="in"><select value=${f.cat} onChange=${ev=>setF({...f,cat:ev.target.value})}>${cats.map(c=>html`<option key=${c[0]} value=${c[0]}>${c[1]} ${c[0]}</option>`)}</select></div><//>
-<${Field} label="Ghi chú"><div className="in"><input maxLength="80" value=${f.note} onChange=${ev=>setF({...f,note:ev.target.value})}/></div><//>
-<${Field} label="Ngày"><div className="in"><input type="date" max=${today()} value=${f.date} onChange=${ev=>setF({...f,date:ev.target.value})}/></div><//>
+<${Field} label="Số tiền" err=${e.amt}><${Amt} v=${f.amt} err=${e.amt} set=${(v,raw)=>{setF(o=>({...o,amt:v}));setE(o=>({...o,amt:amtErr(raw)}))}}/><//>
+<${Field} label="Danh mục" err=${e.cat}><div className="in"><select aria-label="Danh mục" value=${f.cat} onChange=${ev=>setF({...f,cat:ev.target.value})}>${cats.map(c=>html`<option key=${c[0]} value=${c[0]}>${c[1]} ${c[0]}</option>`)}</select></div><//>
+<${Field} label="Ghi chú"><div className="in"><input aria-label="Ghi chú" maxLength="80" value=${f.note} onChange=${ev=>setF({...f,note:ev.target.value})}/></div><//>
+<${Field} label="Ngày"><div className="in"><input type="date" aria-label="Ngày giao dịch" max=${today()} value=${f.date} onChange=${ev=>setF({...f,date:ev.target.value})}/></div><//>
 <div className="row g8 mt"><button className="btn ghost" onClick=${onDone}>Huỷ</button><${Btn} busy=${busy} onClick=${ok}>Lưu giao dịch<//></div></div>`}
 
 function Scan(){const{d,go}=useC();const[file,setFile]=useState(null),[url,setUrl]=useState(''),[busy,setBusy]=useState(false),[dr,setDr]=useState(null),[err,setErr]=useState(''),[mode,setMode]=useState(undefined);
@@ -233,7 +299,7 @@ try{setDr(await AIS.parseReceipt(file,aiCtx(d)));toast('Đã đọc xong hóa đ
 return html`<div className="scr"><${Head} t="Quét hóa đơn"/>
 ${mode===null&&html`<div className="alert" style=${{background:'var(--ol)',color:'var(--o)',cursor:'pointer'}} onClick=${chk}>${aiErr({code:AIS.why})} <b>Chạm để thử lại.</b></div>`}
 <div className=${'scanbox'+(busy?' on':'')}>${url?html`<img src=${url} alt="Ảnh hóa đơn"/>`:'Chưa có ảnh hóa đơn'}</div>
-<div className="row g8 mt"><label className="btn ghost" style=${{cursor:'pointer'}}>📷 Tải ảnh hóa đơn<input type="file" accept="image/*" hidden onChange=${pick}/></label><${Btn} busy=${busy} disabled=${!file} onClick=${run}>Phân tích AI<//></div>
+<div className="row g8 mt"><label className="btn ghost" style=${{cursor:'pointer'}}>📷 Tải ảnh hóa đơn<input type="file" accept="image/*" aria-label="Chọn ảnh hóa đơn" hidden onChange=${pick}/></label><${Btn} busy=${busy} disabled=${!file} onClick=${run}>Phân tích AI<//></div>
 ${err&&html`<div className="alert" style=${{background:'var(--rl)',color:'var(--r)'}}>${err}</div>`}
 ${err&&html`<button className="btn ghost mt" onClick=${()=>go('add',{type:'expense'})}>Nhập thủ công</button>`}
 ${dr&&html`<${DraftCard} key=${dr.op} dr=${dr} onDone=${()=>{setFile(null);setUrl('');setDr(null)}}/>`}</div>`}

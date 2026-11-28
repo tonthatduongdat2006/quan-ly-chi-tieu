@@ -1,0 +1,8 @@
+/* Tailwind cho ứng dụng chính public/index.html: KHÔNG dùng preflight (base reset)
+   để không làm thay đổi giao diện CSS tự viết đang chạy ổn định; chỉ thêm theme + utility classes. */
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+/* Chế độ tối bật bằng class "dark" trên <html> (public/js/theme.js), không theo cài đặt hệ điều hành */
+@custom-variant dark (&:where(.dark, .dark *));
