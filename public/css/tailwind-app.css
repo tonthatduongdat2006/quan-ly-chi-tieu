@@ -4,6 +4,8 @@
 @layer theme, base, components, utilities;
 @layer theme {
   :root, :host {
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', Arial,
+    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
     --color-green-700: oklch(52.7% 0.154 150.069);
     --color-emerald-50: oklch(97.9% 0.021 166.113);
     --color-emerald-100: oklch(95% 0.052 163.051);
@@ -49,6 +51,9 @@
   .relative {
     position: relative;
   }
+  .m-0 {
+    margin: 0px;
+  }
   .mx-auto {
     margin-inline: auto;
   }
@@ -63,6 +68,9 @@
   }
   .mb-1 {
     margin-bottom: var(--spacing);
+  }
+  .box-border {
+    box-sizing: border-box;
   }
   .block {
     display: block;
@@ -81,6 +89,18 @@
   }
   .h-7 {
     height: calc(var(--spacing) * 7);
+  }
+  .h-9 {
+    height: calc(var(--spacing) * 9);
+  }
+  .h-10 {
+    height: calc(var(--spacing) * 10);
+  }
+  .h-24 {
+    height: calc(var(--spacing) * 24);
+  }
+  .h-\[calc\(100\%-6rem\)\] {
+    height: calc(100% - 6rem);
   }
   .h-fit {
     height: fit-content;
@@ -111,6 +131,9 @@
   }
   .border-collapse {
     border-collapse: collapse;
+  }
+  .list-none {
+    list-style-type: none;
   }
   .grid-cols-1 {
     grid-template-columns: repeat(1, minmax(0, 1fr));
@@ -180,6 +203,9 @@
   :where(.divide-slate-100 > :not(:last-child)) {
     border-color: var(--color-slate-100);
   }
+  .self-start {
+    align-self: flex-start;
+  }
   .overflow-x-auto {
     overflow-x: auto;
   }
@@ -196,6 +222,10 @@
     border-style: var(--tw-border-style);
     border-width: 1px;
   }
+  .border-0 {
+    border-style: var(--tw-border-style);
+    border-width: 0px;
+  }
   .border-t {
     border-top-style: var(--tw-border-style);
     border-top-width: 1px;
@@ -203,6 +233,10 @@
   .border-b {
     border-bottom-style: var(--tw-border-style);
     border-bottom-width: 1px;
+  }
+  .border-solid {
+    --tw-border-style: solid;
+    border-style: solid;
   }
   .border-slate-200 {
     border-color: var(--color-slate-200);
@@ -224,6 +258,9 @@
   }
   .bg-white {
     background-color: var(--color-white);
+  }
+  .p-0 {
+    padding: 0px;
   }
   .p-4 {
     padding: calc(var(--spacing) * 4);
@@ -273,6 +310,9 @@
   .text-right {
     text-align: right;
   }
+  .font-sans {
+    font-family: var(--font-sans);
+  }
   .text-2xl {
     font-size: var(--text-2xl);
     line-height: var(--tw-leading, var(--text-2xl--line-height));
@@ -296,6 +336,14 @@
   .text-xs {
     font-size: var(--text-xs);
     line-height: var(--tw-leading, var(--text-xs--line-height));
+  }
+  .leading-5 {
+    --tw-leading: calc(var(--spacing) * 5);
+    line-height: calc(var(--spacing) * 5);
+  }
+  .leading-7 {
+    --tw-leading: calc(var(--spacing) * 7);
+    line-height: calc(var(--spacing) * 7);
   }
   .leading-relaxed {
     --tw-leading: var(--leading-relaxed);
@@ -385,6 +433,12 @@
     }
   }
   @media (width >= 40rem) {
+    .sm\:h-16 {
+      height: calc(var(--spacing) * 16);
+    }
+    .sm\:h-\[calc\(100\%-4rem\)\] {
+      height: calc(100% - 4rem);
+    }
     .sm\:grid-cols-2 {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -393,6 +447,21 @@
     }
     .sm\:flex-row {
       flex-direction: row;
+    }
+    .sm\:items-center {
+      align-items: center;
+    }
+    .sm\:justify-between {
+      justify-content: space-between;
+    }
+    .sm\:gap-3 {
+      gap: calc(var(--spacing) * 3);
+    }
+    .sm\:self-auto {
+      align-self: auto;
+    }
+    .sm\:py-0 {
+      padding-block: 0px;
     }
   }
   @media (width >= 48rem) {
