@@ -6,7 +6,7 @@
   <title>Giới thiệu — AI Smart Expense</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-slate-50 text-slate-900 min-h-screen">
+<body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col">
   <header class="bg-white border-b border-slate-200">
     <nav class="max-w-5xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
       <a href="/index.html" class="font-bold text-lg text-emerald-700">AI Smart Expense</a>
@@ -18,32 +18,49 @@
     </nav>
   </header>
 
-  <main class="max-w-5xl mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+  <main class="max-w-5xl mx-auto px-4 py-8 flex-1 w-full grid grid-cols-1 md:grid-cols-3 gap-6">
     <section class="md:col-span-2 bg-white border border-slate-200 rounded-xl p-6 space-y-4">
       <h1 class="text-2xl font-bold">Giới thiệu AI Smart Expense</h1>
       <p class="text-slate-600 leading-relaxed">
-        Ứng dụng hỗ trợ ghi chép thu chi, phân tích giao dịch từ tin nhắn và quét hóa đơn nhanh chóng cho người dùng.
+        AI Smart Expense là ứng dụng hỗ trợ ghi nhận và theo dõi chi tiêu cá nhân, giúp người dùng quản lý giao dịch thuận tiện hơn qua các màn hình chức năng riêng biệt.
       </p>
+
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-        <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
-          <h2 class="font-semibold mb-1">Nhập liệu &amp; Quét hóa đơn</h2>
-          <p class="text-sm text-slate-600">Hỗ trợ nhập chi tiêu và đọc thông tin từ ảnh hóa đơn.</p>
+        <div class="p-4 rounded-lg bg-slate-50 border border-slate-200 space-y-1">
+          <h2 class="font-semibold text-base">Ghi chép &amp; Quét hóa đơn</h2>
+          <p class="text-sm text-slate-600">Hỗ trợ nhập khoản chi/thu và trích xuất thông tin từ ảnh hóa đơn.</p>
         </div>
-        <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
-          <h2 class="font-semibold mb-1">Theo dõi &amp; Lịch sử</h2>
-          <p class="text-sm text-slate-600">Xem lại và lọc các khoản thu chi theo nhu cầu.</p>
+        <div class="p-4 rounded-lg bg-slate-50 border border-slate-200 space-y-1">
+          <h2 class="font-semibold text-base">Theo dõi lịch sử</h2>
+          <p class="text-sm text-slate-600">Dễ dàng xem lại và lọc các giao dịch đã thực hiện.</p>
         </div>
       </div>
     </section>
 
     <aside class="bg-white border border-slate-200 rounded-xl p-6 space-y-3 h-fit">
       <h2 class="font-semibold text-lg">Thông tin dự án</h2>
-      <p class="text-sm text-slate-600">Môn học: Web Basic (CSB25022) — VNUK</p>
-      <p class="text-sm text-slate-600">Nhóm thực hiện: Group 6</p>
-      <a href="/index.html" class="inline-block mt-2 px-4 py-2 rounded-lg bg-emerald-600 text-white text-sm font-medium hover:bg-emerald-700">
-        Quay lại ứng dụng
-      </a>
+      <p class="text-sm text-slate-600">Dự án: AI Smart Expense — Nhóm 6</p>
+      <p class="text-sm text-slate-600">Môn học: Web Basic (CSB25022)</p>
+      <div class="pt-2 flex flex-col gap-2">
+        <a href="/index.html" class="text-center px-4 py-2 rounded-lg bg-emerald-600 text-white text-sm font-medium hover:bg-emerald-700">
+          Về Trang chủ
+        </a>
+        <a href="/history.html" class="text-center px-4 py-2 rounded-lg border border-slate-300 text-slate-700 text-sm font-medium hover:bg-slate-50">
+          Xem Lịch sử
+        </a>
+      </div>
     </aside>
   </main>
+
+  <footer class="bg-white border-t border-slate-200">
+    <div class="max-w-5xl mx-auto px-4 py-4 text-sm text-slate-500 flex flex-wrap items-center justify-between gap-2">
+      <span>AI Smart Expense — Group 6</span>
+      <div class="flex items-center gap-4">
+        <a href="/index.html" class="hover:text-slate-800">Trang chủ</a>
+        <a href="/history.html" class="hover:text-slate-800">Lịch sử</a>
+        <a href="/about.html" class="hover:text-slate-800">Giới thiệu</a>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
