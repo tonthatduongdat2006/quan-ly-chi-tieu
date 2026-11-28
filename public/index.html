@@ -79,12 +79,15 @@ h1{font-size:21px;font-weight:800;letter-spacing:-.02em}h3{font-size:16.5px;font
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/htm@3.1.1/dist/htm.umd.js"></script>
 <script>
-const {useState,useEffect,useRef,useContext,createContext}=React;
+const {useState,useEffect,useLayoutEffect,useRef,useContext,createContext}=React;
 const html=htm.bind(React.createElement),Ctx=createContext(),useC=()=>useContext(Ctx);
 const vnd=n=>Math.round(n).toLocaleString('de-DE')+' đ',pad=n=>String(n).padStart(2,'0');
 const dk=d=>d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate()),today=()=>dk(new Date()),mk=s=>s.slice(0,7);
 const uid=()=>Math.random().toString(36).slice(2,9),num=s=>parseInt(String(s).replace(/\D/g,''),10)||0;
-const fmtIn=s=>{const n=String(s).replace(/\D/g,'');return n?Number(n).toLocaleString('de-DE'):''};
+/* Số tiền: chỉ giữ chữ số, bỏ số 0 đứng đầu, nhóm hàng nghìn bằng dấu chấm (kiểu VN).
+   Xử lý bằng chuỗi (không qua Number) để không sai số với số lớn. */
+const AMT_MAX_DIGITS=12,digitsOf=s=>String(s==null?'':s).replace(/\D/g,''),groupVN=d=>d.replace(/\B(?=(\d{3})+(?!\d))/g,'.');
+const fmtIn=s=>groupVN(digitsOf(s).replace(/^0+(?=\d)/,'').slice(0,AMT_MAX_DIGITS));
 const amtErr=v=>/[^\d.,\s]/.test(v)?(v.includes('-')?'Số tiền phải lớn hơn 0':'Số tiền chỉ được nhập chữ số'):'';
 const dlabel=s=>{const t=new Date();if(s===dk(t))return'Hôm nay';t.setDate(t.getDate()-1);return s===dk(t)?'Hôm qua':s.slice(8)+'/'+s.slice(5,7)};
 const DEF={expense:[['Ăn uống','🍜','#E5484D'],['Di chuyển','🚌','#2F6FED'],['Mua sắm','🛍️','#8B5CF6'],['Hóa đơn','🧾','#F59E0B'],['Giải trí','🎮','#EC4899'],['Học tập','📚','#6366F1'],['Sức khỏe','💊','#14B8A6'],['Khác','📦','#6B7A99']],income:[['Lương','💼','#1BAA63'],['Làm thêm','⏱️','#2F6FED'],['Thưởng','🎁','#F59E0B'],['Khác','📦','#6B7A99']]};
@@ -108,7 +111,22 @@ return html`<div><h3>${cur==='terms'?'Điều khoản sử dụng':'Chính sách
 ${cur==='terms'?html`<div className="terms-box"><b>Tóm tắt Điều khoản sử dụng</b><ul><li>Ứng dụng hỗ trợ ghi chép thu chi cá nhân, theo dõi số dư và hỗ trợ phân tích hóa đơn/giao dịch phục vụ mục đích học tập & quản lý cá nhân.</li><li>Người dùng chịu trách nhiệm với tính chính xác của số tiền, danh mục và ghi chú đã nhập.</li><li>Không sử dụng hệ thống cho các hành vi vi phạm pháp luật hoặc gây quá tải dịch vụ.</li></ul></div>`:html`<div className="terms-box"><b>Tóm tắt Chính sách quyền riêng tư</b><ul><li>Dữ liệu tài khoản demo, số dư và lịch sử giao dịch trên bản này được lưu cục bộ trên trình duyệt của bạn (localStorage), và ảnh hóa đơn chỉ gửi đi khi bạn bấm phân tích AI.</li><li>Chúng tôi không bán hoặc chia sẻ dữ liệu chi tiêu cá nhân của bạn cho bên thứ ba trái phép.</li><li>Bạn có thể xoá dữ liệu hoặc đăng xuất bất kỳ lúc nào tại mục Cá nhân.</li></ul></div>`}
 <div className="mt"><button className="btn" onClick=${close}>Đã hiểu</button></div></div>`}
 const Field=({label,err,children})=>html`<div className="fld"><label>${label}</label>${children}${err&&html`<div className="err">${err}</div>`}</div>`;
-const Amt=({v,set,err})=>html`<div className=${'in amt'+(err?' bad':'')}><input inputMode="numeric" aria-label="Số tiền" placeholder="0" value=${v} onChange=${ev=>set(ev.target.value)}/><b>đ</b></div>`;
+/* Ô nhập số tiền dùng chung (số dư ban đầu, thêm chi/thu, bản nháp AI).
+   Nguyên nhân lỗi cũ: mỗi lần định dạng lại, React gán value mới nên con trỏ nhảy về cuối
+   (gõ/sửa giữa chừng bị lệch chỗ), và Backspace/Delete trúng dấu chấm thì dấu chấm được thêm lại ngay
+   (số không giảm). Cách sửa: nhớ con trỏ theo SỐ CHỮ SỐ đứng trước nó, đặt lại sau khi render;
+   xóa trúng dấu chấm thì xóa chữ số bên cạnh. set(giá_trị_đã_định_dạng, chuỗi_người_dùng_nhập). */
+function Amt({v,set,err,label='Số tiền'}){const ref=useRef(null),want=useRef(null),[,rerender]=useState(0);
+useLayoutEffect(()=>{const el=ref.current,n=want.current;want.current=null;if(n===null||!el||document.activeElement!==el)return;
+const s=el.value;let pos=0,seen=0;while(pos<s.length&&seen<n){if(s[pos]>='0'&&s[pos]<='9')seen++;pos++}el.setSelectionRange(pos,pos)});
+const onChange=ev=>{const el=ev.target,raw=el.value,at=el.selectionStart==null?raw.length:el.selectionStart,type=(ev.nativeEvent&&ev.nativeEvent.inputType)||'';
+const old=digitsOf(v);let d=digitsOf(raw),before=digitsOf(raw.slice(0,at)).length;
+if(d===old&&raw.length<v.length){/* chỉ xóa mất dấu chấm -> xóa chữ số kề bên */
+if(type==='deleteContentForward')d=d.slice(0,before)+d.slice(before+1);else if(before>0){d=d.slice(0,before-1)+d.slice(before);before--}}
+const lead=d.length-d.replace(/^0+(?=\d)/,'').length;if(lead){d=d.slice(lead);before=Math.max(0,before-lead)}
+if(d.length>AMT_MAX_DIGITS){before=Math.max(0,Math.min(old.length,before-(d.length-old.length)));d=old}
+want.current=before;rerender(x=>x+1);set(groupVN(d),raw)};
+return html`<div className=${'in amt'+(err?' bad':'')}><input ref=${ref} inputMode="numeric" autoComplete="off" aria-label=${label} placeholder="0" value=${v} onChange=${onChange}/><b>đ</b></div>`}
 const Btn=({busy,cls='',children,...p})=>html`<button ...${p} className=${'btn '+cls} disabled=${busy}>${busy?html`<i className="sp"></i>`:children}</button>`;
 function Head({t}){const{r,go}=useC();return html`<div className="row" style=${{padding:'20px 0 6px'}}><button className="bk" aria-label="Quay lại" onClick=${()=>go(r.from&&r.from!==r.n?r.from:'home')}><${Ic} d=${IC.back} s=${18}/></button><h1>${t}</h1></div>`}
 function Tx({t,d}){const c=catMeta(d,t.type,t.cat),inc=t.type==='income';return html`<div className="tx"><div className="ico" style=${{background:c[2]+'22'}}>${c[1]}</div><div className="f1"><b>${t.cat}</b><div className="mut">${t.note||'—'} · ${dlabel(t.date)}</div></div><b className=${inc?'pos':'neg'}>${inc?'+':'-'}${vnd(t.amount)}</b></div>`}
@@ -116,7 +134,7 @@ function Tx({t,d}){const c=catMeta(d,t.type,t.cat),inc=t.type==='income';return 
 function InitBalModal({cur,close}){const{upd}=useC();const[v,setV]=useState(cur!==null?fmtIn(cur):''),[e,setE]=useState('');
 const save=()=>{const a=num(v);if(!v||a<=0){setE('Vui lòng nhập số dư ban đầu lớn hơn 0');return}upd(x=>({...x,initialBalance:a}));toast('Đã thiết lập số dư ban đầu');close()};
 return html`<div><h3>Thiết lập số dư ban đầu</h3><p className="mut">Nhập số tiền hiện có để tính số dư khả dụng chính xác.</p>
-<${Field} label="Số dư ban đầu" err=${e}><${Amt} v=${v} err=${e} set=${x=>{setV(fmtIn(x));setE(amtErr(x))}}/><//>
+<${Field} label="Số dư ban đầu" err=${e}><${Amt} label="Số dư ban đầu" v=${v} err=${e} set=${(x,raw)=>{setV(x);setE(amtErr(raw))}}/><//>
 <div className="row g8 mt" style=${{marginTop:20}}><button className="btn ghost" onClick=${close}>Huỷ</button><button className="btn" onClick=${save}>Lưu số dư</button></div></div>`}
 
 function Auth(){const{db,setDb,enter}=useC();const[reg,setReg]=useState(false),[f,setF]=useState({name:'',email:'',pass:'',rem:true,agree:false}),[e,setE]=useState({}),[busy,setBusy]=useState(false),[show,setShow]=useState(false),[shake,setShake]=useState(0),[termsOpen,setTermsOpen]=useState(null),lock=useRef(false);
@@ -176,7 +194,7 @@ if(ok){const c=catMeta(d,ok.type,ok.cat);return html`<div className="scr" style=
 <div className="mt"><button className="btn" onClick=${()=>go('home')}>Quay về trang chủ</button></div><div className="mt" style=${{marginTop:10}}><button className="btn ghost" onClick=${again}>Thêm giao dịch khác</button></div></div>`}
 return html`<div className="scr" style=${{paddingBottom:30}}><${Head} t=${isE?'Thêm khoản chi':'Thêm khoản thu'}/>
 <div className="seg mt">${[['expense','Chi tiêu'],['income','Thu nhập']].map(([k,l])=>html`<button key=${k} className=${t===k?'on':''} onClick=${()=>{setT(k);setF({...f,cat:''});setE({})}}>${l}</button>`)}</div>
-<${Field} label="Số tiền" err=${e.amt}><${Amt} v=${f.amt} err=${e.amt} set=${v=>{setF({...f,amt:fmtIn(v)});setE({...e,amt:amtErr(v)})}}/><//>
+<${Field} label="Số tiền" err=${e.amt}><${Amt} v=${f.amt} err=${e.amt} set=${(v,raw)=>{setF(o=>({...o,amt:v}));setE(o=>({...o,amt:amtErr(raw)}))}}/><//>
 <${Field} label="Danh mục" err=${e.cat}><div className="grid">${cats.map(c=>html`<button key=${c[0]} type="button" className=${'cb'+(f.cat===c[0]?' on':'')} onClick=${()=>{setF({...f,cat:c[0]});setE({...e,cat:''})}}><span>${c[1]}</span>${c[0]}</button>`)}</div><//>
 <${Field} label="Ghi chú"><div className="in"><input placeholder="Ví dụ: Ăn trưa" maxLength="80" value=${f.note} onChange=${ev=>setF({...f,note:ev.target.value})}/></div><//>
 <${Field} label="Ngày"><div className="in"><input type="date" aria-label="Ngày giao dịch" max=${today()} value=${f.date} onChange=${ev=>setF({...f,date:ev.target.value})}/></div><//>
@@ -231,7 +249,7 @@ setTimeout(()=>{const ts=f.date===today()?Date.now():new Date(f.date+'T12:00:00'
 upd(x=>x.txs.some(y=>y.op===dr.op)?x:{...x,txs:[{id:uid(),op:dr.op,type:f.type,cat:f.cat,amount:a,note:f.note.trim(),date:f.date,ts},...x.txs]});
 setBusy(false);toast('Đã lưu giao dịch');if(onDone)onDone();go('home')},350)};
 return html`<div className="card"><div className="mut" style=${{fontWeight:700}}>BẢN NHÁP TỪ HÓA ĐƠN</div>
-<${Field} label="Số tiền" err=${e.amt}><${Amt} v=${f.amt} err=${e.amt} set=${v=>{setF({...f,amt:fmtIn(v)});setE({...e,amt:amtErr(v)})}}/><//>
+<${Field} label="Số tiền" err=${e.amt}><${Amt} v=${f.amt} err=${e.amt} set=${(v,raw)=>{setF(o=>({...o,amt:v}));setE(o=>({...o,amt:amtErr(raw)}))}}/><//>
 <${Field} label="Danh mục" err=${e.cat}><div className="in"><select aria-label="Danh mục" value=${f.cat} onChange=${ev=>setF({...f,cat:ev.target.value})}>${cats.map(c=>html`<option key=${c[0]} value=${c[0]}>${c[1]} ${c[0]}</option>`)}</select></div><//>
 <${Field} label="Ghi chú"><div className="in"><input aria-label="Ghi chú" maxLength="80" value=${f.note} onChange=${ev=>setF({...f,note:ev.target.value})}/></div><//>
 <${Field} label="Ngày"><div className="in"><input type="date" aria-label="Ngày giao dịch" max=${today()} value=${f.date} onChange=${ev=>setF({...f,date:ev.target.value})}/></div><//>
