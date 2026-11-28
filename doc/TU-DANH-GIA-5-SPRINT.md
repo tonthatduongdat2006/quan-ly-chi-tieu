@@ -43,7 +43,7 @@ Tài liệu tổng hợp tiến độ và tự đánh giá theo 5 Sprint (S1–S
 * **Tôn Thất Dương Đạt:** Gánh phần lớn khối lượng thực thi kỹ thuật từ khởi tạo repo, giao diện/chức năng, ERD/PostgreSQL/API đến triển khai Vercel, đọc log/xử lý lỗi và tổng hợp `README.md` cùng thư mục `doc/`.
 * **Văn Lê Tiến Hùng:** Đóng góp định hướng giao diện/luồng thao tác từ giai đoạn Wireframe, kiểm thử thao tác bản nháp & luồng lưu dữ liệu, theo dõi GA4/tốc độ tải trang và thực hiện UI/UX Peer Review.
 * **Nguyễn Hải Đăng:** Chưa ghi nhận đầu việc, mã nguồn hay nhiệm vụ cụ thể nào được hoàn thành hoặc đóng góp vào quá trình làm việc của nhóm; cần đối chiếu thêm minh chứng/báo cáo nếu có.
-** **Phạm Minh Phúc:** Phụ trách kiểm thử thủ công các tính năng tương tác (Form, Modal, Quét hóa đơn tạo bản nháp, Lọc lịch sử) tại `doc/qa-test-cases.md`, kiểm thử hiển thị đa thiết bị (Mobile, Tablet, Desktop) tại `doc/responsive/`, và rà soát hoàn thiện báo cáo cá nhân qua 5 Sprint.
+* **Phạm Minh Phúc:** Phụ trách kiểm thử thủ công các tính năng tương tác (Form nhập liệu, Modal điều khoản / thiết lập số dư / chi tiết, Quét hóa đơn AI tạo bản nháp, Bộ lọc lịch sử) tại `doc/TEST_REPORT.md`, kiểm thử hiển thị đa thiết bị Mobile (`375px`), Tablet (`768px`), Desktop (`1280px`) tại `doc/responsive/`, và rà soát hoàn thiện báo cáo cá nhân qua 5 Sprint.
 ## 4. Khung điền Self-Report 5 Sprint (S1–S5) cho thành viên còn lại
 
 Các thành viên **Nguyễn Hải Đăng** và **Phạm Minh Phúc** điền trực tiếp từng Sprint theo mẫu: *Công việc phụ trách — Kết quả đạt được — Khó khăn/lưu ý*:
@@ -53,10 +53,10 @@ Các thành viên **Nguyễn Hải Đăng** và **Phạm Minh Phúc** điền tr
 3. **S3:** ...
 4. **S4:** ...
 5. **S5:** ...
-```[cite: 1.2]
+
 ### Báo cáo 5 Sprint (S1–S5) — Phạm Minh Phúc
-1. **S1:** Nghiên cứu yêu cầu bài toán quản lý chi tiêu cá nhân, tham gia thống nhất luồng chức năng chính (Đăng nhập, Thiết lập số dư, Thêm khoản chi, Quét hóa đơn AI) – Hoàn thiện kịch bản luồng người dùng đầu vào – Chưa có lưu ý phát sinh.
-2. **S2:** Phối hợp kiểm tra giao diện nhập liệu (Form thêm khoản chi, Modal chỉnh sửa) và ràng buộc dữ liệu đầu vào (validation số tiền, trường bắt buộc) – Đảm bảo form chặn dữ liệu rỗng/sai định dạng – Cần đồng bộ thông báo lỗi rõ ràng trên giao diện.
-3. **S3:** Trải nghiệm và kiểm tra luồng Quét hóa đơn AI tạo bản nháp (`05-quet-hoa-don-ai`) cùng bộ lọc lịch sử giao dịch – Xác nhận luồng trích xuất bản nháp và lọc dữ liệu hoạt động ổn định – Cần tối ưu hiển thị bảng/thẻ trên màn hình nhỏ.
-4. **S4:** Lập bảng kiểm thử thủ công chi tiết (`doc/qa-test-cases.md`) cho 4 nhóm tính năng tương tác và thực hiện chụp ảnh kiểm thử giao diện trên đủ 3 kích thước màn hình Mobile, Tablet, Desktop (`doc/responsive/`) – Hoàn thành 100% test cases đạt yêu cầu và đầy đủ minh chứng responsive – Đã kiểm tra kỹ lỗi tràn khung trên mobile.
-5. **S5:** Rà soát toàn bộ minh chứng kiểm thử, cập nhật báo cáo tự đánh giá 5 Sprint (`doc/TU-DANH-GIA-5-SPRINT.md`, `doc/BANG-TU-DANH-GIA-4-THANH-VIEN.md`) và tạo Pull Request (`docs/phuc-test-responsive`) vào nhánh `main` – Hoàn tất đầy đủ tài liệu phần việc được giao trước hạn nộp – Đã đối chiếu đúng cấu trúc thư mục và quy trình Git Flow của nhóm.
+1. **S1: Nghiên cứu yêu cầu bài toán quản lý chi tiêu cá nhân, tham gia thống nhất luồng chức năng chính (Đăng nhập, Thiết lập số dư, Thêm khoản chi, Quét hóa đơn AI) – Hoàn thiện kịch bản luồng người dùng đầu vào – Chưa có lưu ý phát sinh.
+2. **S2: Phối hợp kiểm tra giao diện nhập liệu (Form thêm khoản chi, Modal điều khoản / thiết lập số dư) và ràng buộc dữ liệu đầu vào (validation số tiền, trường bắt buộc) – Đảm bảo form chặn dữ liệu rỗng/sai định dạng – Cần đồng bộ thông báo lỗi rõ ràng trên giao diện.
+3. **S3: Trải nghiệm và kiểm tra luồng Quét hóa đơn AI tạo bản nháp (`05-quet-hoa-don-ai`) cùng bộ lọc lịch sử giao dịch – Xác nhận luồng trích xuất bản nháp và lọc dữ liệu hoạt động ổn định – Cần tối ưu hiển thị bảng/thẻ trên màn hình nhỏ.
+4. **S4: Lập bảng kiểm thử thủ công chi tiết (`doc/TEST_REPORT.md`) cho 4 nhóm tính năng tương tác và thực hiện chụp ảnh kiểm thử giao diện trên đủ 3 kích thước Mobile (`375px`), Tablet (`768px`), Desktop (`1280px`) tại `doc/responsive/` – Hoàn thành 100% test cases đạt yêu cầu và đầy đủ minh chứng responsive – Đã kiểm tra kỹ lỗi tràn khung trên mobile.
+5. **S5: Rà soát toàn bộ minh chứng kiểm thử, cập nhật báo cáo tự đánh giá 5 Sprint (`doc/TU-DANH-GIA-5-SPRINT.md`, `doc/BANG-TU-DANH-GIA-4-THANH-VIEN.md`, `doc/TU-DANH-GIA-PHAM-MINH-PHUC.md`) và tạo Pull Request (`docs/phuc-test-responsive`) vào nhánh `main` – Hoàn tất đầy đủ tài liệu phần việc được giao trước hạn nộp – Đã đối chiếu đúng cấu trúc thư mục và quy trình Git Flow của nhóm.
