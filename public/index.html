@@ -104,9 +104,9 @@ return html`<div><h3>${cur==='terms'?'Điều khoản sử dụng':'Chính sách
 ${cur==='terms'?html`<div className="terms-box"><b>Tóm tắt Điều khoản sử dụng</b><ul><li>Ứng dụng hỗ trợ ghi chép thu chi cá nhân, theo dõi số dư và hỗ trợ phân tích hóa đơn/giao dịch phục vụ mục đích học tập & quản lý cá nhân.</li><li>Người dùng chịu trách nhiệm với tính chính xác của số tiền, danh mục và ghi chú đã nhập.</li><li>Không sử dụng hệ thống cho các hành vi vi phạm pháp luật hoặc gây quá tải dịch vụ.</li></ul></div>`:html`<div className="terms-box"><b>Tóm tắt Chính sách quyền riêng tư</b><ul><li>Dữ liệu tài khoản demo, số dư và lịch sử giao dịch trên bản này được lưu cục bộ trên trình duyệt của bạn (localStorage), và ảnh hóa đơn chỉ gửi đi khi bạn bấm phân tích AI.</li><li>Chúng tôi không bán hoặc chia sẻ dữ liệu chi tiêu cá nhân của bạn cho bên thứ ba trái phép.</li><li>Bạn có thể xoá dữ liệu hoặc đăng xuất bất kỳ lúc nào tại mục Cá nhân.</li></ul></div>`}
 <div className="mt"><button className="btn" onClick=${close}>Đã hiểu</button></div></div>`}
 const Field=({label,err,children})=>html`<div className="fld"><label>${label}</label>${children}${err&&html`<div className="err">${err}</div>`}</div>`;
-const Amt=({v,set,err})=>html`<div className=${'in amt'+(err?' bad':'')}><input inputMode="numeric" placeholder="0" value=${v} onChange=${ev=>set(ev.target.value)}/><b>đ</b></div>`;
+const Amt=({v,set,err})=>html`<div className=${'in amt'+(err?' bad':'')}><input inputMode="numeric" aria-label="Số tiền" placeholder="0" value=${v} onChange=${ev=>set(ev.target.value)}/><b>đ</b></div>`;
 const Btn=({busy,cls='',children,...p})=>html`<button ...${p} className=${'btn '+cls} disabled=${busy}>${busy?html`<i className="sp"></i>`:children}</button>`;
-function Head({t}){const{r,go}=useC();return html`<div className="row" style=${{padding:'20px 0 6px'}}><button className="bk" onClick=${()=>go(r.from&&r.from!==r.n?r.from:'home')}><${Ic} d=${IC.back} s=${18}/></button><h1>${t}</h1></div>`}
+function Head({t}){const{r,go}=useC();return html`<div className="row" style=${{padding:'20px 0 6px'}}><button className="bk" aria-label="Quay lại" onClick=${()=>go(r.from&&r.from!==r.n?r.from:'home')}><${Ic} d=${IC.back} s=${18}/></button><h1>${t}</h1></div>`}
 function Tx({t,d}){const c=catMeta(d,t.type,t.cat),inc=t.type==='income';return html`<div className="tx"><div className="ico" style=${{background:c[2]+'22'}}>${c[1]}</div><div className="f1"><b>${t.cat}</b><div className="mut">${t.note||'—'} · ${dlabel(t.date)}</div></div><b className=${inc?'pos':'neg'}>${inc?'+':'-'}${vnd(t.amount)}</b></div>`}
 
 function InitBalModal({cur,close}){const{upd}=useC();const[v,setV]=useState(cur!==null?fmtIn(cur):''),[e,setE]=useState('');
@@ -134,7 +134,7 @@ return html`<div className="scr" style=${{paddingTop:36}}>
 <form key=${reg+'-'+shake} className=${shake?'sh':''} onSubmit=${submit} noValidate>
 ${reg&&html`<${Field} label="Họ và tên" err=${e.name}><div className=${'in'+(e.name?' bad':'')}><input placeholder="Nguyễn Văn A" value=${f.name} onChange=${set('name')}/></div><//>`}
 <${Field} label="Email" err=${e.email}><div className=${'in'+(e.email?' bad':'')}><input type="email" placeholder="ban@email.com" value=${f.email} onChange=${set('email')}/></div><//>
-<${Field} label="Mật khẩu" err=${e.pass}><div className=${'in'+(e.pass?' bad':'')}><input type=${show?'text':'password'} placeholder="Nhập mật khẩu" value=${f.pass} onChange=${set('pass')}/><button type="button" className="eye" onClick=${()=>setShow(!show)}><${Ic} d=${IC.eye} s=${18}/></button></div><//>
+<${Field} label="Mật khẩu" err=${e.pass}><div className=${'in'+(e.pass?' bad':'')}><input type=${show?'text':'password'} placeholder="Nhập mật khẩu" value=${f.pass} onChange=${set('pass')}/><button type="button" className="eye" aria-label=${show?'Ẩn mật khẩu':'Hiện mật khẩu'} onClick=${()=>setShow(!show)}><${Ic} d=${IC.eye} s=${18}/></button></div><//>
 ${reg&&html`<div><div className="terms-row"><input id="agree-terms" type="checkbox" checked=${f.agree} onChange=${set('agree')}/><label for="agree-terms">Tôi đồng ý với <button type="button" className="lk" onClick=${()=>setTermsOpen('terms')}>Điều khoản sử dụng</button> và <button type="button" className="lk" onClick=${()=>setTermsOpen('privacy')}>Chính sách quyền riêng tư</button></label></div>${e.agree&&html`<div className="err">${e.agree}</div>`}</div>`}
 ${e.form&&html`<div className="alert" style=${{background:'var(--rl)',color:'var(--r)'}}>${e.form}</div>`}
 <div className="mt"><${Btn} type="submit" busy=${busy}>${reg?'Tạo tài khoản':'Đăng nhập'}<//></div></form>
@@ -175,14 +175,14 @@ return html`<div className="scr" style=${{paddingBottom:30}}><${Head} t=${isE?'T
 <${Field} label="Số tiền" err=${e.amt}><${Amt} v=${f.amt} err=${e.amt} set=${v=>{setF({...f,amt:fmtIn(v)});setE({...e,amt:amtErr(v)})}}/><//>
 <${Field} label="Danh mục" err=${e.cat}><div className="grid">${cats.map(c=>html`<button key=${c[0]} type="button" className=${'cb'+(f.cat===c[0]?' on':'')} onClick=${()=>{setF({...f,cat:c[0]});setE({...e,cat:''})}}><span>${c[1]}</span>${c[0]}</button>`)}</div><//>
 <${Field} label="Ghi chú"><div className="in"><input placeholder="Ví dụ: Ăn trưa" maxLength="80" value=${f.note} onChange=${ev=>setF({...f,note:ev.target.value})}/></div><//>
-<${Field} label="Ngày"><div className="in"><input type="date" max=${today()} value=${f.date} onChange=${ev=>setF({...f,date:ev.target.value})}/></div><//>
+<${Field} label="Ngày"><div className="in"><input type="date" aria-label="Ngày giao dịch" max=${today()} value=${f.date} onChange=${ev=>setF({...f,date:ev.target.value})}/></div><//>
 <div className="mt" style=${{marginTop:20}}><${Btn} busy=${busy} onClick=${save}>${isE?'Lưu khoản chi':'Lưu khoản thu'}<//></div></div>`}
 
 function Hist(){const{d}=useC();const[m,setM]=useState(mk(today())),[fl,setFl]=useState('all');
 const shift=n=>{const[y,mo]=m.split('-').map(Number),x=new Date(y,mo-1+n,1);setM(x.getFullYear()+'-'+pad(x.getMonth()+1))};
 const list=d.txs.filter(t=>mk(t.date)===m&&(fl==='all'||t.type===fl)).sort((a,b)=>b.ts-a.ts),days=[...new Set(list.map(t=>t.date))];
 return html`<div className="scr"><${Head} t="Lịch sử giao dịch"/>
-<div className="row sb mt"><button className="bk" onClick=${()=>shift(-1)}>‹</button><b>Tháng ${m.slice(5)}/${m.slice(0,4)}</b><button className="bk" onClick=${()=>shift(1)}>›</button></div>
+<div className="row sb mt"><button className="bk" aria-label="Tháng trước" onClick=${()=>shift(-1)}>‹</button><b>Tháng ${m.slice(5)}/${m.slice(0,4)}</b><button className="bk" aria-label="Tháng sau" onClick=${()=>shift(1)}>›</button></div>
 <div className="row g8 mt">${[['all','Tất cả'],['expense','Chi tiêu'],['income','Thu nhập']].map(([k,l])=>html`<button key=${k} className=${'chip'+(fl===k?' on':'')} onClick=${()=>setFl(k)}>${l}</button>`)}</div>
 <div className="row sb mt"><span className="pos"><b>Thu ${vnd(sum(list,'income'))}</b></span><span className="neg"><b>Chi ${vnd(sum(list,'expense'))}</b></span></div>
 ${days.map(day=>{const g=list.filter(t=>t.date===day);return html`<div key=${day} className="card" style=${{padding:'12px 16px'}}><div className="row sb mut"><b>${dlabel(day)}</b><span>${vnd(sum(g,'income')-sum(g,'expense'))}</span></div>${g.map(t=>html`<${Tx} key=${t.id} t=${t} d=${d}/>`)}</div>`})}
@@ -228,9 +228,9 @@ upd(x=>x.txs.some(y=>y.op===dr.op)?x:{...x,txs:[{id:uid(),op:dr.op,type:f.type,c
 setBusy(false);toast('Đã lưu giao dịch');if(onDone)onDone();go('home')},350)};
 return html`<div className="card"><div className="mut" style=${{fontWeight:700}}>BẢN NHÁP TỪ HÓA ĐƠN</div>
 <${Field} label="Số tiền" err=${e.amt}><${Amt} v=${f.amt} err=${e.amt} set=${v=>{setF({...f,amt:fmtIn(v)});setE({...e,amt:amtErr(v)})}}/><//>
-<${Field} label="Danh mục" err=${e.cat}><div className="in"><select value=${f.cat} onChange=${ev=>setF({...f,cat:ev.target.value})}>${cats.map(c=>html`<option key=${c[0]} value=${c[0]}>${c[1]} ${c[0]}</option>`)}</select></div><//>
-<${Field} label="Ghi chú"><div className="in"><input maxLength="80" value=${f.note} onChange=${ev=>setF({...f,note:ev.target.value})}/></div><//>
-<${Field} label="Ngày"><div className="in"><input type="date" max=${today()} value=${f.date} onChange=${ev=>setF({...f,date:ev.target.value})}/></div><//>
+<${Field} label="Danh mục" err=${e.cat}><div className="in"><select aria-label="Danh mục" value=${f.cat} onChange=${ev=>setF({...f,cat:ev.target.value})}>${cats.map(c=>html`<option key=${c[0]} value=${c[0]}>${c[1]} ${c[0]}</option>`)}</select></div><//>
+<${Field} label="Ghi chú"><div className="in"><input aria-label="Ghi chú" maxLength="80" value=${f.note} onChange=${ev=>setF({...f,note:ev.target.value})}/></div><//>
+<${Field} label="Ngày"><div className="in"><input type="date" aria-label="Ngày giao dịch" max=${today()} value=${f.date} onChange=${ev=>setF({...f,date:ev.target.value})}/></div><//>
 <div className="row g8 mt"><button className="btn ghost" onClick=${onDone}>Huỷ</button><${Btn} busy=${busy} onClick=${ok}>Lưu giao dịch<//></div></div>`}
 
 function Scan(){const{d,go}=useC();const[file,setFile]=useState(null),[url,setUrl]=useState(''),[busy,setBusy]=useState(false),[dr,setDr]=useState(null),[err,setErr]=useState(''),[mode,setMode]=useState(undefined);
@@ -241,7 +241,7 @@ try{setDr(await AIS.parseReceipt(file,aiCtx(d)));toast('Đã đọc xong hóa đ
 return html`<div className="scr"><${Head} t="Quét hóa đơn"/>
 ${mode===null&&html`<div className="alert" style=${{background:'var(--ol)',color:'var(--o)',cursor:'pointer'}} onClick=${chk}>${aiErr({code:AIS.why})} <b>Chạm để thử lại.</b></div>`}
 <div className=${'scanbox'+(busy?' on':'')}>${url?html`<img src=${url} alt="Ảnh hóa đơn"/>`:'Chưa có ảnh hóa đơn'}</div>
-<div className="row g8 mt"><label className="btn ghost" style=${{cursor:'pointer'}}>📷 Tải ảnh hóa đơn<input type="file" accept="image/*" hidden onChange=${pick}/></label><${Btn} busy=${busy} disabled=${!file} onClick=${run}>Phân tích AI<//></div>
+<div className="row g8 mt"><label className="btn ghost" style=${{cursor:'pointer'}}>📷 Tải ảnh hóa đơn<input type="file" accept="image/*" aria-label="Chọn ảnh hóa đơn" hidden onChange=${pick}/></label><${Btn} busy=${busy} disabled=${!file} onClick=${run}>Phân tích AI<//></div>
 ${err&&html`<div className="alert" style=${{background:'var(--rl)',color:'var(--r)'}}>${err}</div>`}
 ${err&&html`<button className="btn ghost mt" onClick=${()=>go('add',{type:'expense'})}>Nhập thủ công</button>`}
 ${dr&&html`<${DraftCard} key=${dr.op} dr=${dr} onDone=${()=>{setFile(null);setUrl('');setDr(null)}}/>`}</div>`}
